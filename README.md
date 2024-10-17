@@ -1,2 +1,2 @@
 # Minishell
-Development of a minishell.
+Development of a minishell in c.
