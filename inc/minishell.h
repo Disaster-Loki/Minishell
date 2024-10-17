@@ -28,11 +28,25 @@
 # define BOLD_GREEN "\033[1;32m"
 # define COOL_EMOJI "😎"
 
-void	cmd_pwd();
-void	signals();
+typedef struct s_shell
+{
+	char	*input;
+	char	*path;
+	char	**mt;
+	char	**env;
+}	t_shell;
+
+void	cmd_pwd(void);
+void	signals(void);
+void	cmd_exit(char **mt);
 void	cmd_echo(char **mt);
-int		check_command(char **mt);
+void	free_mat(char **mt);
+int		get_path(t_shell *sh);
+int		matrix_line(char **mt);
+int		read_line(t_shell *shell);
+int		check_command(t_shell *sh);
 void	print_matrix(char **matrix);
-int		read_line(char *input, char **env);
+void	print_str_quotes(char *str);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

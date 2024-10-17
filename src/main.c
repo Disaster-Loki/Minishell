@@ -14,22 +14,23 @@
 
 int	main(int av, char **args, char *env[])
 {
+	t_shell	shell;
+
 	(void)av;
 	(void)args;
-	char	*input;
-
+	shell.env = env;
 	while (1)
 	{
 		signals();
-		input = readline(BOLD_GREEN"MiniShell->  "RESET);
-		if (input == NULL)
+		shell.input = readline(BOLD_GREEN"MiniShell->  "RESET);
+		if (shell.input == NULL)
 		{
 			printf("exit\n");
 			break ;
 		}
-		add_history(input);
-		read_line(input, env);
-		free(input);
+		add_history(shell.input);
+		read_line(&shell);
+		free(shell.input);
 	}
 	return (0);
 }

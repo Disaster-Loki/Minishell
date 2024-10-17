@@ -12,7 +12,7 @@
 
 #include "../inc/minishell.h"
 
-void	cmd_pwd()
+void	cmd_pwd(void)
 {
 	char	cwd[PATH_MAX];
 
@@ -20,43 +20,37 @@ void	cmd_pwd()
 		printf("%s\n", cwd);
 }
 
-void	print_str_quotes(char *str)
+void	cmd_exit(char **mt)
 {
-	int	j;
-
-	j = 0;
-	while (str[j])
-	{
-		if (str[j] == '"')
-			j++;
-		ft_putchar_fd(str[j], 1);
-		j++;
-	}
+	free_mat(mt);
+	printf("exit\n");
+	exit(0);
 }
 
-void cmd_echo(char **mt)
+void	cmd_cd(char **mt)
 {
-    int i;
+	
+}	
 
-    i = 1;
-    if (mt[i] && !ft_strncmp(mt[i], "-n", ft_strlen(mt[i])))
-    	i++;
-    if (mt[i] == NULL)
-    {
-        ft_putchar_fd('\n', 1);
-        return;
-    }
-    while (mt[i])
-    	
-    {
-        print_str_quotes(mt[i]);
-        ft_putchar_fd(' ', 1);
-        i++;
-    }
-    if (mt[1] && !ft_strncmp(mt[1], "-n", ft_strlen(mt[1])))
-    {
-        return;
-    }
-    ft_putchar_fd('\n', 1);
+void	cmd_echo(char **mt)
+{
+	int	i;
 
+	i = 1;
+	if (mt[i] && !ft_strncmp(mt[i], "-n", ft_strlen(mt[i])))
+		i++;
+	if (mt[i] == NULL)
+	{
+		ft_putchar_fd('\n', 1);
+		return ;
+	}
+	while (mt[i])
+	{
+		print_str_quotes(mt[i]);
+		ft_putchar_fd(' ', 1);
+		i++;
+	}
+	if (mt[1] && !ft_strncmp(mt[1], "-n", ft_strlen(mt[1])))
+		return ;
+	ft_putchar_fd('\n', 1);
 }

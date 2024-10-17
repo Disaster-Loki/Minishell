@@ -25,9 +25,10 @@ ORANGE		= \033[38;5;208m
 GREEN		= \033[32m
 
 S_FILES		= ./src/main.c     			\
+			  ./src/command.c 			\
 			  ./src/read_line.c 		\
 			  ./src/signals.c 			\
-			  ./src/command.c 			\
+			  ./src/utils.c 			\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

@@ -12,25 +12,47 @@
 
 #include "../inc/minishell.h"
 
-int	check_command(char **mt)
+int	check_command(t_shell *sh)
 {
-	if (!ft_strncmp(mt[0], "echo", 4))
-		cmd_echo(mt);
-	else if (!ft_strncmp(mt[0], "pwd", 3))
+	if (!ft_strcmp(sh->mt[0], "echo"))
+		cmd_echo(sh->mt);
+	else if (!ft_strcmp(sh->mt[0], "pwd"))
 		cmd_pwd();
+	else if (!ft_strcmp(sh->mt[0], "env"))
+		print_matrix(sh->env);
+	else if (!ft_strcmp(sh->mt[0], "cd"))
+		cmd_cd(sh->mt);
+	else if (!ft_strcmp(sh->mt[0], "exit"))
+		cmd_exit(sh->mt);
 	else
-		printf("Command '%s' not found\n", mt[0]);
+		printf("Command '%s' not found\n", sh->mt[0]);
 	return (1);
 }
 
-int	read_line(char *input, char **env)
+int	get_path(t_shell *sh)
 {
-	(void)env;
-	char	**split;
+	int		i;
+	char	*path;
 
-	split = ft_split(input, ' ');
-	if (!check_command(split))
-		return (0);
-	return (1);
+	i = -1;
+	path = "PATH=";
+	while (sh->env[++i])
+	{
+		if (!ft_strncmp(sh->env[i], path, 5))
+		{
+			sh->path = sh->env[i] + 5;
+			return (1);
+		}
+	}
+	return (0);
 }
 
+int	read_line(t_shell *sh)
+{
+	sh->mt = ft_split(sh->input, ' ');
+	get_path(sh);
+	if (!check_command(sh))
+		return (0);
+	free_mat(sh->mt);
+	return (1);
+}

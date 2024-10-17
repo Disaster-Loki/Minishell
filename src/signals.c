@@ -12,7 +12,8 @@
 
 #include "../inc/minishell.h"
 
-void signal_handler(int sig) {
+void	signal_handler(int sig)
+{
 	if (sig == SIGINT)
 	{
 		printf("\n");
@@ -24,8 +25,8 @@ void signal_handler(int sig) {
 		rl_redisplay();
 }
 
-void	signals()
+void	signals(void)
 {
 	signal(SIGINT, signal_handler);
-    signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
