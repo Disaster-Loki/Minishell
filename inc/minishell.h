@@ -13,6 +13,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <wait.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -38,11 +39,13 @@ typedef struct s_shell
 
 void	cmd_pwd(void);
 void	signals(void);
+void	cmd_cd(char *str);
 void	cmd_exit(char **mt);
 void	cmd_echo(char **mt);
 void	free_mat(char **mt);
 int		get_path(t_shell *sh);
 int		matrix_line(char **mt);
+int		execut_cmd(t_shell *sh);
 int		read_line(t_shell *shell);
 int		check_command(t_shell *sh);
 void	print_matrix(char **matrix);

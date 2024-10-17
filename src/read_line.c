@@ -21,10 +21,10 @@ int	check_command(t_shell *sh)
 	else if (!ft_strcmp(sh->mt[0], "env"))
 		print_matrix(sh->env);
 	else if (!ft_strcmp(sh->mt[0], "cd"))
-		cmd_cd(sh->mt);
+		cmd_cd(sh->mt[1]);
 	else if (!ft_strcmp(sh->mt[0], "exit"))
 		cmd_exit(sh->mt);
-	else
+	else if (!execut_cmd(sh))
 		printf("Command '%s' not found\n", sh->mt[0]);
 	return (1);
 }
