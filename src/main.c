@@ -22,7 +22,7 @@ int	main(int av, char **args, char *env[])
 	while (1)
 	{
 		signals();
-		shell.input = readline(BOLD_GREEN"MiniShell->  "RESET);
+		shell.input = readline(BOLD_GREEN"MiniShell-> "RESET);
 		if (shell.input == NULL)
 		{
 			printf("exit\n");

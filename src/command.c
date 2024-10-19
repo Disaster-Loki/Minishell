@@ -27,15 +27,19 @@ void	cmd_exit(char **mt)
 	exit(0);
 }
 
-void	cmd_cd(char *str)
+void	cmd_cd(t_shell *sh)
 {
-	if (str == NULL)
+	char	*home;
+
+	if (sh->mt[1] == NULL)
 	{
-		chdir("/nfs/homes/sde-carv");
+		home = var_env(sh, "HOME");
+		if (home)
+			chdir(home);
 		return ;
 	}
-	if(chdir(str) != 0)
-		printf("bash: cd: %s: No such file or directory\n", str);
+	if (chdir(sh->mt[1]) != 0)
+		printf("bash: cd: %s: No such file or directory\n", sh->mt[1]);
 }
 
 int	execut_cmd(t_shell *sh)
@@ -69,7 +73,7 @@ int	execut_cmd(t_shell *sh)
 
 void	cmd_echo(char **mt)
 {
-	int	i;
+	int		i;
 
 	i = 1;
 	if (mt[i] && !ft_strncmp(mt[i], "-n", ft_strlen(mt[i])))

@@ -21,7 +21,7 @@ int	check_command(t_shell *sh)
 	else if (!ft_strcmp(sh->mt[0], "env"))
 		print_matrix(sh->env);
 	else if (!ft_strcmp(sh->mt[0], "cd"))
-		cmd_cd(sh->mt[1]);
+		cmd_cd(sh);
 	else if (!ft_strcmp(sh->mt[0], "exit"))
 		cmd_exit(sh->mt);
 	else if (!execut_cmd(sh))
@@ -49,9 +49,9 @@ int	get_path(t_shell *sh)
 
 int	read_line(t_shell *sh)
 {
+	read_env(sh);
 	sh->mt = ft_split(sh->input, ' ');
-	get_path(sh);
-	if (!check_command(sh))
+	if (!get_path(sh) || !check_command(sh))
 		return (0);
 	free_mat(sh->mt);
 	return (1);

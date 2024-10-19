@@ -39,17 +39,20 @@ typedef struct s_shell
 
 void	cmd_pwd(void);
 void	signals(void);
-void	cmd_cd(char *str);
+void	cmd_cd(t_shell *sh);
 void	cmd_exit(char **mt);
 void	cmd_echo(char **mt);
 void	free_mat(char **mt);
 int		get_path(t_shell *sh);
+void	read_env(t_shell *sh);
+int		read_line(t_shell *sh);
 int		matrix_line(char **mt);
+int		read_line(t_shell *sh);
 int		execut_cmd(t_shell *sh);
-int		read_line(t_shell *shell);
 int		check_command(t_shell *sh);
 void	print_matrix(char **matrix);
 void	print_str_quotes(char *str);
+char	*var_env(t_shell *sh, char *str);
 int		ft_strcmp(const char *s1, const char *s2);
 
 #endif
