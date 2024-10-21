@@ -14,8 +14,12 @@
 
 int	check_command(t_shell *sh)
 {
-	if (!ft_strcmp(sh->mt[0], "echo"))
+	if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] == NULL)
+		cmd_export(sh->env);
+	else if (!ft_strcmp(sh->mt[0], "echo"))
 		cmd_echo(sh->mt);
+	else if (!ft_strcmp(sh->mt[0], "unset"))
+		cmd_unset(sh->env, sh->mt);
 	else if (!ft_strcmp(sh->mt[0], "pwd"))
 		cmd_pwd();
 	else if (!ft_strcmp(sh->mt[0], "env"))
@@ -38,7 +42,7 @@ int	get_path(t_shell *sh)
 	path = "PATH=";
 	while (sh->env[++i])
 	{
-		if (!ft_strncmp(sh->env[i], path, 5))
+		if (!ft_strcmp(sh->env[i], path))
 		{
 			sh->path = sh->env[i] + 5;
 			return (1);
