@@ -30,6 +30,7 @@ S_FILES		= ./src/main.c     			\
 			  ./src/signals.c 			\
 			  ./src/utils.c 			\
 			  ./src/var_env.c 			\
+			  ./src/cmd_export.c		\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

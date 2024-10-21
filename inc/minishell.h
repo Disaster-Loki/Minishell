@@ -40,6 +40,8 @@ typedef struct s_shell
 void	cmd_pwd(void);
 void	signals(void);
 void	cmd_cd(t_shell *sh);
+void	cmd_export(char **env);
+void	cmd_unset(char **env, char **to_remove);
 void	cmd_exit(char **mt);
 void	cmd_echo(char **mt);
 void	free_mat(char **mt);

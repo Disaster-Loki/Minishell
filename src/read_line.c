@@ -42,7 +42,7 @@ int	get_path(t_shell *sh)
 	path = "PATH=";
 	while (sh->env[++i])
 	{
-		if (!ft_strcmp(sh->env[i], path))
+		if (!ft_strncmp(sh->env[i], path, 5))
 		{
 			sh->path = sh->env[i] + 5;
 			return (1);
