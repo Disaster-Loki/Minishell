@@ -12,31 +12,63 @@
 
 #include "../inc/minishell.h"
 
+char	**copy_mtx(char **env)
+{
+	char	**copy;
+	int	i;
+
+	i = 0;
+	while (env[i])
+		i++;
+	copy = malloc(sizeof(char **) * (i + 1));
+	if (!copy)
+		return (NULL);
+	i = -1;
+	while (env[++i])
+		copy[i] = env[i];
+	copy[i] = NULL;
+	return (copy);
+}
+
+int	compare(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '=' && s2[i] != '=')
+		i++;
+    if (s1[i] < s2[i])
+		return (0);
+	return (1);
+}
+
 void	cmd_export(char **env)
 {
 	int		i;
 	int		j;
 	char	*temp;
+	char	**copy;
 
 	j = 1;
+	copy = copy_mtx(env);
 	while (j)
 	{
 		i = -1;
 		j = 0;
-		while (env[++i + 1])
+		while (copy[++i + 1])
 		{
-			if (env[i] > env[i + 1])
+			if (compare(copy[i], copy[i + 1]) == 1)
 			{
-				temp = env[i];
-				env[i] = env[i + 1];
-				env[i + 1] = temp;
+				temp = copy[i];
+				copy[i] = copy[i + 1];
+				copy[i + 1] = temp;
 				j = 1;
 			}
 		}
 	}
 	i = -1;
-	while (env[++i])
-		printf("declare -x %s\n", env[i]);
+	while (copy[++i])
+		printf("declare -x %s\n", copy[i]);
 }
 
 void	cmd_unset(char **env, char **to_remove)
