@@ -16,6 +16,8 @@ int	check_command(t_shell *sh)
 {
 	if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] == NULL)
 		cmd_export(sh->env);
+	else if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] != NULL)
+		cmd_export2(sh->env, sh->mt);
 	else if (!ft_strcmp(sh->mt[0], "echo"))
 		cmd_echo(sh->mt);
 	else if (!ft_strcmp(sh->mt[0], "unset"))
