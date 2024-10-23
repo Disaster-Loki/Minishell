@@ -26,36 +26,49 @@ void    write_until_equal(char *str)
     printf("\"\"");
 }
 
-int check_var_w_value(char *str)
+int check_var1(char *str)
 {
     int i;
 
     i = 0;
     while (str[i] != '\0')
         i++;
-    if (str[i] == '\0' && str[i - 1] == '=')
+    if (str[i] == '\0' && str[i - 1] != '=')
         return (0);
     return (1);
 }
 
-void    add_var(char **env, char *str)
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
+// Function to add a new environment variable
+void add_var(char ***env, char *str)
 {
     int i;
-    extern char **environ;
-    static char   *temp_env[70000];
+    t_shell *hundler;
+    char    *dup;
 
-    printf("%s\n",  str);
-    (void)env;
+    hundler = malloc(sizeof(t_shell));
+    i = 0;
+    dup = strdup(str);
+    while ((*env)[i])
+        i++;
+    hundler->temp_env = malloc(sizeof(char *) * (i + 2));
     i = -1;
-    while (environ[++i])
-        temp_env[i] = environ[i];
-    temp_env[i] = str;
-    temp_env[i + 1] = NULL;
-    environ = temp_env;
+    while ((*env)[++i])
+        hundler->temp_env[i] = (*env)[i];
+    hundler->temp_env[i] = dup;
+    i++;
+    hundler->temp_env[i] = NULL;
+    *env = hundler->temp_env;
+    free(hundler);
 }
 
-void    cmd_export2(char **env, char **mt)
+void    cmd_export2(char ***env, char **mt)
 {
-
-    add_var(env, mt[1]);
+    if (mt[1]) 
+    {
+        add_var(env, mt[1]);
+    }
 }

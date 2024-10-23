@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <string.h>
 # include <signal.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -35,6 +36,7 @@ typedef struct s_shell
 	char	*path;
 	char	**mt;
 	char	**env;
+	char	**temp_env;
 }	t_shell;
 
 void	cmd_pwd(void);
@@ -46,7 +48,6 @@ void	cmd_exit(char **mt);
 void	cmd_echo(char **mt);
 void	free_mat(char **mt);
 void	read_env(t_shell *sh);
-void    cmd_export2(char **env, char **mt);
 int		get_path(t_shell *sh);
 int		read_line(t_shell *sh);
 int		matrix_line(char **mt);
@@ -56,6 +57,8 @@ int		check_command(t_shell *sh);
 void	print_matrix(char **matrix);
 void	print_str_quotes(char *str);
 char	*var_env(t_shell *sh, char *str);
+void    cmd_export2(char ***env, char **mt);
+char	**copy_mtx(char **env);
 int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

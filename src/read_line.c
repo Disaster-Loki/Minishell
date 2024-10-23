@@ -14,11 +14,10 @@
 
 int	check_command(t_shell *sh)
 {
-	 extern char **environ;
-	if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] == NULL)
+	if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] != NULL)
+		cmd_export2(&sh->env, sh->mt);
+	else if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] == NULL)
 		cmd_export(sh->env);
-	else if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] != NULL)
-		cmd_export2(sh->env, sh->mt);
 	else if (!ft_strcmp(sh->mt[0], "echo"))
 		cmd_echo(sh->mt);
 	else if (!ft_strcmp(sh->mt[0], "unset"))
@@ -26,7 +25,7 @@ int	check_command(t_shell *sh)
 	else if (!ft_strcmp(sh->mt[0], "pwd"))
 		cmd_pwd();
 	else if (!ft_strcmp(sh->mt[0], "env"))
-		print_matrix(environ);
+		print_matrix(sh->env);
 	else if (!ft_strcmp(sh->mt[0], "cd"))
 		cmd_cd(sh);
 	else if (!ft_strcmp(sh->mt[0], "exit"))
