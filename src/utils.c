@@ -21,20 +21,6 @@ void	print_matrix(char **matrix)
 		printf("%s\n", matrix[i]);
 }
 
-void	print_str_quotes(char *str)
-{
-	int	j;
-
-	j = 0;
-	while (str[j])
-	{
-		if (str[j] == '"')
-			j++;
-		ft_putchar_fd(str[j], 1);
-		j++;
-	}
-}
-
 void	free_mat(char **mt)
 {
 	int	i;
@@ -66,4 +52,18 @@ int	matrix_line(char **mt)
 	while (mt[len])
 		len++;
 	return (len);
+}
+
+void	print_str_quotes(char *str)
+{
+	int	j;
+
+	j = 0;
+	while (str[j])
+	{
+		if (str[j] == '"')
+			j++;
+		ft_putchar_fd(str[j], 1);
+		j++;
+	}
 }

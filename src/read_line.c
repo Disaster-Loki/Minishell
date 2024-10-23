@@ -31,20 +31,10 @@ int	check_command(t_shell *sh)
 
 int	get_path(t_shell *sh)
 {
-	int		i;
-	char	*path;
-
-	i = -1;
-	path = "PATH=";
-	while (sh->env[++i])
-	{
-		if (!ft_strncmp(sh->env[i], path, 5))
-		{
-			sh->path = sh->env[i] + 5;
-			return (1);
-		}
-	}
-	return (0);
+	sh->path = var_env(sh, "PATH");
+	if (sh->path == NULL)
+		return (0);
+	return (1);
 }
 
 int	read_line(t_shell *sh)

@@ -39,36 +39,45 @@ char	*var_name(char *str, int j)
 	return (name);
 }
 
-char	*expand_var(t_shell *sh, int i)
+char	*not_found(t_shell *sh, char *name, int *i)
+{
+	int		len;
+	char	*sub;
+	char	*exp;
+	char	*rest;
+
+	len = (int) ft_strlen(sh->input);
+	sub = ft_substr(sh->input, 0, *i);
+	rest = ft_substr(sh->input, *i + ft_strlen(name) + 1, len);
+	exp = ft_strjoin(sub, rest);
+	*i -= 1;
+	free(sub);
+	free(name);
+	free(rest);
+	return (exp);
+}
+
+char	*expand_var(t_shell *sh, int *i)
 {
 	char	*var;
-	char	*exp;
 	char	*sub;
+	char	*rest;
 	char	*name;
+	char	*exp;
 
-	(void)sub;
-	(void)exp;
-	name = var_name(sh->input, i + 1);
+	name = var_name(sh->input, *i + 1);
 	var = var_env(sh, name);
 	if (!var)
-	{
-		//free(name);
-		return (name);
-	}
-
-	/*sub = ft_substr(str, *j + ft_strlen(name) + 1, ft_strlen(str));
-	printf("%s\n", sub);
-	exp = ft_strjoin(var, sub);
-	printf("%s\n", exp);
-	while (exp[*j] && exp[*j] != '$')
-		(*j)++;
-	if (exp[*j] == '$')
-		(*j)--;
-	printf("%d\n", *j);
-	free(name);
+		return (not_found(sh, name, i));
+	sub = ft_substr(sh->input, 0, *i);
+	rest = ft_substr(sh->input, *i + ft_strlen(name) + 1, ft_strlen(sh->input));
+	exp = ft_strjoin(sub, var);
+	exp = ft_strjoin(exp, rest);
+	*i = ft_strlen(sub) + ft_strlen(var) - 1;
 	free(sub);
-	free(str);*/
-	return (var);
+	free(rest);
+	free(name);
+	return (exp);
 }
 
 void	read_env(t_shell *sh)
@@ -79,6 +88,10 @@ void	read_env(t_shell *sh)
 	while (sh->input[++i])
 	{
 		if (sh->input[i] == '$')
-			sh->input = expand_var(sh, i);
+		{
+			if (sh->input[i + 1] == '\0')
+				return ;
+			sh->input = expand_var(sh, &i);
+		}
 	}
 }
