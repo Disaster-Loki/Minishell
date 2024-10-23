@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 09:02:35 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/17 09:02:38 by sde-carv         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:02:42 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	check_command(t_shell *sh)
 {
+	 extern char **environ;
 	if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] == NULL)
 		cmd_export(sh->env);
 	else if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] != NULL)
@@ -25,7 +26,7 @@ int	check_command(t_shell *sh)
 	else if (!ft_strcmp(sh->mt[0], "pwd"))
 		cmd_pwd();
 	else if (!ft_strcmp(sh->mt[0], "env"))
-		print_matrix(sh->env);
+		print_matrix(environ);
 	else if (!ft_strcmp(sh->mt[0], "cd"))
 		cmd_cd(sh);
 	else if (!ft_strcmp(sh->mt[0], "exit"))

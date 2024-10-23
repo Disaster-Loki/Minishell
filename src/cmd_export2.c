@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_export2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/17 10:53:07 by sde-carv         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:16:01 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,24 @@ int check_var_w_value(char *str)
     return (1);
 }
 
-void    add_var(char **env, char *var)
+void    add_var(char **env, char *str)
 {
     int i;
+    extern char **environ;
+    static char   *temp_env[70000];
 
-    i = 0;
-    while (env[i])
-        i++;
-    env[i] = var;
-    i++;
-    env[i] = NULL;
+    printf("%s\n",  str);
+    (void)env;
+    i = -1;
+    while (environ[++i])
+        temp_env[i] = environ[i];
+    temp_env[i] = str;
+    temp_env[i + 1] = NULL;
+    environ = temp_env;
 }
 
 void    cmd_export2(char **env, char **mt)
 {
-    int i;
 
-    i = 1;
-    while (mt[i])
-    {
-        add_var(env, mt[i]);
-        i++;
-    }
+    add_var(env, mt[1]);
 }
