@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comd_export.c                                      :+:      :+:    :+:   */
+/*   cmd_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/17 10:53:07 by sde-carv         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:08:00 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,33 +71,77 @@ void	cmd_export(char **env)
 		printf("declare -x %s\n", copy[i]);
 }
 
-void	cmd_unset(char **env, char **to_remove)
+char    *equals_end(char *str)
+{
+    int i;
+    char    *result;
+
+    i = 0;
+    while (str[i] != '=' && str[i] != '\0')
+        i++;
+    result = malloc(sizeof(char) * (i + 1));
+    if (!result)
+        return (NULL);
+    i = -1;
+    while (str[++i] != '=' && str[i])
+        result[i] = str[i];
+    result[i] = '\0';
+    return (result);
+}
+
+void	put_in_temp(char ***env, char *current_env, char *to_remove)
+{
+	int	i;
+	int j;
+	t_shell	*handler;
+
+	i = 0;
+	(void)current_env;
+	handler = malloc(sizeof(t_shell));
+	if (!handler)
+		return ;
+	while ((*env)[i])
+		i++;
+	handler->temp_unset = malloc(sizeof(char *) * (i + 1));
+	if (!handler->temp_unset)
+		return ;
+	i = -1;
+	j = -1;
+	while ((*env)[++i])
+	{
+		if (ft_strcmp(equals_end((*env)[i]), to_remove) != 0)
+			handler->temp_unset[++j] = (*env)[i];
+	}
+	handler->temp_unset[j] = NULL;
+	*env = handler->temp_unset;
+}
+
+void	rm_var(char ***env, char *to_remove)
+{
+	int i;
+
+	i = 0;
+    while ((*env)[i])
+	{	
+        if (ft_strcmp(equals_end((*env)[i]), to_remove) == 0)
+		{
+			put_in_temp(env, (*env)[i], to_remove);
+			return ;
+		}
+		i++;
+	}
+}
+
+void	cmd_unset(char ***env, char **to_remove)
 {
 	int		i;
-	int		j;
-	char	**temp;
 
-	temp = env;
-	i = 0;
-	
-	if (to_remove[1] == NULL)
+	i = 1;
+	if (to_remove[i] == NULL)
 		return ;
-	while (to_remove[++i])
+	while (to_remove[i])
 	{
-		j = -1;
-		while (temp[++j])
-		{
-			if (!ft_strncmp(to_remove[i], temp[j], ft_strlen(to_remove[i]))
-				&& temp[j][ft_strlen(to_remove[i])] == '=')
-			{
-				while (temp[j + 1])
-				{
-					env[j] = temp[j + 1];
-					j++;
-				}
-				env[j] = NULL;
-				break ;
-			}
-		}
+		rm_var(env, to_remove[i]);
+		i++;
 	}
 }

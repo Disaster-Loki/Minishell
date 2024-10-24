@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:03:54 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/16 12:03:56 by sde-carv         ###   ########.fr       */
+/*   Updated: 2024/10/24 06:57:51 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@ typedef struct s_shell
 	char	**mt;
 	char	**env;
 	char	**temp_env;
+	char	**temp_unset;
 }	t_shell;
 
 void	cmd_pwd(void);
 void	signals(void);
 void	cmd_cd(t_shell *sh);
 void	cmd_export(char **env);
-void	cmd_unset(char **env, char **to_remove);
+void	cmd_unset(char ***env, char **to_remove);
 void	cmd_exit(char **mt);
 void	cmd_echo(char **mt);
 void	free_mat(char **mt);

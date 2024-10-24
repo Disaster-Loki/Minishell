@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 09:02:35 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/23 11:02:42 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/10/24 07:57:37 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_command(t_shell *sh)
 	else if (!ft_strcmp(sh->mt[0], "echo"))
 		cmd_echo(sh->mt);
 	else if (!ft_strcmp(sh->mt[0], "unset"))
-		cmd_unset(sh->env, sh->mt);
+		cmd_unset(&sh->env, sh->mt);
 	else if (!ft_strcmp(sh->mt[0], "pwd"))
 		cmd_pwd();
 	else if (!ft_strcmp(sh->mt[0], "env"))
