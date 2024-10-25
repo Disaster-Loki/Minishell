@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:03:54 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/24 06:57:51 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/10/25 09:28:08 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_shell
 {
 	char	*input;
 	char	*path;
+	char	*quotes;
 	char	**mt;
 	char	**env;
 	char	**temp_env;

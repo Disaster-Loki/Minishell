@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/24 13:08:00 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/10/25 16:14:59 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	**copy_mtx(char **env)
 {
+	int		i;
 	char	**copy;
-	int	i;
 
 	i = 0;
 	while (env[i])
@@ -37,9 +37,48 @@ int	compare(char *s1, char *s2)
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '=' && s2[i] != '=')
 		i++;
-    if (s1[i] < s2[i])
+	if (s1[i] < s2[i])
 		return (0);
 	return (1);
+}
+
+int	found_equals(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '=')
+			return (1);
+	}
+	return (0);
+}
+
+void	write_export(char **print)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (print[++i])
+	{
+		printf("declace -x ");
+		j = -1;
+		while (print[i][++j])
+		{
+			if ((print[i][j] == '=' || print[i][j + 1] == '\0')
+				&& found_equals(print[i]))
+			{	
+				printf("%c\"", print[i][j]);
+				if (print[i][j] == '=' && print[i][j + 1] == '\0')
+					printf("\"");
+			}
+			else
+				printf("%c", print[i][j]);
+		}
+		printf("\n");
+	}
 }
 
 void	cmd_export(char **env)
@@ -66,37 +105,34 @@ void	cmd_export(char **env)
 			}
 		}
 	}
+	write_export(copy);
+}
+
+char	*equals_end(char *str)
+{
+	int		i;
+	char	*result;
+
+	i = 0;
+	while (str[i] != '=' && str[i] != '\0')
+		i++;
+	result = malloc(sizeof(char) * (i + 1));
+	if (!result)
+		return (NULL);
 	i = -1;
-	while (copy[++i])
-		printf("declare -x %s\n", copy[i]);
+	while (str[++i] != '=' && str[i])
+		result[i] = str[i];
+	result[i] = '\0';
+	return (result);
 }
 
-char    *equals_end(char *str)
+void	put_in_temp(char ***env, char *to_remove)
 {
-    int i;
-    char    *result;
-
-    i = 0;
-    while (str[i] != '=' && str[i] != '\0')
-        i++;
-    result = malloc(sizeof(char) * (i + 1));
-    if (!result)
-        return (NULL);
-    i = -1;
-    while (str[++i] != '=' && str[i])
-        result[i] = str[i];
-    result[i] = '\0';
-    return (result);
-}
-
-void	put_in_temp(char ***env, char *current_env, char *to_remove)
-{
-	int	i;
-	int j;
+	int		i;
+	int		j;
 	t_shell	*handler;
 
 	i = 0;
-	(void)current_env;
 	handler = malloc(sizeof(t_shell));
 	if (!handler)
 		return ;
@@ -108,7 +144,7 @@ void	put_in_temp(char ***env, char *current_env, char *to_remove)
 	i = -1;
 	j = -1;
 	while ((*env)[++i])
-	{
+	{	
 		if (ft_strcmp(equals_end((*env)[i]), to_remove) != 0)
 			handler->temp_unset[++j] = (*env)[i];
 	}
@@ -118,17 +154,16 @@ void	put_in_temp(char ***env, char *current_env, char *to_remove)
 
 void	rm_var(char ***env, char *to_remove)
 {
-	int i;
+	int	i;
 
-	i = 0;
-    while ((*env)[i])
+	i = -1;
+	while ((*env)[++i])
 	{	
-        if (ft_strcmp(equals_end((*env)[i]), to_remove) == 0)
+		if (ft_strcmp(equals_end((*env)[i]), to_remove) == 0)
 		{
-			put_in_temp(env, (*env)[i], to_remove);
+			put_in_temp(env, to_remove);
 			return ;
 		}
-		i++;
 	}
 }
 
