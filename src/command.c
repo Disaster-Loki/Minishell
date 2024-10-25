@@ -40,6 +40,8 @@ void	cmd_cd(t_shell *sh)
 	}
 	if (chdir(sh->mt[1]) != 0)
 		printf("bash: cd: %s: No such file or directory\n", sh->mt[1]);
+	if (matrix_line(sh->mt) >= 2)
+		printf("bash: cd: too many arguments\n");
 }
 
 int	execut_cmd(t_shell *sh)
@@ -74,22 +76,28 @@ int	execut_cmd(t_shell *sh)
 void	cmd_echo(char **mt)
 {
 	int		i;
+	int		flag;
 
 	i = 1;
+	flag = 0;
 	if (mt[i] && !ft_strncmp(mt[i], "-n", ft_strlen(mt[i])))
+	{
+		flag = 1;
 		i++;
+	}
 	if (mt[i] == NULL)
 	{
-		ft_putchar_fd('\n', 1);
+		if (!flag)
+			ft_putchar_fd('\n', 1);
 		return ;
 	}
 	while (mt[i])
 	{
-		print_str_quotes(mt[i]);
-		ft_putchar_fd(' ', 1);
+		ft_putstr_fd(mt[i], 1);
+		if (mt[i + 1])
+			ft_putchar_fd(' ', 1);
 		i++;
 	}
-	if (mt[1] && !ft_strncmp(mt[1], "-n", ft_strlen(mt[1])))
-		return ;
-	ft_putchar_fd('\n', 1);
+	if (!flag)
+		ft_putchar_fd('\n', 1);
 }

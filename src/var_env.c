@@ -30,13 +30,11 @@ char	*var_env(t_shell *sh, char *str)
 char	*var_name(char *str, int j)
 {
 	int		len;
-	char	*name;
 
 	len = j;
 	while (str[len] && (ft_isalnum(str[len]) || str[len] == '_'))
 		len++;
-	name = ft_substr(str, j, len - j);
-	return (name);
+	return (ft_substr(str, j, len - j));
 }
 
 char	*not_found(t_shell *sh, char *name, int *i)
@@ -73,7 +71,7 @@ char	*expand_var(t_shell *sh, int *i)
 	rest = ft_substr(sh->input, *i + ft_strlen(name) + 1, ft_strlen(sh->input));
 	exp = ft_strjoin(sub, var);
 	exp = ft_strjoin(exp, rest);
-	*i = ft_strlen(sub) + ft_strlen(var) - 1;
+	*i = 0;
 	free(sub);
 	free(rest);
 	free(name);
@@ -87,7 +85,7 @@ void	read_env(t_shell *sh)
 	i = -1;
 	while (sh->input[++i])
 	{
-		if (sh->input[i] == '$')
+		if (sh->input[i] == '$' && (sh->in_q == 0 || sh->in_q == 1))
 		{
 			if (sh->input[i + 1] == '\0')
 				return ;

@@ -29,14 +29,17 @@
 # define BOLD_GREEN "\033[1;32m"
 # define COOL_EMOJI "😎"
 
+
 typedef struct s_shell
 {
-	char	*input;
-	char	*path;
+	int		in_q;
 	char	**mt;
+	char	*path;
 	char	**env;
+	char	*input;
 }	t_shell;
 
+void	quotation_marks(t_shell *sh, char *str);
 void	cmd_pwd(void);
 void	signals(void);
 void	cmd_cd(t_shell *sh);
