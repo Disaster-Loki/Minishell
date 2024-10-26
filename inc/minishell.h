@@ -62,5 +62,6 @@ char	*var_env(t_shell *sh, char *str);
 void    cmd_export2(char ***env, char **mt);
 char	**copy_mtx(char **env);
 int		ft_strcmp(const char *s1, const char *s2);
+int	found_equals(char *str);
 
 #endif
