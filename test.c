@@ -1,26 +1,21 @@
-#include <stdlib.h>
-#include <stdio.h>
+# include <wait.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <string.h>
+# include <signal.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
-char    *equals_end(char *str)
+int main(int ac, char **av, char *env[])
 {
-    int i;
-    char    *result;
+    int fd;
 
-    i = 0;
-    while (str[i] != '=' && str[i] != '\0')
-        i++;
-    result = malloc(sizeof(char) * (i + 1));
-    if (!result)
-        return (NULL);
-    i = -1;
-    while (str[++i] != '=' && str[i])
-        result[i] = str[i];
-    result[i] = '\0';
-    return (result);
-}
-
-int main(int ac, char **av)
-{
-    printf("%s\n", equals_end("Figueredo="));
+    fd = open("name.txt", O_APPEND | O_WRONLY, 0644);
+    dup2(fd, STDOUT_FILENO);
+    execve("/bin/ls", av, env);
     return (0);
 }
+

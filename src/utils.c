@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 11:49:24 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/17 11:49:26 by sde-carv         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:05:40 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ void	free_mat(char **mt)
 		while (mt[++i])
 			free(mt[i]);
 		free(mt);
+	}
+}
+
+void	free_mat2(char ***mt)
+{
+	int	i;
+	
+	if (mt)
+	{
+		i = -1;
+		while ((*mt)[++i])
+			free((*mt)[i]);
+		free(*mt);
+		*mt = NULL;
 	}
 }
 

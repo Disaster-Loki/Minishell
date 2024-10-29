@@ -1,0 +1,3 @@
+> this operator will put the output of some command to the input to the some file. And will overwrite the content if the content doesn't exitst yet.
+
+>> this operator will put the output of some command to the input to the some file. and will only add the content to the specified file.

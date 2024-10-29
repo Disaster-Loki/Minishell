@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/25 10:00:30 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:54:13 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	add_var1(char ***env, char *str)
 	int		i;
 	char	*dup;
 	t_shell	*hundler;
+	static int count = 0;
 
 	hundler = malloc(sizeof(t_shell));
 	i = 0;
@@ -94,6 +95,7 @@ void	add_var1(char ***env, char *str)
 	i++;
 	hundler->temp_env[i] = NULL;
 	*env = hundler->temp_env;
+	count++;
 	free(hundler);
 }
 

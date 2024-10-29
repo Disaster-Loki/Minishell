@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/25 16:14:59 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:12:40 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 char	**copy_mtx(char **env)
 {
 	int		i;
+	static int	count = 0;
+	t_shell	*handler;
 	char	**copy;
 
+	handler = malloc(sizeof(t_shell));
 	i = 0;
 	while (env[i])
 		i++;
@@ -27,6 +30,8 @@ char	**copy_mtx(char **env)
 	while (env[++i])
 		copy[i] = env[i];
 	copy[i] = NULL;
+	handler->free_export[count] = copy;
+	count++;
 	return (copy);
 }
 
@@ -86,26 +91,26 @@ void	cmd_export(char **env)
 	int		i;
 	int		j;
 	char	*temp;
-	char	**copy;
+	//char	**copy;
 
 	j = 1;
-	copy = copy_mtx(env);
+	//copy = copy_mtx(env);
 	while (j)
 	{
 		i = -1;
 		j = 0;
-		while (copy[++i + 1])
+		while (env[++i + 1])
 		{
-			if (compare(copy[i], copy[i + 1]) == 1)
+			if (compare(env[i], env[i + 1]) == 1)
 			{
-				temp = copy[i];
-				copy[i] = copy[i + 1];
-				copy[i + 1] = temp;
+				temp = env[i];
+				env[i] = env[i + 1];
+				env[i + 1] = temp;
 				j = 1;
 			}
 		}
 	}
-	write_export(copy);
+	write_export(env);
 }
 
 char	*equals_end(char *str)
