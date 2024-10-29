@@ -15,7 +15,7 @@
 int	search_ch(char *str, char c, int i)
 {
 	while (str[i])
-		if (str[i] == c)
+		if (str[i++] == c)
 			return (1);
 	return (0);
 }

@@ -39,6 +39,7 @@ typedef struct s_shell
 	char	*input;
 }	t_shell;
 
+void	read_pipe(t_shell *sh);
 void	quotation_marks(t_shell *sh, char *str);
 void	cmd_pwd(void);
 void	signals(void);

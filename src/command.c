@@ -24,6 +24,7 @@ void	cmd_exit(char **mt)
 {
 	free_mat(mt);
 	printf("exit\n");
+	printf("O mundo 'e impocrita 2\n");
 	exit(0);
 }
 
@@ -40,7 +41,7 @@ void	cmd_cd(t_shell *sh)
 	}
 	if (chdir(sh->mt[1]) != 0)
 		printf("bash: cd: %s: No such file or directory\n", sh->mt[1]);
-	if (matrix_line(sh->mt) >= 2)
+	if (matrix_line(sh->mt) > 2)
 		printf("bash: cd: too many arguments\n");
 }
 

@@ -17,10 +17,8 @@ char	*var_env(t_shell *sh, char *str)
 	int		i;
 	int		len;
 
-	len = 0;
-	while (str[len] && (ft_isalnum(str[len]) || str[len] == '_'))
-		len++;
 	i = -1;
+	len = ft_strlen(str);
 	while (sh->env[++i])
 		if (!ft_strncmp(sh->env[i], str, len) && sh->env[i][len] == '=')
 			return (sh->env[i] + len + 1);
@@ -44,7 +42,7 @@ char	*not_found(t_shell *sh, char *name, int *i)
 	char	*exp;
 	char	*rest;
 
-	len = (int) ft_strlen(sh->input);
+	len = ft_strlen(sh->input);
 	sub = ft_substr(sh->input, 0, *i);
 	rest = ft_substr(sh->input, *i + ft_strlen(name) + 1, len);
 	exp = ft_strjoin(sub, rest);
@@ -85,7 +83,7 @@ void	read_env(t_shell *sh)
 	i = -1;
 	while (sh->input[++i])
 	{
-		if (sh->input[i] == '$' && (sh->in_q == 0 || sh->in_q == 1))
+		if (sh->input[i] == '$')
 		{
 			if (sh->input[i + 1] == '\0')
 				return ;
