@@ -44,8 +44,18 @@ void	quotation_marks(t_shell *sh, char *str)
 	while (str[++i])
 	{
 		if (str[i] == '\"' && sh->in_q != 2)
-			sh->in_q = (sh->in_q == 1) ? 0 : 1;
+		{
+			if (sh->in_q == 1)
+				sh->in_q = 0;
+			else
+				sh->in_q = 1;
+		}
 		else if (str[i] == '\'' && sh->in_q != 1)
-			sh->in_q = (sh->in_q == 2) ? 0 : 2;
+		{
+			if (sh->in_q == 1)
+				sh->in_q = 0;
+			else
+				sh->in_q = 2;
+		}
 	}
 }

@@ -37,9 +37,9 @@ int	get_path(t_shell *sh)
 	return (1);
 }
 
+//quotation_marks(sh, input);
 int	read_line(t_shell *sh)
 {
-	//quotation_marks(sh, input);
 	read_pipe(sh);
 	read_env(sh);
 	sh->mt = ft_split(sh->input, ' ');

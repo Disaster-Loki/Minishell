@@ -26,7 +26,6 @@ int	main(int av, char **args, char *env[])
 		if (shell.input == NULL)
 		{
 			printf("exit\n");
-			printf("O mundo 'e impocrita\n");
 			break ;
 		}
 		add_history(shell.input);

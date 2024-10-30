@@ -29,7 +29,6 @@
 # define BOLD_GREEN "\033[1;32m"
 # define COOL_EMOJI "😎"
 
-
 typedef struct s_shell
 {
 	int		in_q;

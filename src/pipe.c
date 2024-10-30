@@ -42,8 +42,10 @@ void	read_pipe(t_shell *sh)
 
 	mt = ft_split(sh->input, '|');
 	if (mt[1] == NULL)
-		return;
-
+	{
+		free_mat(mt);
+		return ;
+	}
 	i = -1;
 	num_cmds = matrix_line(mt);
 	while (++i < num_cmds - 1)
@@ -53,4 +55,3 @@ void	read_pipe(t_shell *sh)
 	}
 	sh->input = mt[num_cmds - 1];
 }
-
