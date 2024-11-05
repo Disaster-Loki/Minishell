@@ -12,6 +12,17 @@
 
 #include "../inc/minishell.h"
 
+int	read_line2(t_shell *sh, char *str)
+{
+	sh->input = str;
+	read_env(sh);
+	sh->mt = ft_split(sh->input, ' ');
+	if (!get_path(sh) || !check_command(sh))
+		return (0);
+	free_mat(sh->mt);
+	return (1);
+}
+
 int	exec_cmd(t_shell *sh, char *cmd, int fd[2])
 {
 	if (fork() == 0)
@@ -19,8 +30,7 @@ int	exec_cmd(t_shell *sh, char *cmd, int fd[2])
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		sh->input = cmd;
-		read_line(sh);
+		read_line2(sh, cmd);
 		exit(0);
 	}
 	else
@@ -48,10 +58,9 @@ void	read_pipe(t_shell *sh)
 	}
 	i = -1;
 	num_cmds = matrix_line(mt);
-	while (++i < num_cmds - 1)
+	while (++i < num_cmds)
 	{
 		pipe(fd);
 		exec_cmd(sh, mt[i], fd);
 	}
-	sh->input = mt[num_cmds - 1];
 }

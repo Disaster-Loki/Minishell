@@ -83,7 +83,7 @@ void	read_env(t_shell *sh)
 	i = -1;
 	while (sh->input[++i])
 	{
-		if (sh->input[i] == '$')
+		if (sh->input[i] == '$' && sh->in_q != 39)
 		{
 			if (sh->input[i + 1] == '\0')
 				return ;

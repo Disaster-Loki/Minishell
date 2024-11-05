@@ -24,7 +24,6 @@ void	cmd_exit(char **mt)
 {
 	free_mat(mt);
 	printf("exit\n");
-	printf("O mundo 'e impocrita 2\n");
 	exit(0);
 }
 

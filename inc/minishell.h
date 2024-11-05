@@ -32,12 +32,14 @@
 typedef struct s_shell
 {
 	int		in_q;
+	int		fd_in;
 	char	**mt;
 	char	*path;
 	char	**env;
 	char	*input;
 }	t_shell;
 
+void	treat_line(t_shell *sh);
 void	read_pipe(t_shell *sh);
 void	quotation_marks(t_shell *sh, char *str);
 void	cmd_pwd(void);

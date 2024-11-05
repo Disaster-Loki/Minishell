@@ -12,50 +12,56 @@
 
 #include "../inc/minishell.h"
 
-int	search_ch(char *str, char c, int i)
-{
-	while (str[i])
-		if (str[i++] == c)
-			return (1);
-	return (0);
-}
-
-char	*mode_str(char *str, int i)
-{
-	char	*start;
-	char	*mid;
-	char	*rest;
-	char	*exp;
-
-	start = ft_substr(str, 0, i - 1);
-	mid = ft_substr(str, 0, i - 1);
-	rest = ft_substr(str, 0, i - 1);
-	exp = ft_strjoin(start, mid);
-	exp = ft_strjoin(exp, rest);
-	return (exp);
-}
-
-void	quotation_marks(t_shell *sh, char *str)
+int find_quotes(t_shell *sh, int *start, int *end)
 {
 	int	i;
 
-	i = -1;
-	sh->in_q = 0;
-	while (str[++i])
+	i = *end + 1;
+	while (sh->input[i])
 	{
-		if (str[i] == '\"' && sh->in_q != 2)
+		if (sh->input[i] == '\"' || sh->input[i] == '\'')
 		{
-			if (sh->in_q == 1)
-				sh->in_q = 0;
-			else
-				sh->in_q = 1;
+			*start = i;
+			sh->in_q = sh->input[i];
+			i++;
+			while (sh->input[i] && sh->input[i] != sh->in_q)
+				i++;
+			if (sh->input[i] == sh->in_q)
+			{
+				*end = i;
+				return (1);
+			}
 		}
-		else if (str[i] == '\'' && sh->in_q != 1)
-		{
-			if (sh->in_q == 1)
-				sh->in_q = 0;
-			else
-				sh->in_q = 2;
-		}
+		i++;
 	}
+    return (0);
+}
+
+void	final_str(t_shell *sh, int start, int end)
+{
+	char	*str;
+	char	*str2;
+	char	*rest;
+	char	*temp;
+
+	str = ft_substr(sh->input, 0, start);
+	str2 = ft_substr(sh->input, start + 1, end - start - 1);
+	rest = ft_substr(sh->input, end + 1, ft_strlen(sh->input) - end - 1);
+	temp = ft_strjoin(str, str2);
+	sh->input = ft_strjoin(temp, rest);
+	free(str);
+	free(str2);
+	free(temp);
+	free(rest);
+}
+
+void treat_line(t_shell *sh)
+{
+	int	start;
+	int	end;
+
+	start = -1;
+	end = -1;
+	while (find_quotes(sh, &start, &end))
+		final_str(sh, start, end);
 }

@@ -37,12 +37,17 @@ int	get_path(t_shell *sh)
 	return (1);
 }
 
-//quotation_marks(sh, input);
 int	read_line(t_shell *sh)
 {
+	treat_line(sh);
 	read_pipe(sh);
 	read_env(sh);
 	sh->mt = ft_split(sh->input, ' ');
+	if (!sh->mt[0])
+	{
+		free_mat(sh->mt);
+		return (0);
+	}
 	if (!get_path(sh) || !check_command(sh))
 		return (0);
 	free_mat(sh->mt);
