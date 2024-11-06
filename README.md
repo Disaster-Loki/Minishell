@@ -52,6 +52,3 @@ To install and set up the Minishell project, follow these steps:
 Once compiled, you can start the Minishell by running:
 ```bash
 ./minishell
-
-
-
