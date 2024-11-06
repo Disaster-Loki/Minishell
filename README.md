@@ -31,15 +31,27 @@ This project is developed by:
 - [ptchipoc](https://github.com/ptchipoc)
   
 ## ⚙️ Installation
-1. Clone the repository:
+To install and set up the Minishell project, follow these steps:
+
+1. **Clone the repository**:
     ```bash
     git clone https://github.com/Disaster-Loki/Minishell.git
     ```
-2. Navigate to the project directory:
+
+2. **Navigate to the project directory**:
     ```bash
     cd Minishell
     ```
-3. Compile the shell:
+
+3. **Compile the shell**:
     ```bash
     make
     ```
+
+## 🚀 Usage
+Once compiled, you can start the Minishell by running:
+```bash
+./minishell
+
+
+
