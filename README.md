@@ -24,6 +24,12 @@ The **Minishell** project aims to build a simple Unix-like shell in C. This shel
 - **Signal Handling**: Handles signals like `Ctrl+C` and `Ctrl+D`.
 - **Environment Variable Management**: Allows managing environment variables.
 
+## 🤝 Collaborators
+This project is developed by:
+
+- [Disaster-Loki](https://github.com/Disaster-Loki)
+- [ptchipoc](https://github.com/ptchipoc)
+  
 ## ⚙️ Installation
 1. Clone the repository:
     ```bash
