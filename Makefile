@@ -32,6 +32,7 @@ S_FILES		= ./src/main.c     			\
 			  ./src/var_env.c 			\
 			  ./src/pipe.c 				\
 			  ./src/treat_line.c 		\
+			  ./src/var_env_utils.c 	\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

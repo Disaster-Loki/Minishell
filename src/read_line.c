@@ -40,7 +40,8 @@ int	get_path(t_shell *sh)
 int	read_line(t_shell *sh)
 {
 	treat_line(sh);
-	read_pipe(sh);
+	if (read_pipe(sh))
+		return (1);
 	read_env(sh);
 	sh->mt = ft_split(sh->input, ' ');
 	if (!sh->mt[0])

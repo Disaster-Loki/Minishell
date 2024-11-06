@@ -40,7 +40,7 @@ void	cmd_cd(t_shell *sh)
 	}
 	if (chdir(sh->mt[1]) != 0)
 		printf("bash: cd: %s: No such file or directory\n", sh->mt[1]);
-	if (matrix_line(sh->mt) > 2)
+	if (sh->mt[2])
 		printf("bash: cd: too many arguments\n");
 }
 
@@ -68,7 +68,7 @@ int	execut_cmd(t_shell *sh)
 		}
 		exit(0);
 	}
-	waitpid(-1, NULL, 0);
+	waitpid(-1, &sh->stat, 0);
 	free_mat(split);
 	return (1);
 }

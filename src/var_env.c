@@ -12,19 +12,6 @@
 
 #include "../inc/minishell.h"
 
-char	*var_env(t_shell *sh, char *str)
-{
-	int		i;
-	int		len;
-
-	i = -1;
-	len = ft_strlen(str);
-	while (sh->env[++i])
-		if (!ft_strncmp(sh->env[i], str, len) && sh->env[i][len] == '=')
-			return (sh->env[i] + len + 1);
-	return (NULL);
-}
-
 char	*var_name(char *str, int j)
 {
 	int		len;
@@ -85,6 +72,13 @@ void	read_env(t_shell *sh)
 	{
 		if (sh->input[i] == '$' && sh->in_q != 39)
 		{
+			if (sh->input[i + 1] == '?')
+			{
+				states_cmd(sh, i);
+				return ;
+			}
+			if (sh->input[i + 1] == ' ')
+				return ;
 			if (sh->input[i + 1] == '\0')
 				return ;
 			sh->input = expand_var(sh, &i);
