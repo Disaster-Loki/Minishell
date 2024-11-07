@@ -40,6 +40,7 @@ typedef struct s_shell
 	char	*input;
 }	t_shell;
 
+void	signal_handler(int sig);
 int		states_cmd(t_shell *sh, int i);
 void	treat_line(t_shell *sh);
 int		read_pipe(t_shell *sh);

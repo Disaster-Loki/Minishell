@@ -44,35 +44,6 @@ void	cmd_cd(t_shell *sh)
 		printf("bash: cd: too many arguments\n");
 }
 
-int	execut_cmd(t_shell *sh)
-{
-	int		i;
-	char	*str;
-	char	**split;
-
-	str = NULL;
-	split = ft_split(sh->path, ':');
-	if (fork() == 0)
-	{
-		i = -1;
-		while (split[++i])
-		{
-			str = ft_strjoin(split[i], "/");
-			str = ft_strjoin(str, sh->mt[0]);
-			if (execve(str, sh->mt, sh->env) != -1)
-			{
-				free(str);
-				free_mat(split);
-			}
-			free(str);
-		}
-		exit(0);
-	}
-	waitpid(-1, &sh->stat, 0);
-	free_mat(split);
-	return (1);
-}
-
 void	cmd_echo(char **mt)
 {
 	int		i;

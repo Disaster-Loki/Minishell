@@ -72,7 +72,7 @@ int	read_pipe(t_shell *sh)
 		close(fd[1]);
 		prev_fd = fd[0];
 	}
-	while (wait(NULL) > 0)
+	while (waitpid(-1, &sh->stat, 0) > 0)
 		;
 	return (free_mat(mt), 1);
 }

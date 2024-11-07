@@ -26,6 +26,7 @@ GREEN		= \033[32m
 
 S_FILES		= ./src/main.c     			\
 			  ./src/command.c 			\
+			  ./src/execut_cmd.c 		\
 			  ./src/read_line.c 		\
 			  ./src/signals.c 			\
 			  ./src/utils.c 			\
