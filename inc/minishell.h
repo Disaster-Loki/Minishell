@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:03:54 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/28 14:00:34 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:43:58 by kali             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,22 @@ typedef struct s_shell
 	char	**temp_env;
 	char	**temp_unset;
 	char	***free_export;
+	int	redirect;
 }	t_shell;
+
+typedef struct s_file
+{
+	char	*file[1024];
+	char	*arg[1024];
+	int		fd;
+	int		rd;
+}	t_file;
+
+typedef struct s_red
+{
+	char	*arg;
+	char	*files;
+}	t_red;
 
 void	cmd_pwd(void);
 void	signals(void);
@@ -52,6 +67,7 @@ void	cmd_echo(char **mt);
 void	free_mat(char **mt);
 void	free_mat2(char ***mt);
 void	read_env(t_shell *sh);
+void    operators(t_shell *sh);
 int		get_path(t_shell *sh);
 int		read_line(t_shell *sh);
 int		matrix_line(char **mt);
