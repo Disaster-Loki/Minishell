@@ -6,15 +6,30 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 09:02:35 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/28 14:00:20 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:39:51 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+int	has_redir(char **mt)
+{
+	int	i;
+
+	i = -1;
+	while (mt[++i])
+	{
+		if (mt[i][0] == '<' || mt[i][0] == '>')
+			return (1);
+	}
+	return (0);
+}
+
 int	check_command(t_shell *sh)
 {
-	if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] != NULL)
+	if (has_redir(sh->mt) && sh->redirect == 0)
+		operators(sh);
+	else if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] != NULL)
 		cmd_export2(&sh->env, sh->mt);
 	else if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] == NULL)
 		cmd_export(sh->env);
@@ -55,6 +70,7 @@ int	get_path(t_shell *sh)
 
 int	read_line(t_shell *sh)
 {
+	sh->redirect = 0;
 	read_env(sh);
 	sh->mt = ft_split(sh->input, ' ');
 	if (!get_path(sh) || !check_command(sh))

@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/28 14:00:03 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:10:51 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,19 @@ void	cmd_echo(char **mt)
 		i++;
 	if (mt[i] == NULL)
 	{
-		ft_putchar_fd('\n', 1);
+		// ft_putchar_fd('\n', 1);
+		printf("\n");
 		return ;
 	}
 	while (mt[i])
 	{
-		print_str_quotes(mt[i]);
-		ft_putchar_fd(' ', 1);
+		// print_str_quotes(mt[i]);
+		// ft_putchar_fd(' ', 1);
+		printf("%s ", mt[i]);
 		i++;
 	}
 	if (mt[1] && !ft_strncmp(mt[1], "-n", ft_strlen(mt[1])))
 		return ;
-	ft_putchar_fd('\n', 1);
+	// ft_putchar_fd('\n', 1);
+	printf("\n");
 }

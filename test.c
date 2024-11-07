@@ -1,21 +1,20 @@
-# include <wait.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <limits.h>
-# include <string.h>
-# include <signal.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <readline/history.h>
-# include <readline/readline.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 
-int main(int ac, char **av, char *env[])
+int main(int ac, char *av[], char *env[])
 {
     int fd;
 
-    fd = open("name.txt", O_APPEND | O_WRONLY, 0644);
+    fd = open("output.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+    if (!fd)
+    {
+        perror("error\n");
+        return (1);
+    }
     dup2(fd, STDOUT_FILENO);
-    execve("/bin/ls", av, env);
+    printf("The text is well done!\n");
     return (0);
 }
 

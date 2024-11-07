@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:03:54 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/28 14:00:34 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:38:05 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 typedef struct s_shell
 {
 	char	*input;
+	int		redirect;
 	char	*path;
 	char	*quotes;
 	char	**mt;
@@ -52,6 +53,7 @@ void	cmd_echo(char **mt);
 void	free_mat(char **mt);
 void	free_mat2(char ***mt);
 void	read_env(t_shell *sh);
+void    operators(t_shell *sh);
 int		get_path(t_shell *sh);
 int		read_line(t_shell *sh);
 int		matrix_line(char **mt);

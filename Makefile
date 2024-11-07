@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 11:52:18 by sde-carv          #+#    #+#              #
-#    Updated: 2024/10/16 11:52:19 by sde-carv         ###   ########.fr        #
+#    Updated: 2024/11/06 14:03:08 by ptchipoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ S_FILES		= ./src/main.c     			\
 			  ./src/var_env.c 			\
 			  ./src/cmd_export.c		\
 			  ./src/cmd_export2.c		\
+			  ./src/letf_ope.c
 
 S_OBJ		= $(S_FILES:.c=.o)
 
