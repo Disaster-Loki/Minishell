@@ -1,4 +1,4 @@
-# 💻 Minishell
+# 💻 Minishell 
 
 [![License](https://img.shields.io/github/license/Disaster-Loki/Minishell?color=blue)](./LICENSE)
 [![Contributors](https://img.shields.io/github/contributors/Disaster-Loki/Minishell)](https://github.com/Disaster-Loki/Minishell/graphs/contributors)
