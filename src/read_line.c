@@ -6,7 +6,11 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 09:02:35 by sde-carv          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/11/12 12:17:39 by ptchipoc         ###   ########.fr       */
+=======
+/*   Updated: 2024/11/06 16:39:51 by ptchipoc         ###   ########.fr       */
+>>>>>>> 877010519f4eef948940c9e54b7256d20ef20fb1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +23,11 @@ int	has_redir(char **mt)
 	i = -1;
 	while (mt[++i])
 	{
+<<<<<<< HEAD
 		if ((!ft_strncmp(mt[i], "<", 1) && ft_strlen(mt[i]) == 1) || (!ft_strncmp(mt[i], "<<", 2) && ft_strlen(mt[i]) == 2) || (!ft_strncmp(mt[i], ">", 1) && ft_strlen(mt[i]) == 1) || (!ft_strncmp(mt[i], ">>", 2) && ft_strlen(mt[i]) == 2))
+=======
+		if (mt[i][0] == '<' || mt[i][0] == '>')
+>>>>>>> 877010519f4eef948940c9e54b7256d20ef20fb1
 			return (1);
 	}
 	return (0);
@@ -27,7 +35,10 @@ int	has_redir(char **mt)
 
 int	check_command(t_shell *sh)
 {
+<<<<<<< HEAD
 	sh->manager.control = 0;
+=======
+>>>>>>> 877010519f4eef948940c9e54b7256d20ef20fb1
 	if (has_redir(sh->mt) && sh->redirect == 0)
 		operators(sh);
 	else if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] != NULL)

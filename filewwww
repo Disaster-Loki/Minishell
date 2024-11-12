@@ -1,0 +1,24 @@
+kdjf > test 
+kdjf > test 
+kdjf > test 
+kdjf > test 
+kdjf > test 
+kdjf > test 
+kdjf > test 
+kdjf > test 
+kdjf > test 
+kdjf > test 
+kdjf > test 
+total 84
+-rwxrwxr-x 1 kali kali 16040 Nov  7 13:08 a.out
+-rw-rw-r-- 1 kali kali   287 Nov  7 13:08 conte.txt
+-rw-r--r-- 1 kali kali   143 Nov  7 14:52 filewwww
+drwxrwxr-x 2 kali kali  4096 Nov  7 13:08 inc
+drwxrwxr-x 9 kali kali  4096 Nov  7 15:01 libft
+-rw-rw-r-- 1 kali kali  1807 Nov  7 14:50 Makefile
+-rwxrwxr-x 1 kali kali 27744 Nov  7 15:01 minishell
+-rw-rw-r-- 1 kali kali    58 Nov  7 13:08 name
+-rw-rw-r-- 1 kali kali   281 Nov  7 13:08 name.txt
+-rw-rw-r-- 1 kali kali  1906 Nov  7 13:08 README.md
+drwxrwxr-x 2 kali kali  4096 Nov  7 15:01 src
+-rw-rw-r-- 1 kali kali   418 Nov  7 13:08 test.c

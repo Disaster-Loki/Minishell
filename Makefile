@@ -3,10 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
+<<<<<<< HEAD
 #    By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 11:52:18 by sde-carv          #+#    #+#              #
 #    Updated: 2024/11/06 14:03:08 by ptchipoc         ###   ########.fr        #
+=======
+#    By: kali <kali@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/16 11:52:18 by sde-carv          #+#    #+#              #
+#    Updated: 2024/11/07 14:50:53 by kali             ###   ########.fr        #
+>>>>>>> 877010519f4eef948940c9e54b7256d20ef20fb1
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +39,11 @@ S_FILES		= ./src/main.c     			\
 			  ./src/var_env.c 			\
 			  ./src/cmd_export.c		\
 			  ./src/cmd_export2.c		\
+<<<<<<< HEAD
 			  ./src/letf_ope.c
+=======
+			  ./src/left_ope.c		\
+>>>>>>> 877010519f4eef948940c9e54b7256d20ef20fb1
 
 S_OBJ		= $(S_FILES:.c=.o)
 

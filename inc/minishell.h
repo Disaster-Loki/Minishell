@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:03:54 by sde-carv          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/11/08 15:11:56 by ptchipoc         ###   ########.fr       */
+=======
+/*   Updated: 2024/11/07 17:43:58 by kali             ###   ########.fr       */
+>>>>>>> 877010519f4eef948940c9e54b7256d20ef20fb1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +55,26 @@ typedef struct s_shell
 	char	**temp_env;
 	char	**temp_unset;
 	char	***free_export;
+	int	redirect;
 }	t_shell;
 
+<<<<<<< HEAD
 
+=======
+typedef struct s_file
+{
+	char	*file[1024];
+	char	*arg[1024];
+	int		fd;
+	int		rd;
+}	t_file;
+
+typedef struct s_red
+{
+	char	*arg;
+	char	*files;
+}	t_red;
+>>>>>>> 877010519f4eef948940c9e54b7256d20ef20fb1
 
 void	cmd_pwd(void);
 void	signals(void);
