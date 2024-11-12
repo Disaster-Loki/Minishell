@@ -37,8 +37,10 @@ int	get_path(t_shell *sh)
 	return (1);
 }
 
-int	read_line(t_shell *sh)
+/*int	read_line(t_shell *sh)
 {
+	t_args	args;
+
 	treat_line(sh);
 	if (read_pipe(sh))
 		return (1);
@@ -53,4 +55,12 @@ int	read_line(t_shell *sh)
 		return (0);
 	free_mat(sh->mt);
 	return (1);
+}*/
+
+int	read_line(t_shell *sh)
+{
+	sh->args = ft_alter_split(sh, sh->input);
+	for (int i = 0; sh->args[i].str != NULL; i++)
+		printf("ID: %d\nSTR: %s\n", sh->args[i].id, sh->args[i].str);
+	return (0);
 }

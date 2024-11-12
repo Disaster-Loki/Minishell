@@ -14,44 +14,47 @@
 
 void	signal_handler2(int sig)
 {
-	if (sig == SIGINT)
-	{
-		printf("\n");
-		rl_replace_line("", 0);
-	}
+	(void)sig;
+	printf("\n");
 }
 
-void	signals2(void)
+static int	exec_cmd(char *cmd, char **args, char **env)
 {
-	signal(SIGINT, signal_handler);
+	if (execve(cmd, args, env) != -1)
+		return (1);
+	return (0);
+}
+
+static void	child_process(char **split, t_shell *sh)
+{
+	int		i;
+	char	*str;
+
+	i = -1;
+	while (split[++i])
+	{
+		str = ft_strjoin(split[i], "/");
+		str = ft_strjoin(str, sh->mt[0]);
+		if (exec_cmd(str, sh->mt, sh->env))
+		{
+			free(str);
+			free_mat(split);
+			exit(0);
+		}
+		free(str);
+	}
+	exit(1);
 }
 
 int	execut_cmd(t_shell *sh)
 {
-	int		i;
-	char	*str;
 	char	**split;
 
-	str = NULL;
 	split = ft_split(sh->path, ':');
 	if (fork() == 0)
-	{
-		i = -1;
-		while (split[++i])
-		{
-			str = ft_strjoin(split[i], "/");
-			str = ft_strjoin(str, sh->mt[0]);
-			if (execve(str, sh->mt, sh->env) != -1)
-			{
-				free(str);
-				free_mat(split);
-			}
-			free(str);
-		}
-		exit(0);
-	}
+		child_process(split, sh);
+	signal(SIGINT, signal_handler2);
 	waitpid(-1, &sh->stat, 0);
 	sh->stat = WEXITSTATUS(sh->stat);
-	free_mat(split);
-	return (1);
+	return (free_mat(split), 1);
 }

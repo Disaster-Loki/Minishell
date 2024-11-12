@@ -12,56 +12,92 @@
 
 #include "../inc/minishell.h"
 
-int find_quotes(t_shell *sh, int *start, int *end)
+int	skip_spaces(char *str, int i)
+{
+	while (str[i] && str[i] == ' ')
+		i++;
+	return (i);
+}
+
+int	find_quotes(t_shell *sh, char *str, int *start, int *end)
 {
 	int	i;
 
-	i = *end + 1;
-	while (sh->input[i])
-	{
-		if (sh->input[i] == '\"' || sh->input[i] == '\'')
-		{
-			*start = i;
-			sh->in_q = sh->input[i];
-			i++;
-			while (sh->input[i] && sh->input[i] != sh->in_q)
-				i++;
-			if (sh->input[i] == sh->in_q)
-			{
-				*end = i;
-				return (1);
-			}
-		}
+	i = *start;
+	sh->in_q = str[i++];
+	while (str[i] && str[i] != sh->in_q)
 		i++;
+	if (str[i] == sh->in_q)
+	{
+		*end = i;
+		return (1);
 	}
-    return (0);
+	return (0);
 }
 
-void	final_str(t_shell *sh, int start, int end)
+int	process_quotes(t_shell *sh, char *str, t_args *args, int *i, int *j)
 {
-	char	*str;
-	char	*str2;
-	char	*rest;
-	char	*temp;
+	int	end;
+	int	start;
 
-	str = ft_substr(sh->input, 0, start);
-	str2 = ft_substr(sh->input, start + 1, end - start - 1);
-	rest = ft_substr(sh->input, end + 1, ft_strlen(sh->input) - end - 1);
-	temp = ft_strjoin(str, str2);
-	sh->input = ft_strjoin(temp, rest);
-	free(str);
-	free(str2);
-	free(temp);
-	free(rest);
+	start = *i;
+	sh->in_q = str[*i];
+	if (find_quotes(sh, str, &start, &end))
+	{
+		if (sh->in_q == '\"')
+			args[*j].id = 34;
+		else if (sh->in_q == '\'')
+			args[*j].id = 39;
+		args[*j].str = ft_strndup(str + start + 1, end - start - 1);
+		*i = end + 1;
+	}
+	else
+	{
+		args[*j].id = 1;
+		args[*j].str = ft_strndup(str + start + 1, ft_strlen(str) - start - 1);
+		*i = ft_strlen(str);
+	}
+	(*j)++;
+	return (1);
 }
 
-void treat_line(t_shell *sh)
+void	process_no_quotes(char *str, t_args *args, int *i, int *j)
 {
 	int	start;
-	int	end;
+	int	len;
 
-	start = -1;
-	end = -1;
-	while (find_quotes(sh, &start, &end))
-		final_str(sh, start, end);
+	start = *i;
+	len = 0;
+	while (str[*i] && str[*i] != ' ' && str[*i] != '\"' && str[*i] != '\'')
+	{
+		len++;
+		(*i)++;
+	}
+	args[*j].id = 32;
+	args[*j].str = ft_strndup(str + start, len);
+	(*j)++;
+}
+
+
+t_args	*ft_alter_split(t_shell *sh, char *str)
+{
+	int		i;
+	int		j;
+	t_args	*args;
+
+	i = 0;
+	j = 0;
+	args = malloc(sizeof(t_args) * 7000);
+	if (!args)
+		return (NULL);
+	while (str[i])
+	{
+		i = skip_spaces(str, i);
+		if (str[i] == '\"' || str[i] == '\'')
+			process_quotes(sh, str, args, &i, &j);
+		else if (str[i])
+			process_no_quotes(str, args, &i, &j);
+	}
+	args[j].str = NULL;
+	return (args);
 }

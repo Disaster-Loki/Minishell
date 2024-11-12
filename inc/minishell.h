@@ -29,6 +29,12 @@
 # define BOLD_GREEN "\033[1;32m"
 # define COOL_EMOJI "😎"
 
+typedef struct s_args
+{
+	int		id;
+	char	*str;
+}	t_args;
+
 typedef struct s_shell
 {
 	int		in_q;
@@ -38,13 +44,18 @@ typedef struct s_shell
 	char	*path;
 	char	**env;
 	char	*input;
+	t_args	*args;
 }	t_shell;
 
+int		skip_spaces(char *str, int i);
+int		find_quotes(t_shell *sh, char *str, int *start, int *end);
+int		process_quotes(t_shell *sh, char *str, t_args *args, int *i, int *j);
+void	process_no_quotes(char *str, t_args *args, int *i, int *j);
+t_args	*ft_alter_split(t_shell *sh, char *str);
+char	*ft_strndup(const char *s, size_t n);
 void	signal_handler(int sig);
 int		states_cmd(t_shell *sh, int i);
-void	treat_line(t_shell *sh);
 int		read_pipe(t_shell *sh);
-void	quotation_marks(t_shell *sh, char *str);
 void	cmd_pwd(void);
 void	signals(void);
 void	cmd_cd(t_shell *sh);
