@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 09:02:35 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/06 16:39:51 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:17:39 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	has_redir(char **mt)
 	i = -1;
 	while (mt[++i])
 	{
-		if (mt[i][0] == '<' || mt[i][0] == '>')
+		if ((!ft_strncmp(mt[i], "<", 1) && ft_strlen(mt[i]) == 1) || (!ft_strncmp(mt[i], "<<", 2) && ft_strlen(mt[i]) == 2) || (!ft_strncmp(mt[i], ">", 1) && ft_strlen(mt[i]) == 1) || (!ft_strncmp(mt[i], ">>", 2) && ft_strlen(mt[i]) == 2))
 			return (1);
 	}
 	return (0);
@@ -27,6 +27,7 @@ int	has_redir(char **mt)
 
 int	check_command(t_shell *sh)
 {
+	sh->manager.control = 0;
 	if (has_redir(sh->mt) && sh->redirect == 0)
 		operators(sh);
 	else if (!ft_strcmp(sh->mt[0], "export") && sh->mt[1] != NULL)
@@ -75,6 +76,7 @@ int	read_line(t_shell *sh)
 	sh->mt = ft_split(sh->input, ' ');
 	if (!get_path(sh) || !check_command(sh))
 		return (0);
-	free_mat(sh->mt);
+	if (sh->manager.control == 0)
+		free_mat(sh->mt);
 	return (1);
 }

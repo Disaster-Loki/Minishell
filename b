@@ -1,0 +1,33 @@
+a
+a.out
+b
+conte.txt
+drwxr-xr-x 2 ptchipoc 2023_luanda  4096 Nov 12 12:16 src
+drwxr-xr-x 2 ptchipoc 2023_luanda  4096 Oct 28 10:15 inc
+drwxr-xr-x 9 ptchipoc 2023_luanda  4096 Nov 12 11:52 libft
+inc
+libft
+Makefile
+minishell
+name
+name.txt
+Otaku
+README.md
+-rw-r--r-- 1 ptchipoc 2023_luanda     0 Nov 12 12:17 a
+-rw-r--r-- 1 ptchipoc 2023_luanda   105 Nov 12 11:55 b
+-rw-r--r-- 1 ptchipoc 2023_luanda    16 Nov  7 12:30 Otaku
+-rw-r--r-- 1 ptchipoc 2023_luanda  1804 Nov  6 14:02 Makefile
+-rw-r--r-- 1 ptchipoc 2023_luanda   281 Oct 28 17:59 name.txt
+-rw-r--r-- 1 ptchipoc 2023_luanda   287 Nov 12 11:13 conte.txt
+-rw-r--r-- 1 ptchipoc 2023_luanda   361 Nov  6 12:07 test.c
+-rw-r--r-- 1 ptchipoc 2023_luanda   446 Nov  6 12:08 test2.c
+-rw-r--r-- 1 ptchipoc 2023_luanda    45 Oct 21 14:44 README.md
+-rw-r--r-- 1 ptchipoc 2023_luanda    58 Oct 28 16:28 name
+-rw-r--r-- 1 ptchipoc 2023_luanda     7 Nov  7 12:41 tambem
+-rwxr-xr-x 1 ptchipoc 2023_luanda 16224 Nov  5 13:10 a.out
+-rwxr-xr-x 1 ptchipoc 2023_luanda 27768 Nov 12 12:16 minishell
+src
+tambem
+test2.c
+test.c
+total 96

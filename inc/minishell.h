@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 12:03:54 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/06 16:38:05 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:11:56 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@
 # define BOLD_GREEN "\033[1;32m"
 # define COOL_EMOJI "😎"
 
+typedef	struct s_file
+{
+	char	*file[1024];
+	char	*arg[1024];
+	char	*redir[1024];
+	int		control;
+	int		fd;
+}	t_file;
+
 typedef struct s_shell
 {
 	char	*input;
@@ -38,10 +47,13 @@ typedef struct s_shell
 	char	*quotes;
 	char	**mt;
 	char	**env;
+	t_file	manager;
 	char	**temp_env;
 	char	**temp_unset;
 	char	***free_export;
 }	t_shell;
+
+
 
 void	cmd_pwd(void);
 void	signals(void);
@@ -59,6 +71,7 @@ int		read_line(t_shell *sh);
 int		matrix_line(char **mt);
 int		read_line(t_shell *sh);
 int		execut_cmd(t_shell *sh);
+int	check_commandx(t_shell *sh);
 int		check_command(t_shell *sh);
 void	print_matrix(char **matrix);
 void	print_str_quotes(char *str);
