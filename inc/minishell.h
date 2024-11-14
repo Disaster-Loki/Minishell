@@ -44,12 +44,10 @@ typedef struct s_shell
 	t_args	*args;
 }	t_shell;
 
-
 void	signals(void);
 int		read_line(t_shell *sh);
 void	signal_handler(int sig);
+t_args	*tokenize(t_shell *sh, char *str);
 char	*ft_strndup(const char *s, size_t n);
-t_args	*ft_alter_split(t_shell *sh, char *str);
 
 #endif
-

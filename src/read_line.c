@@ -14,8 +14,7 @@
 
 int	read_line(t_shell *sh)
 {
-	sh->args = ft_alter_split(sh, sh->input);
-	for (int i = 0; sh->args[i].str != NULL; i++)
-		printf("ID: %d\nSTR: %s\n", sh->args[i].id, sh->args[i].str);
+	sh->args = tokenize(sh, sh->input);
+	free(sh->args);
 	return (0);
 }

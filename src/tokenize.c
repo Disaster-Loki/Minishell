@@ -35,12 +35,14 @@ int	find_quotes(t_shell *sh, char *str, int *start, int *end)
 	return (0);
 }
 
-int	process_quotes(t_shell *sh, char *str, t_args *args, int *i, int *j)
+int	process_quotes(t_shell *sh, t_args *args, int *i, int *j)
 {
-	int	end;
-	int	start;
+	int		end;
+	int		start;
+	char	*str;
 
 	start = *i;
+	str = sh->input;
 	sh->in_q = str[*i];
 	if (find_quotes(sh, str, &start, &end))
 	{
@@ -53,7 +55,7 @@ int	process_quotes(t_shell *sh, char *str, t_args *args, int *i, int *j)
 	}
 	else
 	{
-		args[*j].id = 1;
+		args[*j].id = 73;
 		args[*j].str = ft_strndup(str + start + 1, ft_strlen(str) - start - 1);
 		*i = ft_strlen(str);
 	}
@@ -79,7 +81,7 @@ void	process_no_quotes(char *str, t_args *args, int *i, int *j)
 }
 
 
-t_args	*ft_alter_split(t_shell *sh, char *str)
+t_args	*tokenize(t_shell *sh, char *str)
 {
 	int		i;
 	int		j;
@@ -94,7 +96,7 @@ t_args	*ft_alter_split(t_shell *sh, char *str)
 	{
 		i = skip_spaces(str, i);
 		if (str[i] == '\"' || str[i] == '\'')
-			process_quotes(sh, str, args, &i, &j);
+			process_quotes(sh, args, &i, &j);
 		else if (str[i])
 			process_no_quotes(str, args, &i, &j);
 	}
