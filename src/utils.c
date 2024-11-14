@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/17 11:49:24 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/17 11:49:26 by sde-carv         ###   ########.fr       */
+/*   Created: 2024/11/14 12:48:53 by sde-carv          #+#    #+#             */
+/*   Updated: 2024/11/14 12:48:55 by sde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,14 @@ void	print_matrix(char **matrix)
 		printf("%s\n", matrix[i]);
 }
 
-void	print_str_quotes(char *str)
+int	matrix_line(char **mt)
 {
-	int	j;
+	int	len;
 
-	j = 0;
-	while (str[j])
-	{
-		if (str[j] == '"')
-			j++;
-		ft_putchar_fd(str[j], 1);
-		j++;
-	}
+	len = 0;
+	while (mt[len])
+		len++;
+	return (len);
 }
 
 void	free_mat(char **mt)
@@ -58,12 +54,20 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (*s1 - *s2);
 }
 
-int	matrix_line(char **mt)
+char	*ft_strndup(const char *s, size_t n)
 {
-	int	len;
+	size_t	i;
+	char	*dup;
 
-	len = 0;
-	while (mt[len])
-		len++;
-	return (len);
+	i = 0;
+	dup = malloc(n + 1);
+	if (!dup)
+		return (NULL);
+	while (i < n && s[i])
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }

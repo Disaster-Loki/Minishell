@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 12:08:26 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/16 12:08:28 by sde-carv         ###   ########.fr       */
+/*   Created: 2024/11/14 10:46:33 by sde-carv          #+#    #+#             */
+/*   Updated: 2024/11/14 10:46:36 by sde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(int av, char **args, char *env[])
+int	main(int av, char **args, char **env)
 {
 	t_shell	shell;
-
+	
 	(void)av;
 	(void)args;
 	shell.env = env;
@@ -25,7 +25,7 @@ int	main(int av, char **args, char *env[])
 		shell.input = readline(BOLD_GREEN"MiniShell-> "RESET);
 		if (shell.input == NULL)
 		{
-			printf("exit\n");
+			ft_putstr_fd("exit\n", 1);
 			break ;
 		}
 		add_history(shell.input);

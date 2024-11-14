@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 12:03:54 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/10/16 12:03:56 by sde-carv         ###   ########.fr       */
+/*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
+/*   Updated: 2024/11/14 10:45:21 by sde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,27 @@
 # define BOLD_GREEN "\033[1;32m"
 # define COOL_EMOJI "😎"
 
+typedef struct s_args
+{
+	int		id;
+	char	*str;
+}	t_args;
+
 typedef struct s_shell
 {
 	char	*input;
-	char	*path;
-	char	**mt;
 	char	**env;
+	char	**mat;
+	int		in_q;
+	t_args	*args;
 }	t_shell;
 
-void	cmd_pwd(void);
+
 void	signals(void);
-void	cmd_cd(t_shell *sh);
-void	cmd_exit(char **mt);
-void	cmd_echo(char **mt);
-void	free_mat(char **mt);
-int		get_path(t_shell *sh);
-void	read_env(t_shell *sh);
 int		read_line(t_shell *sh);
-int		matrix_line(char **mt);
-int		read_line(t_shell *sh);
-int		execut_cmd(t_shell *sh);
-int		check_command(t_shell *sh);
-void	print_matrix(char **matrix);
-void	print_str_quotes(char *str);
-char	*var_env(t_shell *sh, char *str);
-int		ft_strcmp(const char *s1, const char *s2);
+void	signal_handler(int sig);
+char	*ft_strndup(const char *s, size_t n);
+t_args	*ft_alter_split(t_shell *sh, char *str);
 
 #endif
+
