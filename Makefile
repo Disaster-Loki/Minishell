@@ -29,6 +29,7 @@ S_FILES		= ./src/main.c     			\
 			  ./src/read_line.c  		\
 			  ./src/tokenize.c   		\
 			  ./src/utils.c   			\
+			  ./src/expansion.c   		\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

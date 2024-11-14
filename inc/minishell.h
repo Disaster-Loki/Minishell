@@ -44,7 +44,9 @@ typedef struct s_shell
 	t_args	*args;
 }	t_shell;
 
+char	*get_env(t_shell *sh, char *str);
 void	signals(void);
+void	expansion(t_shell *sh);
 int		read_line(t_shell *sh);
 void	signal_handler(int sig);
 t_args	*tokenize(t_shell *sh, char *str);
