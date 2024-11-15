@@ -21,10 +21,14 @@ void	signal_handler2(int sig)
 char	**ft_args(t_args *args)
 {
 	int		i;
+	int		size;
 	char	**arg;
 
 	i = -1;
-	arg = malloc(sizeof(char *) * 1000);
+	size = 0;
+	while (args[size].str)
+		size++;
+	arg = malloc(sizeof(char *) * (size + 1));
 	while (args[++i].str)
 		arg[i] = ft_strdup(args[i].str);
 	arg[i] = NULL;
