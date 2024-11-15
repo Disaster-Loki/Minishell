@@ -39,6 +39,7 @@ void	child_process(char **split, t_shell *sh)
 {
 	int		i;
 	char	*str;
+	char	*tmp;
 	char	**arg;
 
 	i = -1;
@@ -46,14 +47,17 @@ void	child_process(char **split, t_shell *sh)
 	while (split[++i])
 	{
 		str = ft_strjoin(split[i], "/");
+		tmp = str;
 		str = ft_strjoin(str, sh->args[0].str);
 		if (execve(str, arg, sh->env) != -1)
 		{
 			free(str);
+			free(tmp);
 			free_mat(arg);
 			free_mat(split);
 			exit(0);
 		}
+		free(tmp);
 		free(str);
 	}
 	exit(1);
