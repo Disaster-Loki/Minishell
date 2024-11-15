@@ -47,7 +47,7 @@ void	child_process(char **split, t_shell *sh)
 	{
 		str = ft_strjoin(split[i], "/");
 		str = ft_strjoin(str, sh->args[0].str);
-		if (execve(arg[0], arg, sh->env) != -1)
+		if (execve(str, arg, sh->env) != -1)
 		{
 			free(str);
 			free_mat(arg);
@@ -64,6 +64,7 @@ int	exec_cmd(t_shell *sh)
 	char	**split;
 
 	split = ft_split(sh->path, ':');
+	printf("O mundo 'e cruel\n");
 	if (fork() == 0)
 		child_process(split, sh);
 	signal(SIGINT, signal_handler2);
