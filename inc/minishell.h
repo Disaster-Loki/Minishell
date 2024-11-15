@@ -44,6 +44,7 @@ typedef struct s_shell
 	char	*path;
 	t_args	*args;
 	char	*input;
+	int		status;
 }	t_shell;
 
 // Builtins
@@ -52,8 +53,10 @@ void	cmd_exit(t_shell *sh);
 void	cmd_cd(t_shell *sh);
 void	cmd_echo(t_args *args);
 
+void	free_mat(char **mt);
+int		exec_cmd(t_shell *sh);
 void	print_matrix(char **matrix);
-int	ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 int		get_path(t_shell *sh);
 char	*get_env(t_shell *sh, char *str);
 void	signals(void);

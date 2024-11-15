@@ -32,7 +32,7 @@ int	check_command(t_shell *sh)
 		cmd_cd(sh);
 	else if (!ft_strcmp(sh->args[0].str, "exit"))
 		cmd_exit(sh);
-	else	// if (!execut_cmd(sh))
+	else if (!exec_cmd(sh))
 		printf("%s: command not found\n", sh->args[0].str);
 	return (1);
 }

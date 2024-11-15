@@ -31,6 +31,7 @@ S_FILES		= ./src/main.c     			\
 			  ./src/utils.c   			\
 			  ./src/expansion.c   		\
 			  ./src/builtins.c   		\
+			  ./src/exec_cmd.c   		\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

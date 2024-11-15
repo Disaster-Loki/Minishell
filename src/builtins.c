@@ -60,7 +60,7 @@ void	cmd_echo(t_args *args)
 
 	i = 1;
 	flag = 0;
-	if (args[i].str && !ft_strncmp(args[i].str, "-n", ft_strlen(args[i].str)))
+	if (args[i].str && !ft_strcmp(args[i].str, "-n"))
 	{
 		flag = 1;
 		i++;
