@@ -49,21 +49,44 @@ typedef struct s_shell
 
 // Builtins
 void	cmd_pwd(void);
-void	cmd_exit(t_shell *sh);
 void	cmd_cd(t_shell *sh);
+void	cmd_exit(t_shell *sh);
 void	cmd_echo(t_args *args);
 
+// Read Line
+int		get_path(t_shell *sh);
+int		read_line(t_shell *sh);
+int		check_command(t_shell *sh);
+
+// Expansions
+void	expansion(t_shell *sh);
+char	*get_name(char *str, int j);
+char	*get_env(t_shell *sh, char *str);
+char	*expand_var(t_shell *sh, int *i, int j);
+int		states_cmd(t_shell *sh, int i, int j);
+char	*not_found(t_shell *sh, char *name, int *i, int j);
+
+// Tokenize
+int		skip_spaces(char *str, int i);
+t_args	*tokenize(t_shell *sh, char *str);
+int		find_quotes(t_shell *sh, char *str, int *start, int *end);
+int		process_quotes(t_shell *sh, t_args *args, int *i, int *j);
+void	process_no_quotes(char *str, t_args *args, int *i, int *j);
+
+// Signals
+void	signals(void);
+void	signal_handler(int sig);
+
+// Utils
 void	free_mat(char **mt);
-int		exec_cmd(t_shell *sh);
 void	print_matrix(char **matrix);
 int		ft_strcmp(const char *s1, const char *s2);
-int		get_path(t_shell *sh);
-char	*get_env(t_shell *sh, char *str);
-void	signals(void);
-void	expansion(t_shell *sh);
-int		read_line(t_shell *sh);
-void	signal_handler(int sig);
-t_args	*tokenize(t_shell *sh, char *str);
 char	*ft_strndup(const char *s, size_t n);
+
+// Exec_cmd
+int		exec_cmd(t_shell *sh);
+char	**ft_args(t_args *args);
+void	signal_handler2(int sig);
+void	child_process(char **split, t_shell *sh);
 
 #endif

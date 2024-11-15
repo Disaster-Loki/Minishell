@@ -19,6 +19,7 @@ int	main(int av, char **args, char **env)
 	(void)av;
 	(void)args;
 	shell.env = env;
+	shell.status = 0;
 	while (1)
 	{
 		signals();

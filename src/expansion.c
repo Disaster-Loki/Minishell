@@ -35,24 +35,27 @@ char	*get_env(t_shell *sh, char *str)
 	return (NULL);
 }
 
-/*int	states_cmd(t_shell *sh, int i)
+int	states_cmd(t_shell *sh, int i, int j)
 {
-	char	*st;
+	char	*n;
 	char	*str;
 	char	*exp;
 	char	*rest;
+	char	*tmp;
 
-	st = ft_itoa(sh->stat);
-	str = ft_substr(sh->input, 0, i);
-	rest = ft_substr(sh->input, i + 2, ft_strlen(sh->input));
-	exp = ft_strjoin(str, st);
+	n = ft_itoa(sh->status);
+	str = ft_substr(sh->args[j].str, 0, i);
+	rest = ft_substr(sh->args[j].str, i + 2, ft_strlen(sh->args[j].str));
+	exp = ft_strjoin(str, n);
+	tmp = exp;
 	exp = ft_strjoin(exp, rest);
-	sh->input = exp;
-	free(st);
+	sh->args[j].str = exp;
+	free(n);
 	free(str);
+	free(tmp);
 	free(rest);
 	return (1);
-}*/
+}
 
 char	*not_found(t_shell *sh, char *name, int *i, int j)
 {
@@ -116,7 +119,7 @@ void	expansion(t_shell *sh)
 			{
 				if (sh->args[j].str[i + 1] == '?')
 				{
-					//states_cmd(sh, i);
+					states_cmd(sh, i, j);
 					return ;
 				}
 				if (sh->args[j].str[i + 1] == ' ' || sh->args[j].str[i + 1] == '\0')

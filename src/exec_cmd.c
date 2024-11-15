@@ -64,7 +64,8 @@ int	exec_cmd(t_shell *sh)
 	char	**split;
 
 	split = ft_split(sh->path, ':');
-	printf("O mundo 'e cruel\n");
+	if (!split)
+		return (0);
 	if (fork() == 0)
 		child_process(split, sh);
 	signal(SIGINT, signal_handler2);
