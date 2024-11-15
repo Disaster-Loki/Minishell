@@ -89,4 +89,7 @@ char	**ft_args(t_args *args);
 void	signal_handler2(int sig);
 void	child_process(char **split, t_shell *sh);
 
+// Pipe
+int	pipetting(t_shell *sh);
+
 #endif
