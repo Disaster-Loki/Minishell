@@ -33,17 +33,28 @@ typedef struct s_args
 {
 	int		id;
 	char	*str;
+	char	*temp;
 }	t_args;
 
 typedef struct s_shell
 {
-	char	*input;
+	int		in_q;
 	char	**env;
 	char	**mat;
-	int		in_q;
+	char	*path;
 	t_args	*args;
+	char	*input;
 }	t_shell;
 
+// Builtins
+void	cmd_pwd(void);
+void	cmd_exit(t_shell *sh);
+void	cmd_cd(t_shell *sh);
+void	cmd_echo(t_args *args);
+
+void	print_matrix(char **matrix);
+int	ft_strcmp(const char *s1, const char *s2);
+int		get_path(t_shell *sh);
 char	*get_env(t_shell *sh, char *str);
 void	signals(void);
 void	expansion(t_shell *sh);

@@ -12,12 +12,44 @@
 
 #include "../inc/minishell.h"
 
+int	get_path(t_shell *sh)
+{
+	sh->path = get_env(sh, "PATH");
+	if (sh->path == NULL)
+		return (0);
+	return (1);
+}
+
+int	check_command(t_shell *sh)
+{
+	if (!ft_strcmp(sh->args[0].str, "echo"))
+		cmd_echo(sh->args);
+	else if (!ft_strcmp(sh->args[0].str, "pwd"))
+		cmd_pwd();
+	else if (!ft_strcmp(sh->args[0].str, "env"))
+		print_matrix(sh->env);
+	else if (!ft_strcmp(sh->args[0].str, "cd"))
+		cmd_cd(sh);
+	else if (!ft_strcmp(sh->args[0].str, "exit"))
+		cmd_exit(sh);
+	else	// if (!execut_cmd(sh))
+		printf("%s: command not found\n", sh->args[0].str);
+	return (1);
+}
+
 int	read_line(t_shell *sh)
 {
+	int	i;
+
+	i = -1;
 	sh->args = tokenize(sh, sh->input);
 	expansion(sh);
-	for(int i = 0; sh->args[i].str != NULL; i++)
-		printf("Id: %d\nSTR: %s\n", sh->args[i].id, sh->args[i].str);
+	check_command(sh);
+	while (sh->args[++i].str)
+	{
+		//printf("Id: %d\nSTR: %s\n", sh->args[i].id, sh->args[i].str);
+		free(sh->args[i].str);
+	}
 	free(sh->args);
 	return (0);
 }

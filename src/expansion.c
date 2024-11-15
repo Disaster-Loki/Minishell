@@ -65,10 +65,11 @@ char	*not_found(t_shell *sh, char *name, int *i, int j)
 	sub = ft_substr(sh->args[j].str, 0, *i);
 	rest = ft_substr(sh->args[j].str, *i + ft_strlen(name) + 1, len);
 	exp = ft_strjoin(sub, rest);
-	*i -= 1;
+	*i = 0;
 	free(sub);
 	free(name);
 	free(rest);
+	free(sh->args[j].temp);
 	return (exp);
 }
 
@@ -79,6 +80,7 @@ char	*expand_var(t_shell *sh, int *i, int j)
 	char	*rest;
 	char	*name;
 	char	*exp;
+	char	*tmp;
 
 	name = get_name(sh->args[j].str, *i + 1);
 	var = get_env(sh, name);
@@ -87,11 +89,14 @@ char	*expand_var(t_shell *sh, int *i, int j)
 	sub = ft_substr(sh->args[j].str, 0, *i);
 	rest = ft_substr(sh->args[j].str, *i + ft_strlen(name) + 1, ft_strlen(sh->args[j].str));
 	exp = ft_strjoin(sub, var);
-	exp = ft_strjoin(exp, rest);
+	tmp = exp;
+	exp = ft_strjoin(tmp, rest);
+	free(tmp);
 	*i = 0;
 	free(sub);
 	free(rest);
 	free(name);
+	free(sh->args[j].temp);
 	return (exp);
 }
 
@@ -102,8 +107,9 @@ void	expansion(t_shell *sh)
 
 	i = -1;
 	j = -1;
-	while (sh->args[++j].str != NULL)
+	while (sh->args[++j].str)
 	{
+		i = -1;
 		while (sh->args[j].str[++i])
 		{
 			if (sh->args[j].str[i] == '$' && sh->args[j].id != 39)
@@ -113,8 +119,9 @@ void	expansion(t_shell *sh)
 					//states_cmd(sh, i);
 					return ;
 				}
-				if (sh->args[j].str[i + 1] == ' ')
+				if (sh->args[j].str[i + 1] == ' ' || sh->args[j].str[i + 1] == '\0')
 					return ;
+				sh->args[j].temp = sh->args[j].str;
 				sh->args[j].str = expand_var(sh, &i, j);
 			}
 		}
