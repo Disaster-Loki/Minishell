@@ -12,8 +12,27 @@
 
 #include "../inc/minishell.h"
 
+int	read_line2(t_shell *sh, char *str)
+{
+	int	i;
+
+	i = -1;
+	sh->input = str;
+	get_path(sh);
+	pipetting(sh);
+	sh->args = tokenize(sh, sh->input);
+	expansion(sh);
+	check_command(sh);
+	while (sh->args[++i].str)
+		free(sh->args[i].str);
+	free(sh->args);
+	return (0);
+}
+
 void	cmd(t_shell *sh, int *fd, int prev_fd, char *cmd)
 {
+	char	*tmp;
+
 	if (prev_fd != -1)
 	{
 		dup2(prev_fd, STDIN_FILENO);
@@ -25,8 +44,9 @@ void	cmd(t_shell *sh, int *fd, int prev_fd, char *cmd)
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
 	}
-	sh->input = ft_strtrim(cmd, " ");
-	read_line(sh);
+	tmp = sh->input;
+	read_line2(sh, ft_strtrim(cmd, " "));
+	free(tmp);
 	exit(0);
 }
 
@@ -46,6 +66,10 @@ int	pipetting(t_shell *sh)
 	int		num_cmds;
 
 	mt = ft_split(sh->input, '|');
+	i = -1;
+	while (mt[++i])
+		printf("%s\n", mt[i]);
+	//print_matrix(mt);
 	if (!mt || !mt[1])
 		return (free_mat(mt), 0);
 	init_vars(mt, &prev_fd, &num_cmds, &i);

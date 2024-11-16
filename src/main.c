@@ -15,7 +15,7 @@
 int	main(int av, char **args, char **env)
 {
 	t_shell	shell;
-	
+
 	(void)av;
 	(void)args;
 	shell.env = env;

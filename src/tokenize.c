@@ -80,7 +80,6 @@ void	process_no_quotes(char *str, t_args *args, int *i, int *j)
 	(*j)++;
 }
 
-
 t_args	*tokenize(t_shell *sh, char *str)
 {
 	int		i;

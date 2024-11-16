@@ -37,20 +37,19 @@ int	check_command(t_shell *sh)
 	return (1);
 }
 
+//printf("Id: %d\nSTR: %s\n", sh->args[i].id, sh->args[i].str);
 int	read_line(t_shell *sh)
 {
 	int	i;
 
 	i = -1;
 	get_path(sh);
+	pipetting(sh);
 	sh->args = tokenize(sh, sh->input);
 	expansion(sh);
 	check_command(sh);
 	while (sh->args[++i].str)
-	{
-		//printf("Id: %d\nSTR: %s\n", sh->args[i].id, sh->args[i].str);
 		free(sh->args[i].str);
-	}
 	free(sh->args);
 	return (0);
 }

@@ -54,6 +54,7 @@ int	states_cmd(t_shell *sh, int i, int j)
 	free(str);
 	free(tmp);
 	free(rest);
+	free(sh->args[j].temp);
 	return (1);
 }
 
@@ -117,14 +118,15 @@ void	expansion(t_shell *sh)
 		{
 			if (sh->args[j].str[i] == '$' && sh->args[j].id != 39)
 			{
+				sh->args[j].temp = sh->args[j].str;
 				if (sh->args[j].str[i + 1] == '?')
 				{
 					states_cmd(sh, i, j);
 					return ;
 				}
-				if (sh->args[j].str[i + 1] == ' ' || sh->args[j].str[i + 1] == '\0')
+				if (sh->args[j].str[i + 1] == ' '
+					|| sh->args[j].str[i + 1] == '\0')
 					return ;
-				sh->args[j].temp = sh->args[j].str;
 				sh->args[j].str = expand_var(sh, &i, j);
 			}
 		}

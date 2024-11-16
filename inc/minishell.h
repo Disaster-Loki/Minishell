@@ -79,9 +79,10 @@ void	signal_handler(int sig);
 
 // Utils
 void	free_mat(char **mt);
+int		matrix_line(char **mt);
 void	print_matrix(char **matrix);
-int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strndup(const char *s, size_t n);
+int		ft_strcmp(const char *s1, const char *s2);
 
 // Exec_cmd
 int		exec_cmd(t_shell *sh);
@@ -90,6 +91,7 @@ void	signal_handler2(int sig);
 void	child_process(char **split, t_shell *sh);
 
 // Pipe
-int	pipetting(t_shell *sh);
+int		pipetting(t_shell *sh);
+int		read_pipe(t_shell *sh);
 
 #endif
