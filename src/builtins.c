@@ -12,7 +12,7 @@
 
 #include "../inc/minishell.h"
 
-void	cmd_pwd(void)
+void	cmd_pwd(t_shell *sh)
 {
 	char	cwd[PATH_MAX];
 
@@ -86,5 +86,4 @@ void	cmd_echo(t_args *args)
 	}
 	if (!flag)
 		ft_putchar_fd('\n', 1);
-	sh->status = 0;
 }

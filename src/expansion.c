@@ -35,48 +35,6 @@ char	*get_env(t_shell *sh, char *str)
 	return (NULL);
 }
 
-int	states_cmd(t_shell *sh, int i, int j)
-{
-	char	*n;
-	char	*str;
-	char	*exp;
-	char	*rest;
-	char	*tmp;
-
-	n = ft_itoa(sh->status);
-	str = ft_substr(sh->args[j].str, 0, i);
-	rest = ft_substr(sh->args[j].str, i + 2, ft_strlen(sh->args[j].str));
-	exp = ft_strjoin(str, n);
-	tmp = exp;
-	exp = ft_strjoin(exp, rest);
-	sh->args[j].str = exp;
-	free(n);
-	free(str);
-	free(tmp);
-	free(rest);
-	free(sh->args[j].temp);
-	return (1);
-}
-
-char	*not_found(t_shell *sh, char *name, int *i, int j)
-{
-	int		len;
-	char	*sub;
-	char	*exp;
-	char	*rest;
-
-	len = ft_strlen(sh->args[j].str);
-	sub = ft_substr(sh->args[j].str, 0, *i);
-	rest = ft_substr(sh->args[j].str, *i + ft_strlen(name) + 1, len);
-	exp = ft_strjoin(sub, rest);
-	*i = 0;
-	free(sub);
-	free(name);
-	free(rest);
-	free(sh->args[j].temp);
-	return (exp);
-}
-
 char	*expand_var(t_shell *sh, int *i, int j)
 {
 	char	*var;
@@ -84,22 +42,22 @@ char	*expand_var(t_shell *sh, int *i, int j)
 	char	*rest;
 	char	*name;
 	char	*exp;
-	char	*tmp;
 
 	name = get_name(sh->args[j].str, *i + 1);
 	var = get_env(sh, name);
 	if (!var)
 		return (not_found(sh, name, i, j));
+	sh->args->len = ft_strlen(sh->args[j].str);
 	sub = ft_substr(sh->args[j].str, 0, *i);
-	rest = ft_substr(sh->args[j].str, *i + ft_strlen(name) + 1, ft_strlen(sh->args[j].str));
+	rest = ft_substr(sh->args[j].str, *i + ft_strlen(name) + 1, sh->args->len);
 	exp = ft_strjoin(sub, var);
-	tmp = exp;
-	exp = ft_strjoin(tmp, rest);
-	free(tmp);
+	sh->tmp = exp;
+	exp = ft_strjoin(sh->tmp, rest);
 	*i = 0;
 	free(sub);
 	free(rest);
 	free(name);
+	free(sh->tmp);
 	free(sh->args[j].temp);
 	return (exp);
 }

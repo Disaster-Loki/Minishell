@@ -32,6 +32,7 @@
 typedef struct s_args
 {
 	int		id;
+	int		len;
 	char	*str;
 	char	*temp;
 }	t_args;
@@ -39,6 +40,7 @@ typedef struct s_args
 typedef struct s_shell
 {
 	int		in_q;
+	char	*tmp;
 	char	**env;
 	char	**mat;
 	char	*path;
@@ -48,8 +50,8 @@ typedef struct s_shell
 }	t_shell;
 
 // Builtins
-void	cmd_pwd(void);
 void	cmd_cd(t_shell *sh);
+void	cmd_pwd(t_shell *sh);
 void	cmd_exit(t_shell *sh);
 void	cmd_echo(t_args *args);
 
