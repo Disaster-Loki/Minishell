@@ -17,7 +17,10 @@ void	cmd_pwd(void)
 	char	cwd[PATH_MAX];
 
 	if (getcwd(cwd, sizeof(cwd)))
+	{
 		printf("%s\n", cwd);
+		sh->status = 0;
+	}
 }
 
 void	cmd_exit(t_shell *sh)
@@ -30,6 +33,7 @@ void	cmd_exit(t_shell *sh)
 	free(sh->args);
 	free(sh->input);
 	printf("exit\n");
+	sh->status = 0;
 	exit(0);
 }
 
@@ -51,6 +55,8 @@ void	cmd_cd(t_shell *sh)
 	}
 	if (chdir(sh->args[1].str) != 0)
 		printf("bash: cd: %s: No such file or directory\n", sh->args[1].str);
+	else
+		sh->status = 0;
 }
 
 void	cmd_echo(t_args *args)
@@ -80,4 +86,5 @@ void	cmd_echo(t_args *args)
 	}
 	if (!flag)
 		ft_putchar_fd('\n', 1);
+	sh->status = 0;
 }

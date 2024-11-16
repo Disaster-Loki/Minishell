@@ -44,7 +44,8 @@ int	read_line(t_shell *sh)
 
 	i = -1;
 	get_path(sh);
-	pipetting(sh);
+	if (pipetting(sh))
+		return (0);
 	sh->args = tokenize(sh, sh->input);
 	expansion(sh);
 	check_command(sh);

@@ -75,5 +75,7 @@ int	exec_cmd(t_shell *sh)
 	signal(SIGINT, signal_handler2);
 	waitpid(-1, &sh->status, 0);
 	sh->status = WEXITSTATUS(sh->status);
+	if (sh->status == 1)
+		return (free_mat(split), 0);
 	return (free_mat(split), 1);
 }
