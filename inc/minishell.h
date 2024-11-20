@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 12:12:06 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:36:12 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	cmd_echo(t_args *args);
 // Read Line
 int		get_path(t_shell *sh);
 int		read_line(t_shell *sh);
-int		check_command(t_shell *sh);
+void	check_command(t_shell *sh);
 
 // Expansions
 void	expansion(t_shell *sh);
@@ -108,6 +108,6 @@ void	cmd_export(char **env);
 int	found_equals(char *str);
 
 //cmd_export2.c
-void	cmd_export2(char ***env, char **mt, t_shell *sh);
+void	cmd_export2(t_shell *sh);
 
 #endif

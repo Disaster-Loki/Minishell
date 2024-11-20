@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:06:03 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 12:11:35 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:56:23 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	cmd_exit(t_shell *sh)
 	free(sh->args);
 	free(sh->input);
 	printf("exit\n");
-	if (sh->flag == 1)
-		free_mat(sh->temp_env);
 	free_mat(sh->env);
 	exit(0);
 }

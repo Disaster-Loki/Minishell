@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 13:55:57 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:41:38 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,56 +49,48 @@ int	check_var(char *str)
 	return (0);
 }
 
-char	*delete_quote(char *str)
+char	*delete_quote(t_shell *sh, char *str)
 {
 	int		i;
 	int		j;
-	t_shell	*handler;
+	int		ch;
 
-	handler = malloc(sizeof(t_shell));
-	if (!handler)
-		return (0);
-	handler->quotes = malloc(sizeof(char) * (ft_strlen(str) + 2));
-	if (!handler->quotes)
+	sh->quotes = malloc(sizeof(char) * (ft_strlen(str) + 2));
+	if (!sh->quotes)
 		return (0);
 	i = -1;
 	j = 0;
 	while (str[++i])
 	{
-		if (str[i] != '"')
+		if (str[i] == '"' || str[i] == '\'')
+			ch = str[i];
+		if (str[i] != ch)
 		{
-			handler->quotes[j] = str[i];
+			sh->quotes[j] = str[i];
 			j++;
 		}
 	}
-	handler->quotes[j] = '\0';
-	return (handler->quotes);
+	sh->quotes[j] = '\0';
+	return (sh->quotes);
 }
 
-void	add_var1(char ***env, char *str, t_shell *sh)
+void	add_var1(t_shell *sh, char *str)
 {
 	int		i;
-	char	*dup;
-	char	**free_temp;
+	char	**tmp;
 
-	sh->flag = 0;
 	i = 0;
-	dup = ft_strdup(str);
-	while ((*env)[i])
-		i++;
-	sh->temp_env = malloc(sizeof(char *) * (i + 2));
+	sh->temp_env = malloc(sizeof(char *) * (matrix_line(sh->env) + 2));
 	if (!sh->temp_env)
 		return ;
 	i = -1;
-	while ((*env)[++i])
-		sh->temp_env[i] = (*env)[i];
-	sh->temp_env[i++] = dup;
+	while (sh->env[++i])
+		sh->temp_env[i] = ft_strdup(sh->env[i]);
+	sh->temp_env[i++] = ft_strdup(str);
 	sh->temp_env[i] = NULL;
-	free_temp = *env;
-	if (sh->flag == 1)
-		free_mat(free_temp);
-	sh->flag = 1;
-	*env = sh->temp_env;
+	tmp = sh->env;
+	sh->env = sh->temp_env;
+	free_mat(tmp);
 }
 
 int	check_envi(char **env, char *str)
@@ -117,46 +109,46 @@ int	check_envi(char **env, char *str)
 	return (0);
 }
 
-void	ch_value(char ***env, char *str)
+void	ch_value(char **env, char *str)
 {
 	int	i;
 	char	*tmp;
 
-	i = 0;
-	while ((*env)[i])
+	i = -1;
+	while (env[++i])
 	{
-		if (!ft_strncmp((*env)[i], str, find_size((*env)[i])) && found_equals(str))
+		if (!ft_strncmp(env[i], str, find_size(env[i])) && found_equals(str))
 		{
-			tmp = (*env)[i];
-			(*env)[i] = ft_strdup(str);
+			tmp = env[i];
+			env[i] = ft_strdup(str);
 			free(tmp);
 			return ;
 		}
-		i++;
 	}
 }
 
-void	cmd_export2(char ***env, char **mt, t_shell *sh)
+void	cmd_export2(t_shell *sh)
 {
 	int	i;
 
 	i = 1;
-	while (mt[i])
+	(void)sh;
+	while (sh->mat[i])
 	{
-		if (check_envi(*env, mt[i]))
+		if (check_envi(sh->env, sh->mat[i]))
 		{
-			if (check_var(mt[i]))
-				ch_value(env, delete_quote(mt[i]));
+			if (check_var(sh->mat[i]))
+				ch_value(sh->env, delete_quote(sh, sh->mat[i]));
 			else
-				ch_value(env, mt[i]);
+				ch_value(sh->env, sh->mat[i]);
 		}
 		else
 		{
 
-			if (check_var(mt[i]))
-				add_var1(env, delete_quote(mt[i]), sh);
+			if (check_var(sh->mat[i]))
+				add_var1(sh, delete_quote(sh, sh->mat[i]));
 			else
-				add_var1(env, mt[i], sh);
+				add_var1(sh, sh->mat[i]);
 		}
 		i++;
 	}

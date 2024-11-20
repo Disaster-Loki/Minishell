@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:24:19 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 11:56:07 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:35:31 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,27 @@ int	get_path(t_shell *sh)
 	return (1);
 }
 
-int	check_command(t_shell *sh)
+void	check_command(t_shell *sh)
 {
-	if (!ft_strcmp(sh->args[0].str, "export") && !sh->args[1].str)
-		cmd_export(sh->env);
-	else if (!ft_strcmp(sh->args[0].str, "export") && sh->args[1].str)
-		cmd_export2(&sh->env, sh->mat, sh);
-	else if (!ft_strcmp(sh->args[0].str, "echo"))
-		cmd_echo(sh->args);
-	else if (!ft_strcmp(sh->args[0].str, "pwd"))
-		cmd_pwd(sh);
-	else if (!ft_strcmp(sh->args[0].str, "env"))
-		print_matrix(sh->env);
-	else if (!ft_strcmp(sh->args[0].str, "cd"))
-		cmd_cd(sh);
-	else if (!ft_strcmp(sh->args[0].str, "exit"))
-		cmd_exit(sh);
-	else if (!exec_cmd(sh))
-		printf("%s: command not found\n", sh->args[0].str);
-	return (1);
+	if (sh->args[0].str)
+	{
+		if (!ft_strcmp(sh->args[0].str, "export") && !sh->args[1].str)
+			cmd_export(sh->env);
+		else if (!ft_strcmp(sh->args[0].str, "export") && sh->args[1].str)
+			cmd_export2(sh);
+		else if (!ft_strcmp(sh->args[0].str, "echo"))
+			cmd_echo(sh->args);
+		else if (!ft_strcmp(sh->args[0].str, "pwd"))
+			cmd_pwd(sh);
+		else if (!ft_strcmp(sh->args[0].str, "env"))
+			print_matrix(sh->env);
+		else if (!ft_strcmp(sh->args[0].str, "cd"))
+			cmd_cd(sh);
+		else if (!ft_strcmp(sh->args[0].str, "exit"))
+			cmd_exit(sh);
+		else if (!exec_cmd(sh))
+			printf("%s: command not found\n", sh->args[0].str);
+	}
 }
 
 int	read_line(t_shell *sh)

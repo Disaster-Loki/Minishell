@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 12:10:42 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/11/20 12:15:39 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:50:31 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void	cmd_cd(t_shell *sh)
 	if (!sh->args[1].str)
 		return (printf("cd: lack of arguments\n"), sh->status = 1, (void)0);
 	if (sh->args[2].str)
-		return (printf("bash: cd: too many arguments\n"), sh->status = 1, (void)0);
+	{
+		printf("bash: cd: too many arguments\n");
+		return (sh->status = 1, (void)0);
+	}
 	if (!chdir(sh->args[1].str))
 	{
 		if (!change_env(sh, "PWD"))

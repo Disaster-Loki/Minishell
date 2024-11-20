@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:46:33 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 12:02:20 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:06:36 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	main(int av, char **args, char **env)
 	shell.temp_env = NULL;
 	shell.env = ft_env(env);
 	shell.status = 0;
-	shell.flag = 0;
 	while (1)
 	{
 		signals();
