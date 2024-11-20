@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 11:52:18 by sde-carv          #+#    #+#              #
-#    Updated: 2024/10/16 11:52:19 by sde-carv         ###   ########.fr        #
+#    Updated: 2024/11/18 12:45:56 by ptchipoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
  
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -g -Wall -Wextra -Werror
 L_DIR		= ./libft	
 LIBFT		= -L$(L_DIR) -lft
 
@@ -34,6 +34,9 @@ S_FILES		= ./src/main.c     			\
 			  ./src/exec_cmd.c   		\
 			  ./src/pipetting.c   		\
 			  ./src/expand_utils.c 		\
+			  ./src/cmd_export.c 		\
+			  ./src/cmd_export2.c 		\
+			  ./src/cmd_unset.c 		\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

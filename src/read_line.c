@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:24:19 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/14 11:24:21 by sde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:44:30 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int	get_path(t_shell *sh)
 
 int	check_command(t_shell *sh)
 {
-	if (!ft_strcmp(sh->args[0].str, "echo"))
+	if (!ft_strcmp(sh->args[0].str, "export") && !sh->args[1].str)
+		cmd_export(sh->env);
+	else if (!ft_strcmp(sh->args[0].str, "export") && sh->args[1].str)
+		cmd_export2(&sh->env, sh->mat, sh);
+	else if (!ft_strcmp(sh->args[0].str, "echo"))
 		cmd_echo(sh->args);
 	else if (!ft_strcmp(sh->args[0].str, "pwd"))
 		cmd_pwd(sh);
@@ -37,13 +41,13 @@ int	check_command(t_shell *sh)
 	return (1);
 }
 
-//printf("Id: %d\nSTR: %s\n", sh->args[i].id, sh->args[i].str);
 int	read_line(t_shell *sh)
 {
 	int	i;
 
 	i = -1;
 	get_path(sh);
+	sh->mat = ft_split(sh->input, ' ');
 	if (pipetting(sh))
 		return (0);
 	sh->args = tokenize(sh, sh->input);
@@ -52,5 +56,6 @@ int	read_line(t_shell *sh)
 	while (sh->args[++i].str)
 		free(sh->args[i].str);
 	free(sh->args);
+	free_mat(sh->mat);
 	return (0);
 }

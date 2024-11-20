@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:06:03 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/15 13:06:05 by sde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:49:22 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	cmd_exit(t_shell *sh)
 	free(sh->args);
 	free(sh->input);
 	printf("exit\n");
+	if (sh->flag == 1)
+		free_mat(sh->temp_env);
 	sh->status = 0;
 	exit(0);
 }

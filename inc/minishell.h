@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/14 10:45:21 by sde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:44:23 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,16 @@ typedef struct s_args
 
 typedef struct s_shell
 {
+	int		flag;
 	int		in_q;
-	char	*tmp;
 	char	**env;
 	char	**mat;
+	char	**temp_env;
+	char	**env_free;
+	char	**temp_unset;
+	char	*free_quote;
+	char	*tmp;
+	char	*quotes;
 	char	*path;
 	t_args	*args;
 	char	*input;
@@ -95,5 +101,12 @@ void	child_process(char **split, t_shell *sh);
 // Pipe
 int		pipetting(t_shell *sh);
 int		read_pipe(t_shell *sh);
+
+// cmd_export.c
+void	cmd_export(char **env);
+int	found_equals(char *str);
+
+//cmd_export2.c
+void	cmd_export2(char ***env, char **mt, t_shell *sh);
 
 #endif
