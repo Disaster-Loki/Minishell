@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_export2.c                                      :+:      :+:    :+:   */
+/*   export_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/19 13:47:03 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/20 13:55:57 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,13 +120,16 @@ int	check_envi(char **env, char *str)
 void	ch_value(char ***env, char *str)
 {
 	int	i;
+	char	*tmp;
 
 	i = 0;
 	while ((*env)[i])
 	{
-		if (ft_strncmp((*env)[i], str, find_size((*env)[i])) == 0 && found_equals(str))
+		if (!ft_strncmp((*env)[i], str, find_size((*env)[i])) && found_equals(str))
 		{
+			tmp = (*env)[i];
 			(*env)[i] = ft_strdup(str);
+			free(tmp);
 			return ;
 		}
 		i++;

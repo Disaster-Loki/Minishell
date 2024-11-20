@@ -6,7 +6,7 @@
 #    By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 11:52:18 by sde-carv          #+#    #+#              #
-#    Updated: 2024/11/18 12:45:56 by ptchipoc         ###   ########.fr        #
+#    Updated: 2024/11/20 12:14:29 by ptchipoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,9 @@ ORANGE		= \033[38;5;208m
 GREEN		= \033[32m
 
 S_FILES		= ./src/main.c     			\
+			  ./src/cd.c     			\
 			  ./src/signals.c   		\
+			  ./src/echo.c   			\
 			  ./src/read_line.c  		\
 			  ./src/tokenize.c   		\
 			  ./src/utils.c   			\
@@ -34,8 +36,8 @@ S_FILES		= ./src/main.c     			\
 			  ./src/exec_cmd.c   		\
 			  ./src/pipetting.c   		\
 			  ./src/expand_utils.c 		\
-			  ./src/cmd_export.c 		\
-			  ./src/cmd_export2.c 		\
+			  ./src/export.c 			\
+			  ./src/export_add.c 		\
 			  ./src/cmd_unset.c 		\
 
 S_OBJ		= $(S_FILES:.c=.o)

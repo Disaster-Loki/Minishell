@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/19 13:44:23 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:12:06 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <signal.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <linux/limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include "../libft/inc/libft.h"

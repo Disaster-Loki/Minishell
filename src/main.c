@@ -6,35 +6,27 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:46:33 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/19 13:48:12 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:02:20 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-char	**copy_mtx(char **env)
+char	**ft_env(char **env)
 {
 	int		i;
-	t_shell	*handler;
-	char	*copy[1024];
-	char	**copy2;
+	int		rows;
+	char	**res;
 
-	handler = malloc(sizeof(t_shell));
-	i = 0;
-	while (env[i])
-		i++;
-	copy2 = malloc(sizeof(char *) * (i + 1));
-	if (!copy2)
+	i = -1;
+	rows = matrix_line(env);
+	res = malloc(sizeof(char *) * (rows + 1));
+	if (!res)
 		return (NULL);
-	i = -1;
-	while (env[++i])
-		copy[i] = env[i];
-	i = -1;
-	while (copy[++i])
-		copy2[i] = copy[i];
-	copy[i] = NULL;
-	free(handler);
-	return (copy2);
+	while (++i < rows)
+		res[i] = ft_strdup(env[i]);
+	res[i] = NULL;
+	return (res);
 }
 
 int	main(int av, char **args, char **env)
@@ -44,7 +36,7 @@ int	main(int av, char **args, char **env)
 	(void)av;
 	(void)args;
 	shell.temp_env = NULL;
-	shell.env = env;
+	shell.env = ft_env(env);
 	shell.status = 0;
 	shell.flag = 0;
 	while (1)
@@ -54,6 +46,7 @@ int	main(int av, char **args, char **env)
 		if (shell.input == NULL)
 		{
 			ft_putstr_fd("exit\n", 1);
+			free_mat(shell.env);
 			break ;
 		}
 		add_history(shell.input);

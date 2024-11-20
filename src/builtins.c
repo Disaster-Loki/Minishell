@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:06:03 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/19 13:49:22 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:11:35 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,57 +35,6 @@ void	cmd_exit(t_shell *sh)
 	printf("exit\n");
 	if (sh->flag == 1)
 		free_mat(sh->temp_env);
-	sh->status = 0;
+	free_mat(sh->env);
 	exit(0);
-}
-
-void	cmd_cd(t_shell *sh)
-{
-	char	*home;
-
-	if (sh->args[1].str == NULL)
-	{
-		home = get_env(sh, "HOME");
-		if (home)
-			chdir(home);
-		return ;
-	}
-	if (sh->args[2].str)
-	{
-		printf("bash: cd: too many arguments\n");
-		return ;
-	}
-	if (chdir(sh->args[1].str) != 0)
-		printf("bash: cd: %s: No such file or directory\n", sh->args[1].str);
-	else
-		sh->status = 0;
-}
-
-void	cmd_echo(t_args *args)
-{
-	int		i;
-	int		flag;
-
-	i = 1;
-	flag = 0;
-	if (args[i].str && !ft_strcmp(args[i].str, "-n"))
-	{
-		flag = 1;
-		i++;
-	}
-	if (args[i].str == NULL)
-	{
-		if (!flag)
-			ft_putchar_fd('\n', 1);
-		return ;
-	}
-	while (args[i].str)
-	{
-		ft_putstr_fd(args[i].str, 1);
-		if (args[i + 1].str)
-			ft_putchar_fd(' ', 1);
-		i++;
-	}
-	if (!flag)
-		ft_putchar_fd('\n', 1);
 }
