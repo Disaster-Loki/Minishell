@@ -20,7 +20,7 @@
 # include <signal.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <linux/limits.h>
+# include <linux/limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include "../libft/inc/libft.h"
@@ -40,7 +40,6 @@ typedef struct s_args
 
 typedef struct s_shell
 {
-	int		flag;
 	int		in_q;
 	char	**env;
 	char	**mat;
@@ -105,9 +104,13 @@ int		read_pipe(t_shell *sh);
 
 // cmd_export.c
 void	cmd_export(char **env);
-int	found_equals(char *str);
+int		found_equals(char *str);
 
-//cmd_export2.c
+//export_add..c
 void	cmd_export2(t_shell *sh);
 
+// export_add_utills.c
+int		find_size(char *vari);
+int		check_var(char *str);
+char	*delete_quote(t_shell *sh, char *str);
 #endif

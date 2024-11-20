@@ -38,6 +38,7 @@ S_FILES		= ./src/main.c     			\
 			  ./src/expand_utils.c 		\
 			  ./src/export.c 			\
 			  ./src/export_add.c 		\
+			  ./src/export_add_utills.c	\
 			  ./src/cmd_unset.c 		\
 
 S_OBJ		= $(S_FILES:.c=.o)
