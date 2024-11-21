@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 15:41:38 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:25:42 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	cmd_export2(t_shell *sh)
 	int	i;
 
 	i = 1;
-	(void)sh;
 	while (sh->mat[i])
 	{
 		if (check_envi(sh->env, sh->mat[i]))

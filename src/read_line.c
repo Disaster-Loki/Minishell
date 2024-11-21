@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:24:19 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 14:35:31 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:42:16 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,17 @@ void	check_command(t_shell *sh)
 
 int	read_line(t_shell *sh)
 {
-	int	i;
+	//int	i;
 
-	i = -1;
-	get_path(sh);
-	sh->mat = ft_split(sh->input, ' ');
-	if (pipetting(sh))
-		return (0);
+	//i = -1;
+	//get_path(sh);
+	//sh->mat = ft_split(sh->input, ' ');
+	//if (pipetting(sh))
+	//	return (0);
 	sh->args = tokenize(sh, sh->input);
-	expansion(sh);
-	check_command(sh);
-	while (sh->args[++i].str)
-		free(sh->args[i].str);
+	//expansion(sh);
+	//check_command(sh);
 	free(sh->args);
-	free_mat(sh->mat);
+	//free_mat(sh->mat);
 	return (0);
 }
