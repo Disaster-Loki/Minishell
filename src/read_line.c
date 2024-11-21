@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:24:19 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/21 15:15:19 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:17:53 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_command(t_shell *sh)
 		else if (!ft_strcmp(sh->args[0].str, "unset"))
 			cmd_unset(sh, sh->mat);
 		else if (!ft_strcmp(sh->args[0].str, "echo"))
-			cmd_echo(sh->args);
+			cmd_echo(sh);
 		else if (!ft_strcmp(sh->args[0].str, "pwd"))
 			cmd_pwd(sh);
 		else if (!ft_strcmp(sh->args[0].str, "env"))
@@ -52,8 +52,8 @@ int	read_line(t_shell *sh)
 	i = -1;
 	get_path(sh);
 	sh->mat = ft_split(sh->input, ' ');
-	if (pipetting(sh))
-		return (0);
+	// if (pipetting(sh))
+	// 	return (0);
 	sh->args = tokenize(sh, sh->input);
 	expansion(sh);
 	check_command(sh);

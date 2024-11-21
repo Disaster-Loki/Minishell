@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:06:03 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/21 17:59:00 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:18:38 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	cmd_pwd(t_shell *sh)
 		sh->status = 0;
 	}
 }
-
-#include <stdlib.h>
 
 void free_array_mat(char ***array)
 {
@@ -42,7 +40,6 @@ void free_array_mat(char ***array)
     *array = NULL;
 }
 
-
 void	cmd_exit(t_shell *sh)
 {
 	int	i;
@@ -55,6 +52,7 @@ void	cmd_exit(t_shell *sh)
 	if (sh->flag_env == 1)
 		free_array_mat(sh->free_env);
 	printf("exit\n");
-	//free_mat(sh->env);
+	free_mat(sh->env);
+	sh->status = 0;
 	exit(0);
 }
