@@ -31,7 +31,7 @@ void	check_command(t_shell *sh)
 		else if (!ft_strcmp(sh->args[0].str, "unset"))
 			cmd_unset(sh, sh->mat);
 		else if (!ft_strcmp(sh->args[0].str, "echo"))
-			cmd_echo(sh->args);
+			cmd_echo(sh);
 		else if (!ft_strcmp(sh->args[0].str, "pwd"))
 			cmd_pwd(sh);
 		else if (!ft_strcmp(sh->args[0].str, "env"))

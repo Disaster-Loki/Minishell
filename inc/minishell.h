@@ -59,7 +59,7 @@ typedef struct s_shell
 void	cmd_cd(t_shell *sh);
 void	cmd_pwd(t_shell *sh);
 void	cmd_exit(t_shell *sh);
-void	cmd_echo(t_args *args);
+void	cmd_echo(t_shell *sh);
 
 // Read Line
 int		get_path(t_shell *sh);

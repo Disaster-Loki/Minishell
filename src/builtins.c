@@ -34,5 +34,6 @@ void	cmd_exit(t_shell *sh)
 	free(sh->input);
 	printf("exit\n");
 	free_mat(sh->env);
+	sh->status = 0;
 	exit(0);
 }
