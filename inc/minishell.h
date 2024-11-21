@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 14:36:12 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/21 15:15:48 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,6 @@ void	cmd_export2(t_shell *sh);
 int		find_size(char *vari);
 int		check_var(char *str);
 char	*delete_quote(t_shell *sh, char *str);
+
+void	cmd_unset(t_shell *sh, char **to_remove);
 #endif
