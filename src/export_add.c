@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/21 12:25:42 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:53:59 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	add_var1(t_shell *sh, char *str)
 {
 	int		i;
-	char	**tmp;
 
 	i = 0;
 	sh->temp_env = malloc(sizeof(char *) * (matrix_line(sh->env) + 2));
@@ -26,9 +25,9 @@ void	add_var1(t_shell *sh, char *str)
 		sh->temp_env[i] = ft_strdup(sh->env[i]);
 	sh->temp_env[i++] = ft_strdup(str);
 	sh->temp_env[i] = NULL;
-	tmp = sh->env;
+	sh->free_env[sh->i++] = sh->env;
 	sh->env = sh->temp_env;
-	free_mat(tmp);
+	sh->flag_env = 1;
 }
 
 int	check_envi(char **env, char *str)

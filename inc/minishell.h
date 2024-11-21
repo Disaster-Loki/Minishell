@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/21 15:15:48 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:53:22 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef struct s_args
 
 typedef struct s_shell
 {
+	char	***free_env;
+	int		flag_env;
+	int		i;
 	int		in_q;
 	char	**env;
 	char	**mat;

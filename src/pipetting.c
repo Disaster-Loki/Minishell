@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_line.c                                        :+:      :+:    :+:   */
+/*   pipetting.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:24:19 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/14 11:24:21 by sde-carv         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:02:44 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	pipetting(t_shell *sh)
 	mt = ft_split(sh->input, '|');
 	i = -1;
 	if (!mt || !mt[1])
-		return (free_mat(mt), 0);
+		return (0);
 	init_vars(mt, &prev_fd, &num_cmds, &i);
 	while (++i < num_cmds)
 	{
