@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 void	cmd(t_shell *sh, int *fd, int prev_fd, char *cmd)
 {

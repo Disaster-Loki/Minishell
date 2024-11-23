@@ -24,22 +24,23 @@ YELLOW		= \033[33m
 ORANGE		= \033[38;5;208m
 GREEN		= \033[32m
 
-S_FILES		= ./src/main.c     			\
-			  ./src/cd.c     			\
-			  ./src/signals.c   		\
-			  ./src/echo.c   			\
-			  ./src/read_line.c  		\
-			  ./src/tokenize.c   		\
-			  ./src/utils.c   			\
-			  ./src/expansion.c   		\
-			  ./src/builtins.c   		\
-			  ./src/exec_cmd.c   		\
-			  ./src/pipetting.c   		\
-			  ./src/expand_utils.c 		\
-			  ./src/export.c 			\
-			  ./src/export_add.c 		\
-			  ./src/export_add_utills.c	\
-			  ./src/cmd_unset.c 		\
+S_FILES		= ./src/controls/main.c     			\
+			  ./src/builtins/cd.c     				\
+			  ./src/controls/signals.c   			\
+			  ./src/builtins/echo.c   				\
+			  ./src/controls/read_line.c  			\
+			  ./src/tokenization/tokenize.c   		\
+			  ./src/controls/utils.c   				\
+			  ./src/expansion/expansion.c   		\
+			  ./src/builtins/builtins.c   			\
+			  ./src/controls/exec_cmd.c   			\
+			  ./src/pipe/pipetting.c   				\
+			  ./src/expansion/expand_utils.c 		\
+			  ./src/builtins/export.c 				\
+			  ./src/builtins/export_add.c 			\
+			  ./src/builtins/export_add_utills.c	\
+			  ./src/builtins/cmd_unset.c 			\
+			  ./src/builtins/exit.c 				\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

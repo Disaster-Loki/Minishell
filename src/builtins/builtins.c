@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 void	cmd_pwd(t_shell *sh)
 {
@@ -38,21 +38,4 @@ void free_array_mat(char ***array)
     }
     free(*array);
     *array = NULL;
-}
-
-void	cmd_exit(t_shell *sh)
-{
-	int	i;
-
-	i = -1;
-	while (sh->args[++i].str)
-		free(sh->args[i].str);
-	free(sh->args);
-	free(sh->input);
-	if (sh->flag_env == 1)
-		free_array_mat(sh->free_env);
-	printf("exit\n");
-	free_mat(sh->env);
-	sh->status = 0;
-	exit(0);
 }
