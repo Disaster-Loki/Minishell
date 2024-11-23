@@ -61,6 +61,7 @@ typedef struct s_shell
 // Builtins
 void	cmd_cd(t_shell *sh);
 void	cmd_pwd(t_shell *sh);
+void	cmd_env(t_shell *sh);
 void	cmd_exit(t_shell *sh);
 void	cmd_echo(t_shell *sh);
 
@@ -118,5 +119,5 @@ int		check_var(char *str);
 char	*delete_quote(t_shell *sh, char *str);
 
 void	cmd_unset(t_shell *sh, char **to_remove);
-void	 free_array_mat(char ***array);
+void	free_array_mat(char ***array);
 #endif

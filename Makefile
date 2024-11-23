@@ -32,15 +32,16 @@ S_FILES		= ./src/controls/main.c     			\
 			  ./src/tokenization/tokenize.c   		\
 			  ./src/controls/utils.c   				\
 			  ./src/expansion/expansion.c   		\
-			  ./src/builtins/builtins.c   			\
 			  ./src/controls/exec_cmd.c   			\
 			  ./src/pipe/pipetting.c   				\
 			  ./src/expansion/expand_utils.c 		\
 			  ./src/builtins/export.c 				\
 			  ./src/builtins/export_add.c 			\
-			  ./src/builtins/export_add_utills.c	\
-			  ./src/builtins/cmd_unset.c 			\
+			  ./src/builtins/export_utils.c			\
+			  ./src/builtins/unset.c 				\
 			  ./src/builtins/exit.c 				\
+			  ./src/builtins/env.c 					\
+			  ./src/builtins/pwd.c 					\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

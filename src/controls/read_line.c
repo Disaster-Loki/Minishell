@@ -35,7 +35,7 @@ void	check_command(t_shell *sh)
 		else if (!ft_strcmp(sh->args[0].str, "pwd"))
 			cmd_pwd(sh);
 		else if (!ft_strcmp(sh->args[0].str, "env"))
-			print_matrix(sh->env);
+			cmd_env(sh);
 		else if (!ft_strcmp(sh->args[0].str, "cd"))
 			cmd_cd(sh);
 		else if (!ft_strcmp(sh->args[0].str, "exit"))
