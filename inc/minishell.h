@@ -113,9 +113,10 @@ int		found_equals(char *str);
 //export_add..c
 void	cmd_export2(t_shell *sh);
 
-// export_add_utills.c
+// export_utills.c
 int		find_size(char *vari);
 int		check_var(char *str);
+int 	valid_env_name(char *str);
 char	*delete_quote(t_shell *sh, char *str);
 
 void	cmd_unset(t_shell *sh, char **to_remove);

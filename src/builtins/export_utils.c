@@ -12,6 +12,11 @@
 
 #include "../../inc/minishell.h"
 
+int	ft_isalnum_under(int k)
+{
+	return (ft_isdigit(k) || ft_isalpha(k) || k == '_');
+}
+
 int	find_size(char *vari)
 {
 	int	i;
@@ -33,6 +38,21 @@ int	check_var(char *str)
 			return (1);
 	}
 	return (0);
+}
+
+int valid_env_name(char *str)
+{
+	int i;
+
+	i = -1;
+	if (str[0] == '=')
+		return (0);
+	while (str[++i] && str[i] != '=')
+	{
+		if (!ft_isalnum_under(str[i]))
+			return (0);
+	}
+	return (1);
 }
 
 char	*delete_quote(t_shell *sh, char *str)
@@ -59,3 +79,4 @@ char	*delete_quote(t_shell *sh, char *str)
 	sh->quotes[j] = '\0';
 	return (sh->quotes);
 }
+

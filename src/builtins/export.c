@@ -37,30 +37,41 @@ int	found_equals(char *str)
 	return (0);
 }
 
+void	help_write(char **print, int *i, int *j, int *flag)
+{
+	while (print[++(*i)])
+	{
+		printf("declare -x ");
+		*j = -1;
+		*flag = 0;
+		while (print[*i][++(*j)])
+		{
+			if ((print[*i][*j] == '=' || print[*i][*j + 1] == '\0')
+				&& found_equals(print[*i]))
+			{
+				printf("%c", print[*i][*j]);
+				if (*flag == 0 || print[*i][*j + 1] == '\0')
+					printf("\"");
+				*flag = 1;
+				if (print[*i][*j] == '=' && print[*i][*j + 1] == '\0')
+					printf("\"");
+			}
+			else
+				printf("%c", print[*i][*j]);
+		}
+		printf("\n");
+	}
+}
+
 void	write_export(char **print)
 {
 	int	i;
 	int	j;
+	int	flag;
 
+	flag = 0;
 	i = -1;
-	while (print[++i])
-	{
-		printf("declare -x ");
-		j = -1;
-		while (print[i][++j])
-		{
-			if ((print[i][j] == '=' || print[i][j + 1] == '\0')
-				&& found_equals(print[i]))
-			{	
-				printf("%c\"", print[i][j]);
-				if (print[i][j] == '=' && print[i][j + 1] == '\0')
-					printf("\"");
-			}
-			else
-				printf("%c", print[i][j]);
-		}
-		printf("\n");
-	}
+	help_write(print, &i, &j, &flag);
 }
 
 void	cmd_export(char **env)

@@ -12,24 +12,6 @@
 
 #include "../../inc/minishell.h"
 
-void	add_var1(t_shell *sh, char *str)
-{
-	int		i;
-
-	i = 0;
-	sh->temp_env = malloc(sizeof(char *) * (matrix_line(sh->env) + 2));
-	if (!sh->temp_env)
-		return ;
-	i = -1;
-	while (sh->env[++i])
-		sh->temp_env[i] = ft_strdup(sh->env[i]);
-	sh->temp_env[i++] = ft_strdup(str);
-	sh->temp_env[i] = NULL;
-	sh->free_env[sh->i++] = sh->env;
-	sh->env = sh->temp_env;
-	sh->flag_env = 1;
-}
-
 int	check_envi(char **env, char *str)
 {
 	int	i;
@@ -65,6 +47,26 @@ void	ch_value(char **env, char *str)
 	}
 }
 
+void	add_var1(t_shell *sh, char *str)
+{
+	int		i;
+	int		len;
+
+	i = 0;
+	len = matrix_line(sh->env);
+	sh->temp_env = malloc(sizeof(char *) * (len + 2));
+	if (!sh->temp_env)
+		return ;
+	i = -1;
+	while (sh->env[++i])
+		sh->temp_env[i] = ft_strdup(sh->env[i]);
+	sh->temp_env[i++] = ft_strdup(str);
+	sh->temp_env[i] = NULL;
+	sh->free_env[sh->i++] = sh->env;
+	sh->env = sh->temp_env;
+	sh->flag_env = 1;
+}
+
 void	cmd_export2(t_shell *sh)
 {
 	int	i;
@@ -72,7 +74,9 @@ void	cmd_export2(t_shell *sh)
 	i = 1;
 	while (sh->mat[i])
 	{
-		if (check_envi(sh->env, sh->mat[i]))
+		if (!valid_env_name(sh->mat[i]))
+			printf("bash: export: `%s': not a valid identifier\n", sh->mat[i]);
+		else if(check_envi(sh->env, sh->mat[i]))
 		{
 			if (check_var(sh->mat[i]))
 				ch_value(sh->env, delete_quote(sh, sh->mat[i]));

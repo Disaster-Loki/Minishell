@@ -51,11 +51,11 @@ int	read_line(t_shell *sh)
 
 	i = -1;
 	get_path(sh);
-	sh->mat = ft_split(sh->input, ' ');
-	// if (pipetting(sh))
-	// 	return (0);
+	if (pipetting(sh))
+		return (0);
 	sh->args = tokenize(sh, sh->input);
 	expansion(sh);
+	sh->mat = ft_args(sh->args);
 	check_command(sh);
 	while (sh->args[++i].str)
 		free(sh->args[i].str);

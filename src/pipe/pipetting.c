@@ -30,6 +30,8 @@ void	cmd(t_shell *sh, int *fd, int prev_fd, char *cmd)
 	tmp = sh->input;
 	sh->input = ft_strtrim(cmd, " ");
 	read_line(sh);
+	if (sh->env)
+		free_mat(sh->env);
 	free(tmp);
 	exit(0);
 }
