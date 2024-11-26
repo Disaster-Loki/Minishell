@@ -30,6 +30,15 @@
 # define BOLD_GREEN "\033[1;32m"
 # define COOL_EMOJI "😎"
 
+typedef	struct s_file
+{
+	char	*file[1024];
+	char	*arg[1024];
+	char	*redir[1024];
+	int		control;
+	int		fd;
+}	t_file;
+
 typedef struct s_args
 {
 	int		id;
@@ -40,22 +49,24 @@ typedef struct s_args
 
 typedef struct s_shell
 {
-	char	***free_env;
-	int		flag_env;
 	int		i;
 	int		in_q;
+	char	*tmp;
+	t_args	*args;
 	char	**env;
 	char	**mat;
+	char	*path;
+	char	*input;
+	int		status;
+	char	*quotes;
+	t_file	manager;
+	int		flag_env;
+	int		redirect;
 	char	**temp_env;
 	char	**env_free;
 	char	**temp_unset;
 	char	*free_quote;
-	char	*tmp;
-	char	*quotes;
-	char	*path;
-	t_args	*args;
-	char	*input;
-	int		status;
+	char	***free_env;
 }	t_shell;
 
 // Builtins
@@ -79,11 +90,11 @@ int		states_cmd(t_shell *sh, int i, int j);
 char	*not_found(t_shell *sh, char *name, int *i, int j);
 
 // Tokenize
-int		skip_spaces(char *str, int i);
+//int		skip_spaces(char *str, int i);
 t_args	*tokenize(t_shell *sh, char *str);
-int		find_quotes(t_shell *sh, char *str, int *start, int *end);
-int		process_quotes(t_shell *sh, t_args *args, int *i, int *j);
-void	process_no_quotes(char *str, t_args *args, int *i, int *j);
+//int		find_quotes(t_shell *sh, char *str, int *start, int *end);
+//int		process_quotes(t_shell *sh, t_args *args, int *i, int *j);
+//void	process_no_quotes(char *str, t_args *args, int *i, int *j);
 
 // Signals
 void	signals(void);
@@ -121,4 +132,6 @@ char	*delete_quote(t_shell *sh, char *str);
 
 void	cmd_unset(t_shell *sh, char **to_remove);
 void	free_array_mat(char ***array);
+
+void    redirects(t_shell *sh, t_args *args);
 #endif

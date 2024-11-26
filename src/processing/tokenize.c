@@ -35,48 +35,66 @@ int	find_quotes(t_shell *sh, char *str, int *start, int *end)
 	return (0);
 }
 
-int	process_quotes(t_shell *sh, t_args *args, int *i, int *j)
-{
-	int		end;
+int process_quotes(t_shell *sh, t_args *args, int *k, int *j) {
+    int		end;
 	int		start;
-	char	*str;
+    char	*str;
+    char	*sub;
+	char	*join;
+	char	*rest;
+	char	*exp;
 
-	start = *i;
-	str = sh->input;
-	sh->in_q = str[*i];
+	start = 0;
+	str = args[*j].str;
+	while (str[start] && str[start] != '\'' && str[start] != '\"')
+		start++;
+	if (start == (int) ft_strlen(str))
+		return (0);
 	if (find_quotes(sh, str, &start, &end))
 	{
-		if (sh->in_q == '\"')
-			args[*j].id = 34;
-		else if (sh->in_q == '\'')
-			args[*j].id = 39;
-		args[*j].str = ft_strndup(str + start + 1, end - start - 1);
-		*i = end + 1;
+		
+		printf("Inicio K = %d\n", *k);
+		printf("Inicio str = %s\n", str);
+		sub = ft_substr(str, 0, start);
+		printf("sub = %s\n", sub);
+		join = ft_substr(str, start + 1, end - start - 1);
+		printf("join = %s\n", join);
+		rest = ft_substr(str, end + 1, ft_strlen(str) - end - 1);
+		printf("rest = %s\n", rest);
+		exp = ft_strjoin(sub, join);
+		printf("exp = %s\n", exp);
+		args[*j].id = sh->in_q;
+		args[*j].str = ft_strjoin(exp, rest);
+		printf("args.str = %s\n", args[*j].str);
+		*k = (int)(ft_strlen(exp));
+		printf("k = %d\n", *k);
+		free(str);
+		free(sub);
+		free(join);
+		free(rest);
+		free(exp);
 	}
-	else
-	{
-		args[*j].id = 73;
-		args[*j].str = ft_strndup(str + start + 1, ft_strlen(str) - start - 1);
-		*i = ft_strlen(str);
-	}
-	(*j)++;
-	return (1);
+    return (1);
 }
 
-void	process_no_quotes(char *str, t_args *args, int *i, int *j)
+void	process_no_quotes(t_shell *sh, char *str, t_args *args, int *i, int *j)
 {
-	int	start;
+	int	k;
 	int	len;
+	int	start;
 
-	start = *i;
+	k = -1;
 	len = 0;
-	while (str[*i] && str[*i] != ' ' && str[*i] != '\"' && str[*i] != '\'')
+	start = *i;
+	while (str[*i] && str[*i] != ' ')
 	{
 		len++;
 		(*i)++;
 	}
 	args[*j].id = 32;
 	args[*j].str = ft_strndup(str + start, len);
+	while (args[*j].str[++k])
+		process_quotes(sh, args, &k, j);
 	(*j)++;
 }
 
@@ -94,7 +112,7 @@ t_args	*tokenize(t_shell *sh, char *str)
 	while (str[i])
 	{
 		i = skip_spaces(str, i);
-		process_no_quotes(str, args, &i, &j);
+		process_no_quotes(sh, str, args, &i, &j);
 	}
 	args[j].str = NULL;
 	return (args);
