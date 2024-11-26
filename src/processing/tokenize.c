@@ -94,10 +94,7 @@ t_args	*tokenize(t_shell *sh, char *str)
 	while (str[i])
 	{
 		i = skip_spaces(str, i);
-		if (str[i] == '\"' || str[i] == '\'')
-			process_quotes(sh, args, &i, &j);
-		else if (str[i])
-			process_no_quotes(str, args, &i, &j);
+		process_no_quotes(str, args, &i, &j);
 	}
 	args[j].str = NULL;
 	return (args);

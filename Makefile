@@ -24,16 +24,16 @@ YELLOW		= \033[33m
 ORANGE		= \033[38;5;208m
 GREEN		= \033[32m
 
-S_FILES		= ./src/controls/main.c     			\
+S_FILES		= ./src/controller/main.c     			\
 			  ./src/builtins/cd.c     				\
-			  ./src/controls/signals.c   			\
+			  ./src/controller/signals.c   			\
 			  ./src/builtins/echo.c   				\
-			  ./src/controls/read_line.c  			\
-			  ./src/tokenization/tokenize.c   		\
-			  ./src/controls/utils.c   				\
+			  ./src/controller/read_line.c  		\
+			  ./src/processing/tokenize.c   		\
+			  ./src/controller/utils.c   			\
 			  ./src/expansion/expansion.c   		\
-			  ./src/controls/exec_cmd.c   			\
-			  ./src/pipe/pipetting.c   				\
+			  ./src/controller/exec_cmd.c   		\
+			  ./src/pipeline/pipetting.c   			\
 			  ./src/expansion/expand_utils.c 		\
 			  ./src/builtins/export.c 				\
 			  ./src/builtins/export_add.c 			\
