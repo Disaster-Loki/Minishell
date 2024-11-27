@@ -51,19 +51,19 @@ int	read_line(t_shell *sh)
 
 	i = -1;
 	get_path(sh);
-	if (pipetting(sh))
-		return (0);
+	//if (pipetting(sh))
+	//	return (0);
 	sh->args = tokenize(sh, sh->input);
-	expansion(sh);
-	redirects(sh, sh->args);
-	sh->mat = ft_args(sh->args);
-	check_command(sh);
+	//expansion(sh);
+	//redirects(sh, sh->args);
+	//sh->mat = ft_args(sh->args);
+	//check_command(sh);
 	while (sh->args[++i].str)
 	{
-		//printf("ID = %d\nSTR = %s\n", sh->args[i].id, sh->args[i].str);
+		printf("ID = %d\nSTR = %s\n", sh->args[i].id, sh->args[i].str);
 		free(sh->args[i].str);
 	}
 	free(sh->args);
-	free_mat(sh->mat);
+	//free_mat(sh->mat);
 	return (0);
 }
