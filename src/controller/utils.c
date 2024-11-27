@@ -71,20 +71,3 @@ char	*ft_strndup(const char *s, size_t n)
 	dup[i] = '\0';
 	return (dup);
 }
-
-void free_array_mat(char ***array)
-{
-    int i;
-
-    if (!array || !*array)
-        return;
-
-    i = 0;
-    while ((*array)[i])
-    {
-        free((*array)[i]);
-        i++;
-    }
-    free(*array);
-    *array = NULL;
-}
