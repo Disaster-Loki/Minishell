@@ -148,6 +148,7 @@ char	*delete_quote(t_shell *sh, char *str);
 void	cmd_unset(t_shell *sh, char **to_remove);
 void	free_array_mat(char ***array);
 
-void	redirects(t_shell *sh, t_args *args);
+int	redirects(t_shell *sh);
+void	filter_tokens(char **mat);
 
 #endif

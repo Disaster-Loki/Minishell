@@ -12,119 +12,62 @@
 
 #include "../../inc/minishell.h"
 
-int	find_right_oper(char **mat)
-{
-	int	i;
 
-	i = -1;
-	while (mat[++i])
-	{
-		if (mat[i][0] == '>')
-			return (1);
-	}
-	return (0);
+int	input_redirect(char *str)
+{
+	return (ft_strcmp(str, "<") == 0);
 }
 
-void	get_file(t_shell *sh)
+int	redirect_operator(char *str)
+{
+	return (ft_strcmp(str, ">") == 0 || ft_strcmp(str, ">>") == 0);
+}
+
+void	filter_tokens(char **mat)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (sh->mat[++i])
+	while (mat[i])
 	{
-		if (sh->mat[i][0] == '>')
-			sh->manager.file[j++] = sh->mat[i + 1];
-	}
-	sh->manager.file[j] = NULL;
-}
-
-void	get_dir(t_shell *sh)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (sh->mat[++i])
-	{
-		if ((!ft_strncmp(sh->mat[i], ">", 1) && ft_strlen(sh->mat[i]) == 1)
-			|| (!ft_strncmp(sh->mat[i], ">>", 2) && ft_strlen(sh->mat[i]) == 2))
-			sh->manager.redir[j++] = sh->mat[i];
-	}
-	sh->manager.redir[j] = NULL;
-}
-
-void	get_arg(t_shell *sh)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (sh->mat[i])
-	{
-		if (sh->mat[i][0] != '>')
-		{
-			sh->manager.arg[j++] = sh->mat[i];
-			i++;
-		}
-		else
+		if (redirect_operator(mat[i]) || input_redirect(mat[i]))
 			i += 2;
+		else
+			mat[j++] = mat[i++];
 	}
-	sh->manager.arg[j] = NULL;
-	sh->mat = sh->manager.arg;
+	mat[j] = NULL;
 }
-
-void	right_oper(t_shell *sh)
+int	redirects(t_shell *sh)
 {
-	int	pid;
 	int	i;
 	int	fd;
 
-	pid = fork();
-	if (pid < 0)
+	i = 0;
+	while (sh->mat[i])
 	{
-		perror("fork");
-		return ;
-	}
-	if (pid == 0)
-	{
-		i = 0;
-		while (sh->manager.file[i])
+		if (redirect_operator(sh->mat[i]))
 		{
-			if (!ft_strncmp(sh->manager.redir[i], ">>", 2))
-				fd = open(sh->manager.file[i], O_CREAT | O_WRONLY | O_APPEND, 0644);
-			else
-				fd = open(sh->manager.file[i], O_CREAT | O_WRONLY | O_TRUNC, 0644);
-			if (sh->manager.file[i + 1])
-				close(fd);
+			if (!sh->mat[i + 1])
+				return (-1);
+			fd = open(sh->mat[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			if (fd == -1)
+				return (-1);
+			dup2(fd, STDOUT_FILENO);
+			close(fd);
 			i++;
 		}
-		if (fd < 0)
+		else if (input_redirect(sh->mat[i]))
 		{
-			perror("open");
-			return ;
+			fd = open(sh->mat[i + 1], O_RDONLY);
+			if (fd == -1)
+				return (-1);
+			dup2(fd, STDIN_FILENO);
+			close(fd);
+			i++;
 		}
-		dup2(fd, STDOUT_FILENO);
-		sh->redirect = 1;
-		if (!check_built_in(sh))
-			execut_cmd(sh);
-		else
-			check_command(sh);
-		close(fd);
-		exit(0);
+		i++;
 	}
-	else
-		waitpid(pid, NULL, 0);
-}
-
-void	operators(t_shell *sh)
-{
-	sh->manager.control = 1;
-	get_dir(sh);
-	get_file(sh);
-	get_arg(sh);
-	right_oper(sh);
+	return (0);
 }

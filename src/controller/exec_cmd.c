@@ -43,7 +43,7 @@ void	child_process(char **split, t_shell *sh)
 	char	**arg;
 
 	i = -1;
-	arg = ft_args(sh->args);
+	arg = sh->mat;
 	while (split[++i])
 	{
 		str = ft_strjoin(split[i], "/");

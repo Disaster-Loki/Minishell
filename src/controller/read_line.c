@@ -20,6 +20,17 @@ int	get_path(t_shell *sh)
 	return (1);
 }
 
+void	free_args(t_shell *sh)
+{
+	int	i;
+
+	i = 0;
+	while (sh->args[i].str)
+		free(sh->args[i++].str);
+	free(sh->args);
+	free_mat(sh->mat);
+}
+
 void	check_command(t_shell *sh)
 {
 	if (sh->args[0].str)
@@ -49,17 +60,13 @@ void	check_command(t_shell *sh)
 //	return (0);
 int	read_line(t_shell *sh)
 {
-	int	i;
-
-	i = -1;
 	get_path(sh);
 	sh->args = tokenize(sh, sh->input);
 	expansion(sh);
 	sh->mat = ft_args(sh->args);
+	if (redirects(sh) == -1)
+		return (free_args(sh),1);
 	check_command(sh);
-	while (sh->args[++i].str)
-		free(sh->args[i].str);
-	free(sh->args);
-	free_mat(sh->mat);
+	free_args(sh);
 	return (0);
 }
