@@ -12,21 +12,20 @@
 
 #include "../../inc/minishell.h"
 
-void free_array_mat(char ***array)
+void	free_array_mat(char ***array)
 {
-    int i;
+	int	i;
 
-    if (!array || !*array)
-        return;
-
-    i = 0;
-    while ((*array)[i])
-    {
-        free((*array)[i]);
-        i++;
-    }
-    free(*array);
-    *array = NULL;
+	if (!array || !*array)
+		return ;
+	i = 0;
+	while ((*array)[i])
+	{
+		free((*array)[i]);
+		i++;
+	}
+	free(*array);
+	*array = NULL;
 }
 
 char	**ft_env(char **env)

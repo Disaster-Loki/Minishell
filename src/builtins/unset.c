@@ -50,6 +50,7 @@ void	put_in_temp(t_shell *sh, char *to_remove)
 {
 	int		i;
 	int		j;
+
 	i = 0;
 	while (sh->env[i])
 		i++;
@@ -59,7 +60,7 @@ void	put_in_temp(t_shell *sh, char *to_remove)
 	i = -1;
 	j = -1;
 	while (sh->env[++i])
-	{	
+	{
 		if (ft_strncmp(sh->env[i], to_remove, found_equals2(sh->env[i])) != 0)
 		{
 			sh->temp_unset[++j] = sh->env[i];
@@ -73,7 +74,7 @@ void	put_in_temp(t_shell *sh, char *to_remove)
 
 void	rm_var(t_shell *sh, char *to_remove)
 {
-	int	i;
+	int		i;
 	char	*tmp;
 
 	i = -1;

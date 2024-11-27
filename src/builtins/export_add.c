@@ -76,7 +76,7 @@ void	cmd_export2(t_shell *sh)
 	{
 		if (!valid_env_name(sh->mat[i]))
 			printf("bash: export: `%s': not a valid identifier\n", sh->mat[i]);
-		else if(check_envi(sh->env, sh->mat[i]))
+		else if (check_envi(sh->env, sh->mat[i]))
 		{
 			if (check_var(sh->mat[i]))
 				ch_value(sh->env, delete_quote(sh, sh->mat[i]));

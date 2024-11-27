@@ -40,9 +40,9 @@ int	check_var(char *str)
 	return (0);
 }
 
-int valid_env_name(char *str)
+int	valid_env_name(char *str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (str[0] == '=')
@@ -79,4 +79,3 @@ char	*delete_quote(t_shell *sh, char *str)
 	sh->quotes[j] = '\0';
 	return (sh->quotes);
 }
-
