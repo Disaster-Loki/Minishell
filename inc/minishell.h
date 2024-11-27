@@ -30,7 +30,7 @@
 # define BOLD_GREEN "\033[1;32m"
 # define COOL_EMOJI "😎"
 
-typedef	struct s_file
+typedef struct s_file
 {
 	char	*file[1024];
 	char	*arg[1024];
@@ -47,7 +47,7 @@ typedef struct s_args
 	char	*temp;
 }	t_args;
 
-typedef struct s_tokenizer
+typedef struct s_tokens
 {
 	int		i;
 	int		j;
@@ -57,7 +57,7 @@ typedef struct s_tokenizer
 	char	*sub;
 	char	*join;
 	char	*rest;
-}	t_tokenizer;
+}	t_tokens;
 
 typedef struct s_shell
 {
@@ -103,13 +103,13 @@ char	*not_found(t_shell *sh, char *name, int *i, int j);
 
 // Tokenize
 int		skip_spaces(char *str, int i);
-t_args	*tokenize(t_shell *sh, char *str);
 char	*get_rest(char *str, int end);
-int		handle_quotes(t_shell *sh, char *str, t_tokenizer *tok, int *end);
-void	get_new_str(t_args *args, t_tokenizer *tok,  char *str);
+t_args	*tokenize(t_shell *sh, char *str);
+void	get_new_str(t_args *args, t_tokens *tok, char *str);
 int		find_quotes(t_shell *sh, char *str, int *start, int *end);
-//int		process_quotes(t_shell *sh, t_args *args, int *i, int *j);
-//void	process_no_quotes(char *str, t_args *args, int *i, int *j);
+int		process_quotes(t_shell *sh, t_args *args, t_tokens *tok);
+int		handle_quotes(t_shell *sh, char *str, t_tokens *tok, int *end);
+int		process_no_quotes(t_shell *sh, char *str, t_args *args, t_tokens *tok);
 
 // Signals
 void	signals(void);
@@ -142,12 +142,12 @@ void	cmd_export2(t_shell *sh);
 // export_utills.c
 int		find_size(char *vari);
 int		check_var(char *str);
-int 	valid_env_name(char *str);
+int		valid_env_name(char *str);
 char	*delete_quote(t_shell *sh, char *str);
 
 void	cmd_unset(t_shell *sh, char **to_remove);
 void	free_array_mat(char ***array);
 
-void    redirects(t_shell *sh, t_args *args);
+void	redirects(t_shell *sh, t_args *args);
 
 #endif

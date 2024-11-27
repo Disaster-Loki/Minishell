@@ -30,7 +30,7 @@ char	*get_rest(char *str, int end)
 	return (rest);
 }
 
-int	handle_quotes(t_shell *sh, char *str, t_tokenizer *tok, int *end)
+int	handle_quotes(t_shell *sh, char *str, t_tokens *tok, int *end)
 {
 	int	start;
 
@@ -59,7 +59,7 @@ int	find_quotes(t_shell *sh, char *str, int *start, int *end)
 	return (0);
 }
 
-void	get_new_str(t_args *args, t_tokenizer *tok, char *str)
+void	get_new_str(t_args *args, t_tokens *tok, char *str)
 {
 	char	*exp;
 

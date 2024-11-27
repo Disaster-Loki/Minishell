@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-int	process_quotes(t_shell *sh, t_args *args, t_tokenizer *tok)
+int	process_quotes(t_shell *sh, t_args *args, t_tokens *tok)
 {
 	char	*str;
 
@@ -28,7 +28,7 @@ int	process_quotes(t_shell *sh, t_args *args, t_tokenizer *tok)
 	return ((get_new_str(args, tok, str)), 1);
 }
 
-int	process_no_quotes(t_shell *sh, char *str, t_args *args, t_tokenizer *tok)
+int	process_no_quotes(t_shell *sh, char *str, t_args *args, t_tokens *tok)
 {
 	int	x;
 	int	end;
@@ -56,7 +56,7 @@ int	process_no_quotes(t_shell *sh, char *str, t_args *args, t_tokenizer *tok)
 t_args	*tokenize(t_shell *sh, char *str)
 {
 	t_args		*args;
-	t_tokenizer	tok;
+	t_tokens	tok;
 
 	tok.i = 0;
 	tok.j = 0;
