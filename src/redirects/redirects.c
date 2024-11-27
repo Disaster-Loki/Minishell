@@ -12,7 +12,6 @@
 
 #include "../../inc/minishell.h"
 
-
 int	input_redirect(char *str)
 {
 	return (ft_strcmp(str, "<") == 0);
@@ -39,6 +38,7 @@ void	filter_tokens(char **mat)
 	}
 	mat[j] = NULL;
 }
+
 int	redirects(t_shell *sh)
 {
 	int	i;
