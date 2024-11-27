@@ -52,14 +52,14 @@ int	change_env(t_shell *sh, char *key)
 
 void	cmd_cd(t_shell *sh)
 {
-	if (!sh->args[1].str)
+	if (!sh->mat[1])
 		return (printf("cd: lack of arguments\n"), sh->status = 1, (void)0);
-	if (sh->args[2].str)
+	if (sh->mat[2])
 	{
 		printf("bash: cd: too many arguments\n");
 		return (sh->status = 1, (void)0);
 	}
-	if (!chdir(sh->args[1].str))
+	if (!chdir(sh->mat[1]))
 	{
 		if (!change_env(sh, "PWD"))
 			printf("bash: cd: failed to update PWD\n");
@@ -67,7 +67,7 @@ void	cmd_cd(t_shell *sh)
 	}
 	else
 	{
-		printf("bash: cd: %s: No such file or directory\n", sh->args[1].str);
+		printf("bash: cd: %s: No such file or directory\n", sh->mat[1]);
 		sh->status = 1;
 	}
 }

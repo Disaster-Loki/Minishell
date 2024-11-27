@@ -33,26 +33,26 @@ void	free_args(t_shell *sh)
 
 void	check_command(t_shell *sh)
 {
-	if (sh->args[0].str)
+	if (sh->mat[0])
 	{
-		if (!ft_strcmp(sh->args[0].str, "export") && !sh->args[1].str)
+		if (!ft_strcmp(sh->mat[0], "export") && !sh->mat[1])
 			cmd_export(sh->env);
-		else if (!ft_strcmp(sh->args[0].str, "export") && sh->args[1].str)
+		else if (!ft_strcmp(sh->mat[0], "export") && sh->mat[1])
 			cmd_export2(sh);
-		else if (!ft_strcmp(sh->args[0].str, "unset"))
+		else if (!ft_strcmp(sh->mat[0], "unset"))
 			cmd_unset(sh, sh->mat);
-		else if (!ft_strcmp(sh->args[0].str, "echo"))
+		else if (!ft_strcmp(sh->mat[0], "echo"))
 			cmd_echo(sh);
-		else if (!ft_strcmp(sh->args[0].str, "pwd"))
+		else if (!ft_strcmp(sh->mat[0], "pwd"))
 			cmd_pwd(sh);
-		else if (!ft_strcmp(sh->args[0].str, "env"))
+		else if (!ft_strcmp(sh->mat[0], "env"))
 			cmd_env(sh);
-		else if (!ft_strcmp(sh->args[0].str, "cd"))
+		else if (!ft_strcmp(sh->mat[0], "cd"))
 			cmd_cd(sh);
-		else if (!ft_strcmp(sh->args[0].str, "exit"))
+		else if (!ft_strcmp(sh->mat[0], "exit"))
 			cmd_exit(sh);
 		else if (!exec_cmd(sh))
-			printf("%s: command not found\n", sh->args[0].str);
+			printf("%s: command not found\n", sh->mat[0]);
 	}
 }
 
@@ -65,7 +65,7 @@ int	read_line(t_shell *sh)
 	expansion(sh);
 	sh->mat = ft_args(sh->args);
 	if (redirects(sh) == -1)
-		return (free_args(sh),1);
+		return (free_args(sh), 0);
 	check_command(sh);
 	free_args(sh);
 	return (0);

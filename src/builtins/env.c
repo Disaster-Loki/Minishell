@@ -14,9 +14,9 @@
 
 void	cmd_env(t_shell *sh)
 {
-	if (sh->args[1].str)
+	if (sh->mat[1])
 	{
-		printf("env: %s: No such file or directory\n", sh->args[1].str);
+		printf("env: %s: No such file or directory\n", sh->mat[1]);
 		return ;
 	}
 	print_matrix(sh->env);

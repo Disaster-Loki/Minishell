@@ -12,16 +12,16 @@
 
 #include "../../inc/minishell.h"
 
-int	is_n_option(t_args *args, int *i)
+int	is_n_option(char **mat, int *i)
 {
 	int	k;
 
 	k = 0;
-	if (args[*i].str[0] == '-')
+	if (mat[*i][0] == '-')
 	{
-		while (args[*i].str[++k])
+		while (mat[*i][++k])
 		{
-			if (args[*i].str[k] != 'n')
+			if (mat[*i][k] != 'n')
 				return (0);
 		}
 		(*i)++;
@@ -37,18 +37,18 @@ void	cmd_echo(t_shell *sh)
 
 	i = 1;
 	flag = 0;
-	if (sh->args[i].str && is_n_option(sh->args, &i))
+	if (sh->mat[i] && is_n_option(sh->mat, &i))
 		flag = 1;
-	if (sh->args[i].str == NULL)
+	if (sh->mat[i] == NULL)
 	{
 		if (!flag)
 			ft_putchar_fd('\n', 1);
 		return ;
 	}
-	while (sh->args[i].str)
+	while (sh->mat[i])
 	{
-		ft_putstr_fd(sh->args[i].str, 1);
-		if (sh->args[i + 1].str)
+		ft_putstr_fd(sh->mat[i], 1);
+		if (sh->mat[i + 1])
 			ft_putchar_fd(' ', 1);
 		i++;
 	}

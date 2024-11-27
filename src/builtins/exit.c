@@ -12,16 +12,6 @@
 
 #include "../../inc/minishell.h"
 
-int	args_len(t_args *args)
-{
-	int	i;
-
-	i = 0;
-	while (args[i].str)
-		i++;
-	return (i);
-}
-
 int	exit_digit(char *str)
 {
 	int	i;
@@ -52,6 +42,8 @@ void	logout(t_shell *sh, int status)
 	if (sh->flag_env == 1)
 		free_array_mat(sh->free_env);
 	free_mat(sh->env);
+	if (!sh->mat)
+		free_mat(sh->mat);
 	exit(status);
 }
 
@@ -61,18 +53,18 @@ void	cmd_exit(t_shell *sh)
 
 	num = 0;
 	printf("exit\n");
-	if (args_len(sh->args) > 2)
+	if (matrix_line(sh->mat) > 2)
 	{
 		printf("bash: exit: too many arguments\n");
 		sh->status = 1;
 		return ;
 	}
-	if (sh->args[1].str && !exit_digit(sh->args[1].str))
+	if (sh->mat[1] && !exit_digit(sh->mat[1]))
 	{
-		printf("bash: exit: %s: numeric argument required\n", sh->args[1].str);
+		printf("bash: exit: %s: numeric argument required\n", sh->mat[1]);
 		logout(sh, 255);
 	}
-	if (sh->args[1].str)
-		num = ft_atoi(sh->args[1].str);
+	if (sh->mat[1])
+		num = ft_atoi(sh->mat[1]);
 	logout(sh, num % 256);
 }
