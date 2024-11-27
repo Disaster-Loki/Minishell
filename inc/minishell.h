@@ -52,9 +52,11 @@ typedef struct s_tokenizer
 	int		i;
 	int		j;
 	int		k;
-	int		end;
-	char	*str;
-	int		start;
+	int		st;
+	int		en;
+	char	*sub;
+	char	*join;
+	char	*rest;
 }	t_tokenizer;
 
 typedef struct s_shell
@@ -102,6 +104,9 @@ char	*not_found(t_shell *sh, char *name, int *i, int j);
 // Tokenize
 int		skip_spaces(char *str, int i);
 t_args	*tokenize(t_shell *sh, char *str);
+char	*get_rest(char *str, int end);
+int		handle_quotes(t_shell *sh, char *str, t_tokenizer *tok, int *end);
+void	get_new_str(t_args *args, t_tokenizer *tok,  char *str);
 int		find_quotes(t_shell *sh, char *str, int *start, int *end);
 //int		process_quotes(t_shell *sh, t_args *args, int *i, int *j);
 //void	process_no_quotes(char *str, t_args *args, int *i, int *j);
@@ -144,8 +149,5 @@ void	cmd_unset(t_shell *sh, char **to_remove);
 void	free_array_mat(char ***array);
 
 void    redirects(t_shell *sh, t_args *args);
-
-
-
 
 #endif
