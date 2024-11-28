@@ -1,14 +1,13 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'src/controller/main.o', needed by 'minishell'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Thu Nov 28 08:44:40 2024
+# Make data base, printed on Thu Nov 28 08:55:29 2024
 
 # Variables
 
@@ -43,7 +42,7 @@ PWD = /home/optimus-prime/Documents/Minishell
 # environment
 XDG_DATA_DIRS = /usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # makefile (from 'Makefile', line 27)
-S_FILES = ./src/controller/main.c ./src/builtins/cd.c ./src/controller/signals.c ./src/builtins/echo.c ./src/controller/read_line.c ./src/processing/tokenize.c ./src/processing/utils.c ./src/controller/utils.c ./src/expansion/expansion.c ./src/controller/exec_cmd.c ./src/pipeline/pipetting.c ./src/pipeline/init_vars.c ./src/pipeline/full_split.c ./src/expansion/expand_utils.c ./src/builtins/export.c ./src/builtins/export_add.c ./src/builtins/export_utils.c ./src/builtins/unset.c ./src/builtins/exit.c ./src/builtins/env.c ./src/builtins/pwd.c ./src/redirects/redirects.c 
+S_FILES = ./src/controller/main.c ./src/builtins/cd.c ./src/controller/signals.c ./src/builtins/echo.c ./src/controller/read_line.c ./src/processing/tokenize.c ./src/processing/utils.c ./src/controller/utils.c ./src/expansion/expansion.c ./src/controller/exec_cmd.c ./src/pipeline/pipetting.c ./src/pipeline/Init_vars.c ./src/pipeline/full_split.c ./src/expansion/expand_utils.c ./src/builtins/export.c ./src/builtins/export_add.c ./src/builtins/export_utils.c ./src/builtins/unset.c ./src/builtins/exit.c ./src/builtins/env.c ./src/builtins/pwd.c ./src/redirects/redirects.c 
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # automatic
@@ -225,16 +224,15 @@ GDMSESSION = gnome
 # variable set hash-table stats:
 # Load=105/1024=10%, Rehash=0, Collisions=4/139=3%
 
- 
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
 
 # Directories
 
-# . (device 65025, inode 1313424): 9 files, no impossibilities.
+# . (device 65025, inode 1313424): 10 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -244,32 +242,30 @@ GDMSESSION = gnome
 
 # Not a target:
 src/builtins/pwd.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-src/pipeline/init_vars.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.45893374
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/pipeline/pipetting.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.206932495
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/processing/tokenize.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.082931883
+#  File has been updated.
+#  Successfully updated.
 
-minishell: src/controller/main.o src/builtins/cd.o src/controller/signals.o src/builtins/echo.o src/controller/read_line.o src/processing/tokenize.o src/processing/utils.o src/controller/utils.o src/expansion/expansion.o src/controller/exec_cmd.o src/pipeline/pipetting.o src/pipeline/init_vars.o src/pipeline/full_split.o src/expansion/expand_utils.o src/builtins/export.o src/builtins/export_add.o src/builtins/export_utils.o src/builtins/unset.o src/builtins/exit.o src/builtins/env.o src/builtins/pwd.o src/redirects/redirects.o
+minishell: src/controller/main.o src/builtins/cd.o src/controller/signals.o src/builtins/echo.o src/controller/read_line.o src/processing/tokenize.o src/processing/utils.o src/controller/utils.o src/expansion/expansion.o src/controller/exec_cmd.o src/pipeline/pipetting.o src/pipeline/Init_vars.o src/pipeline/full_split.o src/expansion/expand_utils.o src/builtins/export.o src/builtins/export_add.o src/builtins/export_utils.o src/builtins/unset.o src/builtins/exit.o src/builtins/env.o src/builtins/pwd.o src/redirects/redirects.o
 #  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
+#  Last modified 2024-11-28 08:55:08.114936979
+#  File has been updated.
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 55):
 		 $(MAKE) -C $(L_DIR)
 		 $(CC) $(CFLAGS) -o $(NAME) $(S_OBJ) $(LIBFT) -lreadline
@@ -278,28 +274,31 @@ minishell: src/controller/main.o src/builtins/cd.o src/controller/signals.o src/
 
 # Not a target:
 src/expansion/expand_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.270932811
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/builtins/unset.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.386933384
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-28 08:44:25.519633286
+#  Last modified 2024-11-28 08:55:28.65903834
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/builtins/cd.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:06.95493125
+#  File has been updated.
+#  Successfully updated.
 
 clean:
 #  Implicit rule search has not been done.
@@ -313,15 +312,17 @@ clean:
 
 # Not a target:
 src/builtins/export_add.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.330933107
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/pipeline/full_split.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.250932713
+#  File has been updated.
+#  Successfully updated.
 
 re: fclean all
 #  Implicit rule search has not been done.
@@ -330,15 +331,17 @@ re: fclean all
 
 # Not a target:
 src/expansion/expansion.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.154932239
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/redirects/redirects.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.478933838
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -348,15 +351,17 @@ src/redirects/redirects.o:
 
 # Not a target:
 src/controller/exec_cmd.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.178932357
+#  File has been updated.
+#  Successfully updated.
 
 all: minishell
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
-#  File has not been updated.
+#  File has been updated.
+#  Successfully updated.
 
 fclean: clean
 #  Implicit rule search has not been done.
@@ -370,63 +375,81 @@ fclean: clean
 
 # Not a target:
 src/processing/utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.106932001
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/builtins/exit.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.410933503
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/builtins/export.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.294932929
+ 
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/controller/utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.13093212
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/pipeline/Init_vars.o:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.226932594
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/controller/main.o:
 #  Implicit rule search has been done.
-#  File does not exist.
-#  File has not been updated.
+#  Last modified 2024-11-28 08:55:06.926931112
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/controller/signals.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:06.978931369
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/builtins/env.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.434933621
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/controller/read_line.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.054931745
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/builtins/echo.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:06.998931468
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/builtins/export_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:55:07.358933245
+#  File has been updated.
+#  Successfully updated.
 
 # files hash-table stats:
 # Load=30/1024=3%, Rehash=0, Collisions=0/68=0%
@@ -439,9 +462,9 @@ src/builtins/export_utils.o:
 # strcache buffers: 1 (0) / strings = 40 / storage = 654 B / avg = 16 B
 # current buf: size = 8162 B / used = 654 B / count = 40 / avg = 16 B
 
-# strcache performance: lookups = 54 / hit rate = 25%
+# strcache performance: lookups = 55 / hit rate = 27%
 # hash-table stats:
-# Load=40/8192=0%, Rehash=0, Collisions=0/54=0%
-# Finished Make data base on Thu Nov 28 08:44:40 2024
+# Load=40/8192=0%, Rehash=0, Collisions=0/55=0%
+# Finished Make data base on Thu Nov 28 08:55:29 2024
 
  

@@ -1,27 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/optimus-prime/Documents/Minishell'
-cc -g -Wall -Wextra -Werror   -c -o src/controller/main.o src/controller/main.c
-cc -g -Wall -Wextra -Werror   -c -o src/builtins/cd.o src/builtins/cd.c
-cc -g -Wall -Wextra -Werror   -c -o src/controller/signals.o src/controller/signals.c
-cc -g -Wall -Wextra -Werror   -c -o src/builtins/echo.o src/builtins/echo.c
-cc -g -Wall -Wextra -Werror   -c -o src/controller/read_line.o src/controller/read_line.c
-cc -g -Wall -Wextra -Werror   -c -o src/processing/tokenize.o src/processing/tokenize.c
-cc -g -Wall -Wextra -Werror   -c -o src/processing/utils.o src/processing/utils.c
-cc -g -Wall -Wextra -Werror   -c -o src/controller/utils.o src/controller/utils.c
-cc -g -Wall -Wextra -Werror   -c -o src/expansion/expansion.o src/expansion/expansion.c
-cc -g -Wall -Wextra -Werror   -c -o src/controller/exec_cmd.o src/controller/exec_cmd.c
-cc -g -Wall -Wextra -Werror   -c -o src/pipeline/pipetting.o src/pipeline/pipetting.c
-cc -g -Wall -Wextra -Werror   -c -o src/pipeline/full_split.o src/pipeline/full_split.c
-cc -g -Wall -Wextra -Werror   -c -o src/expansion/expand_utils.o src/expansion/expand_utils.c
-cc -g -Wall -Wextra -Werror   -c -o src/builtins/export.o src/builtins/export.c
-cc -g -Wall -Wextra -Werror   -c -o src/builtins/export_add.o src/builtins/export_add.c
-cc -g -Wall -Wextra -Werror   -c -o src/builtins/export_utils.o src/builtins/export_utils.c
-cc -g -Wall -Wextra -Werror   -c -o src/builtins/unset.o src/builtins/unset.c
-cc -g -Wall -Wextra -Werror   -c -o src/builtins/exit.o src/builtins/exit.c
-cc -g -Wall -Wextra -Werror   -c -o src/builtins/env.o src/builtins/env.c
-cc -g -Wall -Wextra -Werror   -c -o src/builtins/pwd.o src/builtins/pwd.c
-cc -g -Wall -Wextra -Werror   -c -o src/redirects/redirects.o src/redirects/redirects.c
+make: Nothing to be done for 'all'.
 make: Leaving directory '/home/optimus-prime/Documents/Minishell'
  
-make: *** No rule to make target 'src/pipeline/init_vars.o', needed by 'minishell'.
-
