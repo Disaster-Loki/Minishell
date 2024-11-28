@@ -45,7 +45,7 @@ int	handle_quotes(t_shell *sh, char *str, t_tokens *tok, int *end)
 
 int	find_quotes(t_shell *sh, char *str, int *start, int *end)
 {
-	int	i;
+	int		i;
 
 	i = *start;
 	sh->in_q = str[i++];

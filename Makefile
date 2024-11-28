@@ -35,6 +35,8 @@ S_FILES		= ./src/controller/main.c     			\
 			  ./src/expansion/expansion.c   		\
 			  ./src/controller/exec_cmd.c   		\
 			  ./src/pipeline/pipetting.c   			\
+			  ./src/pipeline/init_vars.c 	  		\
+			  ./src/pipeline/full_split.c 	  		\
 			  ./src/expansion/expand_utils.c 		\
 			  ./src/builtins/export.c 				\
 			  ./src/builtins/export_add.c 			\

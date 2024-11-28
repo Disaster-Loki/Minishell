@@ -56,16 +56,16 @@ void	check_command(t_shell *sh)
 	}
 }
 
-//if (pipetting(sh))
-//	return (0);
+//if (!redirects(sh))
+//	return (free_args(sh), 0);
 int	read_line(t_shell *sh)
 {
 	get_path(sh);
+	if (pipetting(sh))
+		return (0);
 	sh->args = tokenize(sh, sh->input);
 	expansion(sh);
 	sh->mat = ft_args(sh->args);
-	if (redirects(sh) == -1)
-		return (free_args(sh), 0);
 	check_command(sh);
 	free_args(sh);
 	return (0);

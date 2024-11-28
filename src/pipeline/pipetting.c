@@ -36,13 +36,6 @@ void	cmd(t_shell *sh, int *fd, int prev_fd, char *cmd)
 	exit(0);
 }
 
-void	init_vars(char **mt, int *fd, int *len, int *i)
-{
-	*i = -1;
-	*fd = -1;
-	*len = matrix_line(mt);
-}
-
 int	pipetting(t_shell *sh)
 {
 	int		i;
@@ -51,7 +44,7 @@ int	pipetting(t_shell *sh)
 	char	**mt;
 	int		num_cmds;
 
-	mt = ft_split(sh->input, '|');
+	mt = full_split(sh, sh->input, '|');
 	i = -1;
 	if (!mt || !mt[1])
 		return (0);

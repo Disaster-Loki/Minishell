@@ -30,6 +30,14 @@
 # define BOLD_GREEN "\033[1;32m"
 # define COOL_EMOJI "😎"
 
+typedef struct s_args
+{
+	int		id;
+	int		len;
+	char	*str;
+	char	*temp;
+}	t_args;
+
 typedef struct s_file
 {
 	char	*file[1024];
@@ -39,13 +47,13 @@ typedef struct s_file
 	int		fd;
 }	t_file;
 
-typedef struct s_args
+typedef struct s_split
 {
-	int		id;
-	int		len;
+	int		i;
+	int		idx;
 	char	*str;
-	char	*temp;
-}	t_args;
+	char	**res;
+}	t_split;
 
 typedef struct s_tokens
 {
@@ -148,7 +156,8 @@ char	*delete_quote(t_shell *sh, char *str);
 void	cmd_unset(t_shell *sh, char **to_remove);
 void	free_array_mat(char ***array);
 
-int	redirects(t_shell *sh);
+int		redirects(t_shell *sh);
 void	filter_tokens(char **mat);
+char	**full_split(t_shell *sh, char *str, char c);
 
 #endif
