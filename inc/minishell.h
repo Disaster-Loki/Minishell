@@ -136,9 +136,15 @@ char	**ft_args(t_args *args);
 void	signal_handler2(int sig);
 void	child_process(char **split, t_shell *sh);
 
-// Pipe
+// Pipeline
 int		pipetting(t_shell *sh);
 int		read_pipe(t_shell *sh);
+char	*extract_token(t_split *spt, int start);
+int		initialize_split(t_split *spt, char *str);
+char	**full_split(t_shell *sh, char *str, char c);
+void	init_vars(char **mt, int *fd, int *len, int *i);
+int		handle_quotes2(t_shell *sh, t_split *spt, int *end);
+int		process_segment(t_shell *sh, t_split *spt, char delt);
 
 // cmd_export.c
 void	cmd_export(char **env);
@@ -155,9 +161,7 @@ char	*delete_quote(t_shell *sh, char *str);
 
 void	cmd_unset(t_shell *sh, char **to_remove);
 void	free_array_mat(char ***array);
-
 int		redirects(t_shell *sh);
 void	filter_tokens(char **mat);
-char	**full_split(t_shell *sh, char *str, char c);
 
 #endif

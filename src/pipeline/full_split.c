@@ -17,13 +17,13 @@ char	*extract_token(t_split *spt, int start)
 	return (ft_substr(spt->str, start, spt->i - start));
 }
 
-int	process_segment(t_shell *sh, t_split *spt, char delimiter)
+int	process_segment(t_shell *sh, t_split *spt, char delt)
 {
 	int	end;
 	int	start;
 
 	start = spt->i;
-	while (spt->str[spt->i] && spt->str[spt->i] != delimiter)
+	while (spt->str[spt->i] && spt->str[spt->i] != delt)
 	{
 		if (spt->str[spt->i] == '\'' || spt->str[spt->i] == '\"')
 		{
