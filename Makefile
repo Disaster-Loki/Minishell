@@ -47,6 +47,8 @@ S_FILES		= ./src/controller/main.c     			\
 			  ./src/builtins/env.c 					\
 			  ./src/builtins/pwd.c 					\
 			  ./src/redirects/redirects.c 			\
+			  ./src/redirects/utills.c	 			\
+			  ./src/redirects/right_utills.c		\
 
 S_OBJ		= $(S_FILES:.c=.o)
 

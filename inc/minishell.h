@@ -169,4 +169,9 @@ void	filter_tokens(char **mat);
 void	free_args(t_shell *sh);
 int		has_redir(char **mt);
 
+// right_utills.c
+void	get_file(t_shell *sh);
+void	get_dir(t_shell *sh);
+void	get_arg(t_shell *sh);
+
 #endif
