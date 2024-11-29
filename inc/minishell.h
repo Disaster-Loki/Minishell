@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/21 17:53:22 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:51:08 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,25 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
-# include <signal.h>
+# include <signal.h>    else if (!strcmp(sh->mat[0], "pwd"))
+        return (0);
+    else if (!strcmp(sh->mat[0], "env"))
+        return (0);
+    else if (!strcmp(sh->mat[0], "exit"))
+        return (0);
+    else if (!strcmp(sh->mat[0], "export"))
+        return (0);
+    else if (!strcmp(sh->mat[0], "unset"))
+        return (0);
+    return (1);
+}
+
+void    right_oper(t_shell *sh) 
+{
+    int pid;
+    int i;
+    int fd;
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <linux/limits.h>
@@ -40,11 +58,13 @@ typedef struct s_args
 
 typedef struct s_file
 {
-	char	*file[1024];
-	char	*arg[1024];
-	char	*redir[1024];
-	int		control;
 	int		fd;
+	int		flag;
+	char	**arg2;
+	int		control;
+	char	*arg[1024];
+	char	*file[1024];
+	char	*redir[1024];
 }	t_file;
 
 typedef struct s_split
@@ -75,11 +95,30 @@ typedef struct s_shell
 	t_args	*args;
 	char	**env;
 	char	**mat;
+	char	**mat2;
 	char	*path;
 	char	*input;
 	int		status;
 	char	*quotes;
-	t_file	manager;
+	t_file	manager;    else if (!strcmp(sh->mat[0], "pwd"))
+        return (0);
+    else if (!strcmp(sh->mat[0], "env"))
+        return (0);
+    else if (!strcmp(sh->mat[0], "exit"))
+        return (0);
+    else if (!strcmp(sh->mat[0], "export"))
+        return (0);
+    else if (!strcmp(sh->mat[0], "unset"))
+        return (0);
+    return (1);
+}
+
+void    right_oper(t_shell *sh) 
+{
+    int pid;
+    int i;
+    int fd;
+
 	int		flag_env;
 	int		redirect;
 	char	**temp_env;
@@ -161,8 +200,9 @@ char	*delete_quote(t_shell *sh, char *str);
 
 void	cmd_unset(t_shell *sh, char **to_remove);
 void	free_array_mat(char ***array);
-int		redirects(t_shell *sh);
+void    operators(t_shell *sh);
 void	filter_tokens(char **mat);
 void	free_args(t_shell *sh);
+int		has_redir(char **mt);
 
 #endif

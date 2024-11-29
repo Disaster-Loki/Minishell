@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:24:19 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/21 18:17:53 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:49:53 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ void	check_command(t_shell *sh)
 {
 	if (sh->mat[0])
 	{
-		if (!ft_strcmp(sh->mat[0], "export") && !sh->mat[1])
+		if (has_redir(sh->mat) && sh->redirect == 0)
+			operators(sh);
+		else if (!ft_strcmp(sh->mat[0], "export") && !sh->mat[1])
 			cmd_export(sh->env);
 		else if (!ft_strcmp(sh->mat[0], "export") && sh->mat[1])
 			cmd_export2(sh);
@@ -45,10 +47,9 @@ void	check_command(t_shell *sh)
 	}
 }
 
-//if (!redirects(sh))
-//	return (free_args(sh), 0);
 int	read_line(t_shell *sh)
 {
+	sh->redirect = 0;
 	get_path(sh);
 	if (pipetting(sh))
 		return (0);
