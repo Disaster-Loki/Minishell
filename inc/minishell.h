@@ -81,6 +81,7 @@ typedef struct s_shell
 	int		i;
 	int		in_q;
 	char	*tmp;
+	int		rdir;
 	t_args	*args;
 	char	**env;
 	char	**mat;
