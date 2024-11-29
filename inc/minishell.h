@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/29 12:55:28 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:57:33 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,25 +82,7 @@ typedef struct s_shell
 	char	*input;
 	int		status;
 	char	*quotes;
-	t_file	manager;    else if (!strcmp(sh->mat[0], "pwd"))
-        return (0);
-    else if (!strcmp(sh->mat[0], "env"))
-        return (0);
-    else if (!strcmp(sh->mat[0], "exit"))
-        return (0);
-    else if (!strcmp(sh->mat[0], "export"))
-        return (0);
-    else if (!strcmp(sh->mat[0], "unset"))
-        return (0);
-    return (1);
-}
-
-void    right_oper(t_shell *sh) 
-{
-    int pid;
-    int i;
-    int fd;
-
+	t_file	manager;
 	int		flag_env;
 	int		redirect;
 	char	**temp_env;
