@@ -13,7 +13,6 @@
 #include "../../inc/minishell.h"
 
 
-
 void    right_oper(t_shell *sh) 
 {
     int pid;

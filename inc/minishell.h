@@ -30,6 +30,13 @@
 # define BOLD_GREEN "\033[1;32m"
 # define COOL_EMOJI "😎"
 
+typedef struct s_redir
+{
+	int		i;
+	int		end;
+	int		start;
+}	t_redir;
+
 typedef struct s_args
 {
 	int		id;
@@ -113,6 +120,15 @@ int		states_cmd(t_shell *sh, int i, int j);
 char	*not_found(t_shell *sh, char *name, int *i, int j);
 
 // Tokenize
+char	*ft_strcpy(char *dest, const char *src);
+int		is_quotes(char c);
+int		is_redirection_operator(char c);
+int		alter_redirects(t_shell *sh);
+char	*add_spaces_around(char *input, int start, int len);
+void	handle_double_redirect(t_shell *sh, t_redir *redir);
+void	handle_single_redirect(t_shell *sh, t_redir *redir);
+char	*strjoin_and_free(char *s1, char *s2, char *s3);
+int		handle_quotes3(t_shell *sh, char *str, t_redir *redir);
 int		skip_spaces(char *str, int i);
 char	*get_rest(char *str, int end);
 t_args	*tokenize(t_shell *sh, char *str);

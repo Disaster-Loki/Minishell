@@ -31,6 +31,8 @@ S_FILES		= ./src/controller/main.c     			\
 			  ./src/controller/read_line.c  		\
 			  ./src/processing/tokenize.c   		\
 			  ./src/processing/utils.c   			\
+			  ./src/processing/redir.c   			\
+			  ./src/processing/r_utils.c   			\
 			  ./src/controller/utils.c   			\
 			  ./src/expansion/expansion.c   		\
 			  ./src/controller/exec_cmd.c   		\

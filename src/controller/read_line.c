@@ -53,6 +53,7 @@ int	read_line(t_shell *sh)
 	get_path(sh);
 	if (pipetting(sh))
 		return (0);
+	alter_redirects(sh);
 	sh->args = tokenize(sh, sh->input);
 	expansion(sh);
 	sh->mat = ft_args(sh->args);
