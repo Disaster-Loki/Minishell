@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/29 12:51:08 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:52:25 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
-# include <signal.h>    else if (!strcmp(sh->mat[0], "pwd"))
-        return (0);
-    else if (!strcmp(sh->mat[0], "env"))
-        return (0);
-    else if (!strcmp(sh->mat[0], "exit"))
-        return (0);
-    else if (!strcmp(sh->mat[0], "export"))
-        return (0);
-    else if (!strcmp(sh->mat[0], "unset"))
-        return (0);
-    return (1);
-}
-
-void    right_oper(t_shell *sh) 
-{
-    int pid;
-    int i;
-    int fd;
-
+# include <signal.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <linux/limits.h>
