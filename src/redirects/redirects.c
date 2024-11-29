@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:43:17 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/29 12:44:36 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:55:52 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void    right_oper(t_shell *sh)
     else
         waitpid(pid, NULL, 0);
 }
-
+//ya
 void    operators(t_shell *sh)
 {
     sh->manager.control = 1;
