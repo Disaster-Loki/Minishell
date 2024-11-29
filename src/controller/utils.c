@@ -31,19 +31,6 @@ int	matrix_line(char **mt)
 	return (len);
 }
 
-void	free_mat(char **mt)
-{
-	int	i;
-
-	if (mt)
-	{
-		i = -1;
-		while (mt[++i])
-			free(mt[i]);
-		free(mt);
-	}
-}
-
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 && *s1 == *s2)

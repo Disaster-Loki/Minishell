@@ -163,5 +163,6 @@ void	cmd_unset(t_shell *sh, char **to_remove);
 void	free_array_mat(char ***array);
 int		redirects(t_shell *sh);
 void	filter_tokens(char **mat);
+void	free_args(t_shell *sh);
 
 #endif

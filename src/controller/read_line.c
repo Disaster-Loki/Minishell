@@ -20,17 +20,6 @@ int	get_path(t_shell *sh)
 	return (1);
 }
 
-void	free_args(t_shell *sh)
-{
-	int	i;
-
-	i = 0;
-	while (sh->args[i].str)
-		free(sh->args[i++].str);
-	free(sh->args);
-	free_mat(sh->mat);
-}
-
 void	check_command(t_shell *sh)
 {
 	if (sh->mat[0])
