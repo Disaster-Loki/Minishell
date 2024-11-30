@@ -10,69 +10,96 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= minishell
- 
-CC			= cc
-CFLAGS		= -g -Wall -Wextra -Werror
-L_DIR		= ./libft	
-LIBFT		= -L$(L_DIR) -lft
+NAME        = minishell
 
-RESET		= \033[0m
-RED			= \033[31m
-BLUE		= \033[34m
-YELLOW		= \033[33m
-ORANGE		= \033[38;5;208m
-GREEN		= \033[32m
+CC          = cc
+CFLAGS      = -g -Wall -Wextra -Werror
+L_DIR       = ./libft
+LIBFT       = -L$(L_DIR) -lft
+RL_LIB      = -lreadline
 
-S_FILES		= ./src/controller/main.c     			\
-			  ./src/builtins/cd.c     				\
-			  ./src/controller/signals.c   			\
-			  ./src/builtins/echo.c   				\
-			  ./src/controller/read_line.c  		\
-			  ./src/processing/tokenize.c   		\
-			  ./src/processing/invalid_rdir.c   	\
-			  ./src/processing/utils.c   			\
-			  ./src/processing/redir.c   			\
-			  ./src/processing/r_utils.c   			\
-			  ./src/controller/utils.c   			\
-			  ./src/expansion/expansion.c   		\
-			  ./src/controller/exec_cmd.c   		\
-			  ./src/controller/frees.c  	 		\
-			  ./src/pipeline/pipetting.c   			\
-			  ./src/pipeline/Init_vars.c 	  		\
-			  ./src/pipeline/full_split.c	  		\
-			  ./src/expansion/expand_utils.c 		\
-			  ./src/builtins/export.c 				\
-			  ./src/builtins/export_add.c 			\
-			  ./src/builtins/export_utils.c			\
-			  ./src/builtins/unset.c 				\
-			  ./src/builtins/exit.c 				\
-			  ./src/builtins/env.c 					\
-			  ./src/builtins/pwd.c 					\
-			  ./src/redirects/redirects.c 			\
-			  ./src/redirects/utills.c	 			\
-			  ./src/redirects/right_utills.c		\
+RESET       = \033[0m
+RED         = \033[31m
+BLUE        = \033[34m
+YELLOW      = \033[33m
+ORANGE      = \033[38;5;208m
+GREEN       = \033[32m
 
-S_OBJ		= $(S_FILES:.c=.o)
+# Diretórios
+SRC_DIR     = ./src
+CONTROLLER  = $(SRC_DIR)/controller
+BUILTINS    = $(SRC_DIR)/builtins
+PROCESSING  = $(SRC_DIR)/processing
+EXPANSION   = $(SRC_DIR)/expansion
+PIPELINE    = $(SRC_DIR)/pipeline
+REDIRECTS   = $(SRC_DIR)/redirects
 
-all:	$(NAME)
+# Arquivos por pasta
+CONTROLLER_FILES = $(CONTROLLER)/main.c 			\
+				   $(CONTROLLER)/signals.c 			\
+				   $(CONTROLLER)/read_line.c 		\
+                   $(CONTROLLER)/exec_cmd.c 		\
+				   $(CONTROLLER)/frees.c 			\
+				   $(CONTROLLER)/utils.c
 
-$(NAME): $(S_OBJ)
-		 $(MAKE) -C $(L_DIR)
-		 $(CC) $(CFLAGS) -o $(NAME) $(S_OBJ) $(LIBFT) -lreadline
-		 clear
-		 @echo "$(GREEN) MANDATORY - COMPILATION COMPLETE$(RESET)"	
+BUILTINS_FILES   = $(BUILTINS)/cd.c 				\
+				   $(BUILTINS)/env.c 				\
+				   $(BUILTINS)/pwd.c 				\
+				   $(BUILTINS)/echo.c 				\
+				   $(BUILTINS)/exit.c 				\
+                   $(BUILTINS)/unset.c 				\
+                   $(BUILTINS)/export.c 			\
+				   $(BUILTINS)/export_add.c 		\
+				   $(BUILTINS)/export_utils.c
+
+PROCESSING_FILES = $(PROCESSING)/tokenize.c 		\
+				   $(PROCESSING)/utils.c 			\
+                   $(PROCESSING)/redir.c 			\
+				   $(PROCESSING)/r_utils.c 			\
+				   $(PROCESSING)/invalid_rdir.c
+
+EXPANSION_FILES  = $(EXPANSION)/expansion.c 		\
+				   $(EXPANSION)/gets.c 				\
+				   $(EXPANSION)/utils.c
+
+PIPELINE_FILES   = $(PIPELINE)/Init_vars.c 			\
+				   $(PIPELINE)/full_split.c 		\
+				   $(PIPELINE)/pipetting.c
+
+REDIRECTS_FILES  = $(REDIRECTS)/redirects.c 		\
+				   $(REDIRECTS)/utills.c 			\
+				   $(REDIRECTS)/right_utils.c
+
+SRC_FILES = $(CONTROLLER_FILES) 					\
+			$(BUILTINS_FILES) 						\
+			$(PROCESSING_FILES) 					\
+			$(EXPANSION_FILES) 						\
+            $(PIPELINE_FILES) 						\
+			$(REDIRECTS_FILES)
+
+OBJ_FILES = $(SRC_FILES:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJ_FILES)
+	$(MAKE) -C $(L_DIR)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBFT) $(RL_LIB)
+	clear
+	@echo "$(GREEN)COMPILATION COMPLETE$(RESET)"
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		@$(MAKE) clean -C $(L_DIR)
-		rm -f $(S_OBJ)
-		clear
-		@echo "$(ORANGE) CLEANING THE OBJECTS$(RESET)"
+	$(MAKE) clean -C $(L_DIR)
+	rm -f $(OBJ_FILES)
+	clear
+	@echo "$(ORANGE)CLEANING OBJECT FILES$(RESET)"
 
 fclean: clean
-		@$(MAKE) fclean -C $(L_DIR)
-		rm -f $(NAME)
-		clear
-		@echo "$(RED) CLEARING ALL FILES$(RESET)"
+	$(MAKE) fclean -C $(L_DIR)
+	rm -f $(NAME)
+	clear
+	@echo "$(RED)ALL CLEANED$(RESET)"
 
 re: fclean all

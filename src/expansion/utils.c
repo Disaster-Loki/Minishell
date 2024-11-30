@@ -25,16 +25,6 @@ int	is_in_quotes(int *state, char c)
 	return (*state);
 }
 
-char	*get_name(char *str, int j)
-{
-	int		len;
-
-	len = j;
-	while (str[len] && (ft_isalnum(str[len]) || str[len] == '_'))
-		len++;
-	return (ft_substr(str, j, len - j));
-}
-
 int	states_cmd(t_shell *sh, t_args *args, int i, int j)
 {
 	char	*n;

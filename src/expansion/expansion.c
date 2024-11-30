@@ -12,19 +12,6 @@
 
 #include "../../inc/minishell.h"
 
-char	*get_env(t_shell *sh, char *str)
-{
-	int		i;
-	int		len;
-
-	i = -1;
-	len = ft_strlen(str);
-	while (sh->env[++i])
-		if (!ft_strncmp(sh->env[i], str, len) && sh->env[i][len] == '=')
-			return (sh->env[i] + len + 1);
-	return (NULL);
-}
-
 char	*expand_var(t_shell *sh, t_args *args, int *i, int j)
 {
 	char	*var;
