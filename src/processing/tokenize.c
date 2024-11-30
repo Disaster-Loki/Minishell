@@ -47,6 +47,7 @@ int	process_no_quotes(t_shell *sh, char *str, t_args *args, t_tokens *tok)
 	}
 	args[tok->j].id = 32;
 	args[tok->j].str = ft_strndup(str + x, tok->i - x);
+	expansion(sh, args, tok);
 	while (args[tok->j].str[++tok->k])
 		process_quotes(sh, args, tok);
 	not_redirect(sh, args, tok);
@@ -56,8 +57,8 @@ int	process_no_quotes(t_shell *sh, char *str, t_args *args, t_tokens *tok)
 
 t_args	*tokenize(t_shell *sh, char *str)
 {
-	t_args		*args;
 	t_tokens	tok;
+	t_args		*args;
 
 	tok.i = 0;
 	tok.j = 0;

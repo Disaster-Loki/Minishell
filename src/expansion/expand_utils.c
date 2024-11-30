@@ -12,7 +12,30 @@
 
 #include "../../inc/minishell.h"
 
-int	states_cmd(t_shell *sh, int i, int j)
+int	is_in_quotes(int *state, char c)
+{
+	if (c == '\'' && *state == 0)
+		*state = 1;
+	else if (c == '\'' && *state == 1)
+		*state = 0;
+	else if (c == '"' && *state == 0)
+		*state = 2;
+	else if (c == '"' && *state == 2)
+		*state = 0;
+	return (*state);
+}
+
+char	*get_name(char *str, int j)
+{
+	int		len;
+
+	len = j;
+	while (str[len] && (ft_isalnum(str[len]) || str[len] == '_'))
+		len++;
+	return (ft_substr(str, j, len - j));
+}
+
+int	states_cmd(t_shell *sh, t_args *args, int i, int j)
 {
 	char	*n;
 	char	*str;
@@ -26,30 +49,30 @@ int	states_cmd(t_shell *sh, int i, int j)
 	exp = ft_strjoin(str, n);
 	tmp = exp;
 	exp = ft_strjoin(exp, rest);
-	sh->args[j].str = exp;
+	args[j].str = exp;
 	free(n);
 	free(str);
 	free(tmp);
 	free(rest);
-	free(sh->args[j].temp);
+	free(args[j].temp);
 	return (1);
 }
 
-char	*not_found(t_shell *sh, char *name, int *i, int j)
+char	*not_found(t_args *args, char *name, int *i, int j)
 {
 	int		len;
 	char	*sub;
 	char	*exp;
 	char	*rest;
 
-	len = ft_strlen(sh->args[j].str);
-	sub = ft_substr(sh->args[j].str, 0, *i);
-	rest = ft_substr(sh->args[j].str, *i + ft_strlen(name) + 1, len);
+	len = ft_strlen(args[j].str);
+	sub = ft_substr(args[j].str, 0, *i);
+	rest = ft_substr(args[j].str, *i + ft_strlen(name) + 1, len);
 	exp = ft_strjoin(sub, rest);
 	*i = 0;
 	free(sub);
 	free(name);
 	free(rest);
-	free(sh->args[j].temp);
+	free(args[j].temp);
 	return (exp);
 }

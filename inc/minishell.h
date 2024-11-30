@@ -114,12 +114,12 @@ int		read_line(t_shell *sh);
 void	check_command(t_shell *sh);
 
 // Expansions
-void	expansion(t_shell *sh);
 char	*get_name(char *str, int j);
+int		is_in_quotes(int *state, char c);
 char	*get_env(t_shell *sh, char *str);
-char	*expand_var(t_shell *sh, int *i, int j);
-int		states_cmd(t_shell *sh, int i, int j);
-char	*not_found(t_shell *sh, char *name, int *i, int j);
+int		states_cmd(t_shell *sh, t_args *args, int i, int j);
+char	*not_found(t_args *args, char *name, int *i, int j);
+void	expansion(t_shell *sh, t_args *args, t_tokens *tok);
 
 // Tokenize
 int		is_valid_redirect(t_args *args, t_tokens *tok, char *rdir);
@@ -184,7 +184,7 @@ char	*delete_quote(t_shell *sh, char *str);
 
 void	cmd_unset(t_shell *sh, char **to_remove);
 void	free_array_mat(char ***array);
-void    operators(t_shell *sh);
+void	operators(t_shell *sh);
 void	filter_tokens(char **mat);
 void	free_args(t_shell *sh);
 int		has_redir(char **mt, int *n_rdir);

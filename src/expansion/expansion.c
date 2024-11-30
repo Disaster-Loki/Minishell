@@ -12,16 +12,6 @@
 
 #include "../../inc/minishell.h"
 
-char	*get_name(char *str, int j)
-{
-	int		len;
-
-	len = j;
-	while (str[len] && (ft_isalnum(str[len]) || str[len] == '_'))
-		len++;
-	return (ft_substr(str, j, len - j));
-}
-
 char	*get_env(t_shell *sh, char *str)
 {
 	int		i;
@@ -35,7 +25,7 @@ char	*get_env(t_shell *sh, char *str)
 	return (NULL);
 }
 
-char	*expand_var(t_shell *sh, int *i, int j)
+char	*expand_var(t_shell *sh, t_args *args, int *i, int j)
 {
 	char	*var;
 	char	*sub;
@@ -43,13 +33,13 @@ char	*expand_var(t_shell *sh, int *i, int j)
 	char	*name;
 	char	*exp;
 
-	name = get_name(sh->args[j].str, *i + 1);
+	name = get_name(args[j].str, *i + 1);
 	var = get_env(sh, name);
 	if (!var)
-		return (not_found(sh, name, i, j));
-	sh->args->len = ft_strlen(sh->args[j].str);
-	sub = ft_substr(sh->args[j].str, 0, *i);
-	rest = ft_substr(sh->args[j].str, *i + ft_strlen(name) + 1, sh->args->len);
+		return (not_found(args, name, i, j));
+	args->len = ft_strlen(args[j].str);
+	sub = ft_substr(args[j].str, 0, *i);
+	rest = ft_substr(args[j].str, *i + ft_strlen(name) + 1, args->len);
 	exp = ft_strjoin(sub, var);
 	sh->tmp = exp;
 	exp = ft_strjoin(sh->tmp, rest);
@@ -58,35 +48,47 @@ char	*expand_var(t_shell *sh, int *i, int j)
 	free(rest);
 	free(name);
 	free(sh->tmp);
-	free(sh->args[j].temp);
+	free(args[j].temp);
 	return (exp);
 }
 
-void	expansion(t_shell *sh)
+void	handle_expansion(t_shell *sh, t_args *args, t_tokens *tok, int *i)
 {
-	int		i;
-	int		j;
+	if (args[tok->j].str[*i] == '$')
+	{
+		args[tok->j].temp = args[tok->j].str;
+		if (args[tok->j].str[*i + 1] == '?')
+		{
+			states_cmd(sh, args, *i, tok->j);
+			return ;
+		}
+		if (args[tok->j].str[*i + 1] == ' '
+			|| args[tok->j].str[*i + 1] == '\0')
+			return ;
+		args[tok->j].str = expand_var(sh, args, i, tok->j);
+	}
+}
+
+void	expansion(t_shell *sh, t_args *args, t_tokens *tok)
+{
+	int	i;
+	int	end;
+	int	start;
+	int	state;
 
 	i = -1;
-	j = -1;
-	while (sh->args[++j].str)
+	end = 0;
+	start = 0;
+	state = 0;
+	while (args[tok->j].str[++i])
 	{
-		i = -1;
-		while (sh->args[j].str[++i])
+		is_in_quotes(&state, args[tok->j].str[i]);
+		if (state == 1)
 		{
-			if (sh->args[j].str[i] == '$' && sh->args[j].id != 39)
-			{
-				sh->args[j].temp = sh->args[j].str;
-				if (sh->args[j].str[i + 1] == '?')
-				{
-					states_cmd(sh, i, j);
-					return ;
-				}
-				if (sh->args[j].str[i + 1] == ' '
-					|| sh->args[j].str[i + 1] == '\0')
-					return ;
-				sh->args[j].str = expand_var(sh, &i, j);
-			}
+			start = i;
+			find_quotes(sh, args[tok->j].str, &start, &end);
+			i = end;
 		}
+		handle_expansion(sh, args, tok, &i);
 	}
 }

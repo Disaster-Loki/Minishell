@@ -6,6 +6,7 @@ cc -g -Wall -Wextra -Werror   -c -o src/controller/signals.o src/controller/sign
 cc -g -Wall -Wextra -Werror   -c -o src/builtins/echo.o src/builtins/echo.c
 cc -g -Wall -Wextra -Werror   -c -o src/controller/read_line.o src/controller/read_line.c
 cc -g -Wall -Wextra -Werror   -c -o src/processing/tokenize.o src/processing/tokenize.c
+cc -g -Wall -Wextra -Werror   -c -o src/processing/invalid_rdir.o src/processing/invalid_rdir.c
 cc -g -Wall -Wextra -Werror   -c -o src/processing/utils.o src/processing/utils.c
 cc -g -Wall -Wextra -Werror   -c -o src/processing/redir.o src/processing/redir.c
 cc -g -Wall -Wextra -Werror   -c -o src/processing/r_utils.o src/processing/r_utils.c
@@ -66,7 +67,7 @@ cc -Wall -Wextra -Werror   -c -o put/ft_putnbr_fd.o put/ft_putnbr_fd.c
 ar rc libft.a is/ft_isalpha.o is/ft_isdigit.o is/ft_isalnum.o is/ft_isascii.o is/ft_isprint.o string/ft_strlen.o memory/ft_memset.o rest/ft_bzero.o memory/ft_memcpy.o memory/ft_memmove.o string/ft_strlcpy.o string/ft_strlcat.o rest/ft_toupper.o rest/ft_tolower.o string/ft_strchr.o string/ft_strrchr.o string/ft_strncmp.o memory/ft_memchr.o memory/ft_memcmp.o string/ft_strnstr.o rest/ft_atoi.o rest/ft_calloc.o string/ft_strdup.o string/ft_substr.o string/ft_strjoin.o string/ft_strtrim.o rest/ft_split.o rest/ft_itoa.o string/ft_strmapi.o string/ft_striteri.o put/ft_putchar_fd.o put/ft_putstr_fd.o put/ft_putendl_fd.o put/ft_putnbr_fd.o
 ranlib libft.a
 make[1]: Leaving directory '/home/optimus-prime/Documents/Minishell/libft'
-cc -g -Wall -Wextra -Werror -o minishell ./src/controller/main.o ./src/builtins/cd.o ./src/controller/signals.o ./src/builtins/echo.o ./src/controller/read_line.o ./src/processing/tokenize.o ./src/processing/utils.o ./src/processing/redir.o ./src/processing/r_utils.o ./src/controller/utils.o ./src/expansion/expansion.o ./src/controller/exec_cmd.o ./src/controller/frees.o ./src/pipeline/pipetting.o ./src/pipeline/Init_vars.o ./src/pipeline/full_split.o ./src/expansion/expand_utils.o ./src/builtins/export.o ./src/builtins/export_add.o ./src/builtins/export_utils.o ./src/builtins/unset.o ./src/builtins/exit.o ./src/builtins/env.o ./src/builtins/pwd.o ./src/redirects/redirects.o ./src/redirects/utills.o ./src/redirects/right_utills.o -L./libft	 -lft -lreadline
+cc -g -Wall -Wextra -Werror -o minishell ./src/controller/main.o ./src/builtins/cd.o ./src/controller/signals.o ./src/builtins/echo.o ./src/controller/read_line.o ./src/processing/tokenize.o ./src/processing/invalid_rdir.o ./src/processing/utils.o ./src/processing/redir.o ./src/processing/r_utils.o ./src/controller/utils.o ./src/expansion/expansion.o ./src/controller/exec_cmd.o ./src/controller/frees.o ./src/pipeline/pipetting.o ./src/pipeline/Init_vars.o ./src/pipeline/full_split.o ./src/expansion/expand_utils.o ./src/builtins/export.o ./src/builtins/export_add.o ./src/builtins/export_utils.o ./src/builtins/unset.o ./src/builtins/exit.o ./src/builtins/env.o ./src/builtins/pwd.o ./src/redirects/redirects.o ./src/redirects/utills.o ./src/redirects/right_utills.o -L./libft	 -lft -lreadline
 clear
 echo "\033[32m MANDATORY - COMPILATION COMPLETE\033[0m"	
 make: Leaving directory '/home/optimus-prime/Documents/Minishell'
