@@ -49,4 +49,3 @@ char	**ft_strjoin_alt(char **spl, char *s)
 	}
 	return (spl);
 }
-

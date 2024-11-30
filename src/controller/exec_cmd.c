@@ -20,6 +20,12 @@ void	child_process(t_shell *sh)
 
 	i = -1;
 	arg = sh->mat;
+	if (sh->args[0].str[0] == '.' && sh->args[0].str[1] == '/')
+	{
+		if (execve(sh->args[0].str, arg, sh->env) == -1)
+			handle_exec_error(sh->args[0].str, arg, sh);
+		exit(127);
+	}
 	sh->split = ft_strjoin_alt(sh->split, "/");
 	while (sh->split[++i])
 	{
@@ -57,7 +63,7 @@ int	handle_child_process(t_shell *sh, pid_t pid)
 
 int	exec_cmd(t_shell *sh)
 {
-	pid_t pid;
+	pid_t	pid;
 
 	sh->split = ft_split(sh->path, ':');
 	if (!sh->split)
