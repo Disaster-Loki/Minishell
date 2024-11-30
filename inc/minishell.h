@@ -199,5 +199,6 @@ int		has_redir(char **mt, int *n_rdir);
 void	get_file(t_shell *sh);
 void	get_dir(t_shell *sh);
 void	get_arg(t_shell *sh);
+int		validate_input(t_shell *sh);
 
 #endif

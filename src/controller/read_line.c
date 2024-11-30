@@ -50,6 +50,8 @@ void	check_command(t_shell *sh)
 int	read_line(t_shell *sh)
 {
 	sh->redirect = 0;
+	if (validate_input(sh))
+		return (-1);
 	get_path(sh);
 	if (pipetting(sh))
 		return (0);
