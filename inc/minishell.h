@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <wait.h>
+# include <errno.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -88,6 +89,7 @@ typedef struct s_shell
 	char	**mat2;
 	char	*path;
 	char	*input;
+	char	**split;
 	int		status;
 	char	*quotes;
 	t_file	manager;
@@ -145,6 +147,7 @@ int		process_no_quotes(t_shell *sh, char *str, t_args *args, t_tokens *tok);
 // Signals
 void	signals(void);
 void	signal_handler(int sig);
+void	signal_handler2(int sig);
 
 // Utils
 void	free_mat(char **mt);
@@ -157,7 +160,10 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		exec_cmd(t_shell *sh);
 char	**ft_args(t_args *args);
 void	signal_handler2(int sig);
-void	child_process(char **split, t_shell *sh);
+void	child_process(t_shell *sh);
+char	**ft_strjoin_alt(char **spl, char *s);
+int		handle_child_process(t_shell *sh, pid_t pid);
+void	handle_exec_error(char *tmp, char **arg, t_shell *sh);
 
 // Pipeline
 int		pipetting(t_shell *sh);

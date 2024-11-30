@@ -34,8 +34,8 @@ int	states_cmd(t_shell *sh, t_args *args, int i, int j)
 	char	*tmp;
 
 	n = ft_itoa(sh->status);
-	str = ft_substr(sh->args[j].str, 0, i);
-	rest = ft_substr(sh->args[j].str, i + 2, ft_strlen(sh->args[j].str));
+	str = ft_substr(args[j].str, 0, i);
+	rest = ft_substr(args[j].str, i + 2, ft_strlen(args[j].str));
 	exp = ft_strjoin(str, n);
 	tmp = exp;
 	exp = ft_strjoin(exp, rest);

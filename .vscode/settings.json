@@ -3,6 +3,8 @@
     "files.associations": {
         "minishell.h": "c",
         "type_traits": "c",
-        "cmath": "c"
+        "cmath": "c",
+        "limits.h": "c",
+        "signal.h": "c"
     }
 }

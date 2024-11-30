@@ -51,3 +51,15 @@ void	free_array_mat(char ***array)
 	free(*array);
 	*array = NULL;
 }
+
+void	handle_exec_error(char *tmp, char **arg, t_shell *sh)
+{
+	if (errno == EACCES)
+	{
+		if (tmp)
+			free(tmp);
+		free_mat(arg);
+		free_mat(sh->split);
+		exit(126);
+	}
+}

@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Nov 30 07:14:07 2024
+# Make data base, printed on Sat Nov 30 08:36:03 2024
 
 # Variables
 
@@ -18,7 +18,6 @@ LC_ALL = C
 SSH_AGENT_LAUNCHER = openssh
 # makefile (from 'Makefile', line 45)
 BUILTINS_FILES = $(BUILTINS)/cd.c $(BUILTINS)/env.c $(BUILTINS)/pwd.c $(BUILTINS)/echo.c $(BUILTINS)/exit.c $(BUILTINS)/unset.c $(BUILTINS)/export.c $(BUILTINS)/export_add.c $(BUILTINS)/export_utils.c
- 
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # makefile (from 'Makefile', line 29)
@@ -58,7 +57,7 @@ LIBFT = -L$(L_DIR) -lft
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.VNP3X2
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.DGH7X2
 # default
 .LOADED := 
 # default
@@ -90,7 +89,7 @@ MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 2408
+VSCODE_PID = 2414
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -142,7 +141,7 @@ OBJ_FILES = $(SRC_FILES:.c=.o)
 # makefile (from 'Makefile', line 69)
 REDIRECTS_FILES = $(REDIRECTS)/redirects.c $(REDIRECTS)/utills.c $(REDIRECTS)/right_utils.c
 # environment
-INVOCATION_ID = 08a93caf19e3428ba1edd29b625d33a3
+INVOCATION_ID = 36cdd6e022154ca38a19fa4358aefafc
 # makefile (from 'Makefile', line 34)
 PIPELINE = $(SRC_DIR)/pipeline
 # environment
@@ -176,7 +175,6 @@ GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # environment
 SYSTEMD_EXEC_PID = 1493
 # makefile (from 'Makefile', line 25)
- 
 ORANGE = \033[38;5;208m
 # makefile (from 'Makefile', line 22)
 RED = \033[31m
@@ -193,7 +191,7 @@ SRC_FILES = $(CONTROLLER_FILES) $(BUILTINS_FILES) $(PROCESSING_FILES) $(EXPANSIO
 # environment
 MANAGERPID = 1334
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2408
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2414
 # environment
 _ = /usr/share/code/code
 # makefile (from 'Makefile', line 21)
@@ -203,7 +201,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 16)
 CFLAGS = -g -Wall -Wextra -Werror
 # environment
-JOURNAL_STREAM = 8:24730
+JOURNAL_STREAM = 8:18879
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -257,10 +255,10 @@ GDMSESSION = gnome
 
 # Directories
 
-# . (device 65025, inode 1313424): 9 files, no impossibilities.
-# src/controller (device 65025, inode 1324885): 1 files, no impossibilities so far.
+# . (device 65025, inode 1313424): 10 files, no impossibilities.
+# src/controller (device 65025, inode 1324885): 12 files, no impossibilities so far.
 
-# 10 files, no impossibilities in 2 directories.
+# 22 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -307,9 +305,10 @@ src/expansion/utils.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
 minishell: src/controller/main.o src/controller/signals.o src/controller/read_line.o src/controller/exec_cmd.o src/controller/frees.o src/controller/utils.o src/builtins/cd.o src/builtins/env.o src/builtins/pwd.o src/builtins/echo.o src/builtins/exit.o src/builtins/unset.o src/builtins/export.o src/builtins/export_add.o src/builtins/export_utils.o src/processing/tokenize.o src/processing/utils.o src/processing/redir.o src/processing/r_utils.o src/processing/invalid_rdir.o src/expansion/expansion.o src/expansion/gets.o src/expansion/utils.o src/pipeline/Init_vars.o src/pipeline/full_split.o src/pipeline/pipetting.o src/redirects/redirects.o src/redirects/utills.o src/redirects/right_utils.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2024-11-30 07:32:03.290787073
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -397,11 +396,32 @@ src/redirects/redirects.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-src/controller/exec_cmd.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/controller/exec_cmd.o: src/controller/exec_cmd.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/controller/exec_cmd'
+#  Last modified 2024-11-30 07:32:01.838776637
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := src/controller/exec_cmd.o
+# automatic
+# * := src/controller/exec_cmd
+# automatic
+# < := src/controller/exec_cmd.c
+# automatic
+# + := src/controller/exec_cmd.c
+# automatic
+# % := 
+# automatic
+# ^ := src/controller/exec_cmd.c
+# automatic
+# ? := src/controller/exec_cmd.c
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
+#  recipe to execute (from 'Makefile', line 91):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: minishell
 #  Command line target.
@@ -411,7 +431,6 @@ all: minishell
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/5=0%
- 
 
 fclean: clean
 #  Implicit rule search has not been done.
@@ -462,35 +481,20 @@ src/pipeline/Init_vars.o:
 src/controller/main.o: src/controller/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/controller/main'
-#  File does not exist.
+#  Last modified 2024-11-30 07:32:01.758776062
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := src/controller/main.o
-# automatic
-# * := src/controller/main
-# automatic
-# < := src/controller/main.c
-# automatic
-# + := src/controller/main.c
-# automatic
-# % := 
-# automatic
-# ^ := src/controller/main.c
-# automatic
-# ? := src/controller/main.c
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 91):
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Not a target:
-src/controller/signals.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/controller/signals.o: src/controller/signals.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/controller/signals'
+#  Last modified 2024-11-30 07:32:01.782776234
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 91):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Not a target:
 src/builtins/env.o:
@@ -498,11 +502,21 @@ src/builtins/env.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+src/controller/read_line.o: src/controller/read_line.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/controller/read_line'
+#  Last modified 2024-11-30 07:32:01.810776436
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 91):
+	$(CC) $(CFLAGS) -c $< -o $@
+
 # Not a target:
-src/controller/read_line.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/controller/exec_cmd.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 07:40:47.490239248
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/redirects/utills.o:
@@ -523,6 +537,13 @@ src/controller/frees.o:
 #  File has not been updated.
 
 # Not a target:
+src/controller/signals.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-27 03:48:13.560163541
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
 src/builtins/export_utils.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -534,20 +555,27 @@ src/expansion/gets.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+src/controller/read_line.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 06:52:08.641132497
+#  File has been updated.
+#  Successfully updated.
+
 # files hash-table stats:
-# Load=38/1024=4%, Rehash=0, Collisions=0/86=0%
+# Load=41/1024=4%, Rehash=0, Collisions=0/98=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 53 / storage = 892 B / avg = 16 B
-# current buf: size = 8162 B / used = 892 B / count = 53 / avg = 16 B
+# strcache buffers: 1 (0) / strings = 68 / storage = 1132 B / avg = 16 B
+# current buf: size = 8162 B / used = 1132 B / count = 68 / avg = 16 B
 
-# strcache performance: lookups = 68 / hit rate = 22%
+# strcache performance: lookups = 89 / hit rate = 23%
 # hash-table stats:
-# Load=53/8192=1%, Rehash=0, Collisions=0/68=0%
-# Finished Make data base on Sat Nov 30 07:14:07 2024
+# Load=68/8192=1%, Rehash=0, Collisions=0/89=0%
+# Finished Make data base on Sat Nov 30 08:36:03 2024
 
  

@@ -12,70 +12,58 @@
 
 #include "../../inc/minishell.h"
 
-void	signal_handler2(int sig)
-{
-	(void)sig;
-	printf("\n");
-}
-
-char	**ft_args(t_args *args)
+void	child_process(t_shell *sh)
 {
 	int		i;
-	int		size;
-	char	**arg;
-
-	i = -1;
-	size = 0;
-	while (args[size].str)
-		size++;
-	arg = malloc(sizeof(char *) * (size + 1));
-	while (args[++i].str)
-		arg[i] = ft_strdup(args[i].str);
-	arg[i] = NULL;
-	return (arg);
-}
-
-void	child_process(char **split, t_shell *sh)
-{
-	int		i;
-	char	*str;
 	char	*tmp;
 	char	**arg;
 
 	i = -1;
 	arg = sh->mat;
-	while (split[++i])
+	sh->split = ft_strjoin_alt(sh->split, "/");
+	while (sh->split[++i])
 	{
-		str = ft_strjoin(split[i], "/");
-		tmp = str;
-		str = ft_strjoin(str, sh->args[0].str);
-		if (execve(str, arg, sh->env) != -1)
-		{
-			free(str);
-			free(tmp);
-			free_mat(arg);
-			free_mat(split);
-			exit(0);
-		}
+		tmp = sh->split[i];
+		sh->split[i] = ft_strjoin(sh->split[i], sh->args[0].str);
+		if (execve(sh->split[i], arg, sh->env) == -1)
+			handle_exec_error(tmp, arg, sh);
 		free(tmp);
-		free(str);
+		free(sh->split[i]);
 	}
-	exit(1);
+	free(sh->split);
+	exit(127);
+}
+
+int	handle_child_process(t_shell *sh, pid_t pid)
+{
+	signal(SIGINT, signal_handler2);
+	waitpid(pid, &sh->status, 0);
+	if (WIFSIGNALED(sh->status))
+	{
+		if (WTERMSIG(sh->status) == SIGINT)
+			sh->status = 130;
+		else
+			sh->status = 128 + WTERMSIG(sh->status);
+	}
+	else
+		sh->status = WEXITSTATUS(sh->status);
+	free_mat(sh->split);
+	if (sh->status == 130 || sh->status == 126)
+		return (-1);
+	else if (sh->status == 127)
+		return (0);
+	return (1);
 }
 
 int	exec_cmd(t_shell *sh)
 {
-	char	**split;
+	pid_t pid;
 
-	split = ft_split(sh->path, ':');
-	if (!split)
+	sh->split = ft_split(sh->path, ':');
+	if (!sh->split)
 		return (0);
-	if (fork() == 0)
-		child_process(split, sh);
-	signal(SIGINT, signal_handler2);
-	waitpid(-1, &sh->status, 0);
-	sh->status = WEXITSTATUS(sh->status);
-	if (sh->status == 1)
-		return (free_mat(split), 0);
-	return (free_mat(split), 1);
+	pid = fork();
+	if (pid == 0)
+		child_process(sh);
+	return (handle_child_process(sh, pid));
 }
