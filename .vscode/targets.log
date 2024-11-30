@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Nov 30 08:36:03 2024
+# Make data base, printed on Sat Nov 30 10:19:36 2024
 
 # Variables
 
@@ -16,7 +16,7 @@ GDK_BACKEND = x11
 LC_ALL = C
 # environment
 SSH_AGENT_LAUNCHER = openssh
-# makefile (from 'Makefile', line 45)
+# makefile (from 'Makefile', line 46)
 BUILTINS_FILES = $(BUILTINS)/cd.c $(BUILTINS)/env.c $(BUILTINS)/pwd.c $(BUILTINS)/echo.c $(BUILTINS)/exit.c $(BUILTINS)/unset.c $(BUILTINS)/export.c $(BUILTINS)/export_add.c $(BUILTINS)/export_utils.c
 # environment
 GJS_DEBUG_OUTPUT = stderr
@@ -70,6 +70,8 @@ BLUE = \033[34m
 CURDIR := /home/optimus-prime/Documents/Minishell
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+VSCODE_L10N_BUNDLE_LOCATION = 
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -98,11 +100,12 @@ XDG_SESSION_TYPE = wayland
 SESSION_MANAGER = local/Optimus:@/tmp/.ICE-unix/1477,unix/Optimus:/tmp/.ICE-unix/1477
 # automatic
 *F = $(notdir $*)
+ 
 # environment
 CHROME_DESKTOP = code.desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
-# makefile (from 'Makefile', line 65)
+# makefile (from 'Makefile', line 66)
 PIPELINE_FILES = $(PIPELINE)/Init_vars.c $(PIPELINE)/full_split.c $(PIPELINE)/pipetting.c
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
@@ -136,9 +139,9 @@ MAKEFILES :=
 ^F = $(notdir $^)
 # makefile (from 'Makefile', line 24)
 YELLOW = \033[33m
-# makefile (from 'Makefile', line 80)
+# makefile (from 'Makefile', line 81)
 OBJ_FILES = $(SRC_FILES:.c=.o)
-# makefile (from 'Makefile', line 69)
+# makefile (from 'Makefile', line 70)
 REDIRECTS_FILES = $(REDIRECTS)/redirects.c $(REDIRECTS)/utills.c $(REDIRECTS)/right_utils.c
 # environment
 INVOCATION_ID = 36cdd6e022154ca38a19fa4358aefafc
@@ -186,7 +189,7 @@ USER = optimus-prime
 GTK_MODULES = gail:atk-bridge
 # default
 MAKE_VERSION := 4.3
-# makefile (from 'Makefile', line 73)
+# makefile (from 'Makefile', line 74)
 SRC_FILES = $(CONTROLLER_FILES) $(BUILTINS_FILES) $(PROCESSING_FILES) $(EXPANSION_FILES) $(PIPELINE_FILES) $(REDIRECTS_FILES)
 # environment
 MANAGERPID = 1334
@@ -233,12 +236,12 @@ L_DIR = ./libft
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # makefile (from 'Makefile', line 38)
-CONTROLLER_FILES = $(CONTROLLER)/main.c $(CONTROLLER)/signals.c $(CONTROLLER)/read_line.c $(CONTROLLER)/exec_cmd.c $(CONTROLLER)/frees.c $(CONTROLLER)/utils.c
+CONTROLLER_FILES = $(CONTROLLER)/main.c $(CONTROLLER)/signals.c $(CONTROLLER)/read_line.c $(CONTROLLER)/exec_cmd.c $(CONTROLLER)/exec_utils.c $(CONTROLLER)/frees.c $(CONTROLLER)/utils.c
 # makefile (from 'Makefile', line 15)
 CC = cc
-# makefile (from 'Makefile', line 55)
+# makefile (from 'Makefile', line 56)
 PROCESSING_FILES = $(PROCESSING)/tokenize.c $(PROCESSING)/utils.c $(PROCESSING)/redir.c $(PROCESSING)/r_utils.c $(PROCESSING)/invalid_rdir.c
-# makefile (from 'Makefile', line 61)
+# makefile (from 'Makefile', line 62)
 EXPANSION_FILES = $(EXPANSION)/expansion.c $(EXPANSION)/gets.c $(EXPANSION)/utils.c
 # environment
 XDG_MENU_PREFIX = gnome-
@@ -247,7 +250,7 @@ VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 GDMSESSION = gnome
 # variable set hash-table stats:
-# Load=118/1024=12%, Rehash=0, Collisions=8/221=4%
+# Load=119/1024=12%, Rehash=0, Collisions=9/219=4%
 
 # Pattern-specific Variable Values
 
@@ -255,75 +258,147 @@ GDMSESSION = gnome
 
 # Directories
 
+# src/pipeline (device 65025, inode 1324894): 7 files, no impossibilities so far.
+# src/expansion (device 65025, inode 1324891): 8 files, no impossibilities so far.
 # . (device 65025, inode 1313424): 10 files, no impossibilities.
-# src/controller (device 65025, inode 1324885): 12 files, no impossibilities so far.
+# src/controller (device 65025, inode 1324885): 15 files, no impossibilities so far.
+# src/processing (device 65025, inode 1324896): 12 files, no impossibilities so far.
+# src/redirects (device 65025, inode 1324898): 7 files, no impossibilities so far.
+# src/builtins (device 65025, inode 1324875): 20 files, no impossibilities so far.
 
-# 22 files, no impossibilities in 2 directories.
+# 79 files, no impossibilities in 7 directories.
 
 # Implicit Rules
 
 %.o: %.c
-#  recipe to execute (from 'Makefile', line 91):
+#  recipe to execute (from 'Makefile', line 92):
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
 
 # Not a target:
-src/builtins/pwd.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-src/processing/r_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-src/pipeline/pipetting.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-src/processing/invalid_rdir.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-src/processing/tokenize.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-src/expansion/utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
- 
-minishell: src/controller/main.o src/controller/signals.o src/controller/read_line.o src/controller/exec_cmd.o src/controller/frees.o src/controller/utils.o src/builtins/cd.o src/builtins/env.o src/builtins/pwd.o src/builtins/echo.o src/builtins/exit.o src/builtins/unset.o src/builtins/export.o src/builtins/export_add.o src/builtins/export_utils.o src/processing/tokenize.o src/processing/utils.o src/processing/redir.o src/processing/r_utils.o src/processing/invalid_rdir.o src/expansion/expansion.o src/expansion/gets.o src/expansion/utils.o src/pipeline/Init_vars.o src/pipeline/full_split.o src/pipeline/pipetting.o src/redirects/redirects.o src/redirects/utills.o src/redirects/right_utils.o
-#  Implicit rule search has not been done.
-#  Last modified 2024-11-30 07:32:03.290787073
+src/builtins/env.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-27 13:12:44.016961728
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
-#  recipe to execute (from 'Makefile', line 85):
+#  Successfully updated.
+
+src/builtins/pwd.o: src/builtins/pwd.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/builtins/pwd'
+#  Last modified 2024-11-30 10:18:04.599666537
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Not a target:
+src/builtins/unset.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-27 09:18:14.384818551
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/expansion/utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 09:16:13.051791296
+#  File has been updated.
+#  Successfully updated.
+
+src/processing/r_utils.o: src/processing/r_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/processing/r_utils'
+#  Last modified 2024-11-30 10:18:04.879672906
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Not a target:
+src/redirects/redirects.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-29 12:51:42.6183545
+#  File has been updated.
+#  Successfully updated.
+
+src/pipeline/pipetting.o: src/pipeline/pipetting.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/pipeline/pipetting'
+#  Last modified 2024-11-30 10:18:05.0636771
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Not a target:
+src/redirects/right_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-29 07:45:15.535513741
+#  File has been updated.
+#  Successfully updated.
+
+src/processing/invalid_rdir.o: src/processing/invalid_rdir.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/processing/invalid_rdir'
+#  Last modified 2024-11-30 10:18:04.911673634
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+src/processing/tokenize.o: src/processing/tokenize.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/processing/tokenize'
+#  Last modified 2024-11-30 10:18:04.791670904
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+src/expansion/utils.o: src/expansion/utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/expansion/utils'
+#  Last modified 2024-11-30 10:18:04.995675544
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+minishell: src/controller/main.o src/controller/signals.o src/controller/read_line.o src/controller/exec_cmd.o src/controller/exec_utils.o src/controller/frees.o src/controller/utils.o src/builtins/cd.o src/builtins/env.o src/builtins/pwd.o src/builtins/echo.o src/builtins/exit.o src/builtins/unset.o src/builtins/export.o src/builtins/export_add.o src/builtins/export_utils.o src/processing/tokenize.o src/processing/utils.o src/processing/redir.o src/processing/r_utils.o src/processing/invalid_rdir.o src/expansion/expansion.o src/expansion/gets.o src/expansion/utils.o src/pipeline/Init_vars.o src/pipeline/full_split.o src/pipeline/pipetting.o src/redirects/redirects.o src/redirects/utills.o src/redirects/right_utils.o
+#  Implicit rule search has not been done.
+#  Last modified 2024-11-30 10:18:05.835694784
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 86):
 	$(MAKE) -C $(L_DIR)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBFT) $(RL_LIB)
 	clear
 	@echo "$(GREEN)COMPILATION COMPLETE$(RESET)"
 
+src/builtins/unset.o: src/builtins/unset.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/builtins/unset'
+#  Last modified 2024-11-30 10:18:04.695668721
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
 # Not a target:
-src/builtins/unset.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/processing/utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:18:06.169670422
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/controller/exec_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 10:13:36.862043725
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/controller/main.c:
@@ -335,43 +410,93 @@ src/controller/main.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-30 07:14:06.187617147
+#  Last modified 2024-11-30 10:19:35.466328594
+#  File has been updated.
+#  Successfully updated.
+
+src/builtins/cd.o: src/builtins/cd.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/builtins/cd'
+#  Last modified 2024-11-30 10:18:04.551665445
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Not a target:
+src/pipeline/full_split.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:51:18.441790617
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-src/builtins/cd.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/controller/frees.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 10:12:06.659450206
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/builtins/echo.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-27 13:12:17.251243063
+#  File has been updated.
+#  Successfully updated.
+
+src/controller/exec_utils.o: src/controller/exec_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/controller/exec_utils'
+#  Last modified 2024-11-30 10:18:04.479663807
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Not a target:
+src/pipeline/pipetting.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:47:03.300477264
+#  File has been updated.
+#  Successfully updated.
 
 clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 94):
+#  recipe to execute (from 'Makefile', line 95):
 	$(MAKE) clean -C $(L_DIR)
 	rm -f $(OBJ_FILES)
 	clear
 	@echo "$(ORANGE)CLEANING OBJECT FILES$(RESET)"
 
-# Not a target:
-src/builtins/export_add.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/builtins/export_add.o: src/builtins/export_add.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/builtins/export_add'
+#  Last modified 2024-11-30 10:18:04.739669722
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Not a target:
-src/redirects/right_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/redirects/right_utils.o: src/redirects/right_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/redirects/right_utils'
+#  Last modified 2024-11-30 10:18:05.147679025
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Not a target:
-src/pipeline/full_split.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/pipeline/full_split.o: src/pipeline/full_split.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/pipeline/full_split'
+ 
+#  Last modified 2024-11-30 10:18:05.043676642
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 re: fclean all
 #  Implicit rule search has not been done.
@@ -379,16 +504,43 @@ re: fclean all
 #  File has not been updated.
 
 # Not a target:
-src/expansion/expansion.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/expansion/expansion.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 07:14:09.055630278
+#  File has been updated.
+#  Successfully updated.
+
+src/expansion/expansion.o: src/expansion/expansion.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/expansion/expansion'
+#  Last modified 2024-11-30 10:18:04.943674361
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Not a target:
-src/redirects/redirects.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/processing/tokenize.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 07:03:41.195782891
+#  File has been updated.
+#  Successfully updated.
+
+src/redirects/redirects.o: src/redirects/redirects.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/redirects/redirects'
+#  Last modified 2024-11-30 10:18:05.091677742
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Not a target:
+src/builtins/exit.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-29 05:33:13.724444406
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -396,31 +548,20 @@ src/redirects/redirects.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+# Not a target:
+src/builtins/pwd.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-27 03:48:13.560163541
+#  File has been updated.
+#  Successfully updated.
+
 src/controller/exec_cmd.o: src/controller/exec_cmd.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/controller/exec_cmd'
-#  Last modified 2024-11-30 07:32:01.838776637
+#  Last modified 2024-11-30 10:18:04.455663261
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := src/controller/exec_cmd.o
-# automatic
-# * := src/controller/exec_cmd
-# automatic
-# < := src/controller/exec_cmd.c
-# automatic
-# + := src/controller/exec_cmd.c
-# automatic
-# % := 
-# automatic
-# ^ := src/controller/exec_cmd.c
-# automatic
-# ? := src/controller/exec_cmd.c
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
-#  recipe to execute (from 'Makefile', line 91):
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: minishell
@@ -428,113 +569,204 @@ all: minishell
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  Successfully updated.
+
+# Not a target:
+src/controller/utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 10:10:49.341557072
+#  File has been updated.
+#  Successfully updated.
 
 fclean: clean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 100):
+#  recipe to execute (from 'Makefile', line 101):
 	$(MAKE) fclean -C $(L_DIR)
 	rm -f $(NAME)
 	clear
 	@echo "$(RED)ALL CLEANED$(RESET)"
 
 # Not a target:
-src/processing/utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/processing/r_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-29 13:14:16.916306036
+#  File has been updated.
+#  Successfully updated.
+
+src/processing/utils.o: src/processing/utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/processing/utils'
+#  Last modified 2024-11-30 10:18:04.819671541
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+src/builtins/exit.o: src/builtins/exit.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/builtins/exit'
+#  Last modified 2024-11-30 10:18:04.671668174
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Not a target:
-src/builtins/exit.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/expansion/gets.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 07:02:38.463139588
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
-src/builtins/export.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/processing/redir.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-29 13:11:26.966032477
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
-src/processing/redir.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/builtins/export_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-27 09:16:58.323863347
+#  File has been updated.
+#  Successfully updated.
+
+src/builtins/export.o: src/builtins/export.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/builtins/export'
+#  Last modified 2024-11-30 10:18:04.715669176
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+src/processing/redir.o: src/processing/redir.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/processing/redir'
+#  Last modified 2024-11-30 10:18:04.843672087
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Not a target:
-src/controller/utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/pipeline/Init_vars.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-28 08:52:51.514258397
+#  File has been updated.
+#  Successfully updated.
 
-# Not a target:
-src/pipeline/Init_vars.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/controller/utils.o: src/controller/utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/controller/utils'
+#  Last modified 2024-11-30 10:18:04.5276649
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+src/pipeline/Init_vars.o: src/pipeline/Init_vars.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/pipeline/Init_vars'
+#  Last modified 2024-11-30 10:18:05.019676092
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 src/controller/main.o: src/controller/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/controller/main'
-#  Last modified 2024-11-30 07:32:01.758776062
+#  Last modified 2024-11-30 10:18:04.375661442
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 91):
+#  recipe to execute (from 'Makefile', line 92):
 	$(CC) $(CFLAGS) -c $< -o $@
 
 src/controller/signals.o: src/controller/signals.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/controller/signals'
-#  Last modified 2024-11-30 07:32:01.782776234
+#  Last modified 2024-11-30 10:18:04.399661988
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 91):
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+src/builtins/env.o: src/builtins/env.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/builtins/env'
+#  Last modified 2024-11-30 10:18:04.575665991
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Not a target:
-src/builtins/env.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/processing/invalid_rdir.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 05:30:14.740429033
+#  File has been updated.
+#  Successfully updated.
 
 src/controller/read_line.o: src/controller/read_line.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/controller/read_line'
-#  Last modified 2024-11-30 07:32:01.810776436
+#  Last modified 2024-11-30 10:18:04.427662625
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 91):
+#  recipe to execute (from 'Makefile', line 92):
 	$(CC) $(CFLAGS) -c $< -o $@
+
+# Not a target:
+src/builtins/cd.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-27 13:08:51.078559018
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/controller/exec_cmd.c:
 #  Implicit rule search has been done.
-#  Last modified 2024-11-30 07:40:47.490239248
+#  Last modified 2024-11-30 10:14:16.340267906
 #  File has been updated.
 #  Successfully updated.
 
-# Not a target:
-src/redirects/utills.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/redirects/utills.o: src/redirects/utills.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/redirects/utills'
+#  Last modified 2024-11-30 10:18:05.115678292
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Not a target:
-src/builtins/echo.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/builtins/export_add.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-27 09:16:01.007367451
+#  File has been updated.
+#  Successfully updated.
 
-# Not a target:
-src/controller/frees.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/builtins/echo.o: src/builtins/echo.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/builtins/echo'
+#  Last modified 2024-11-30 10:18:04.627667173
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+src/controller/frees.o: src/controller/frees.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/controller/frees'
+#  Last modified 2024-11-30 10:18:04.503664354
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Not a target:
 src/controller/signals.c:
@@ -543,17 +775,37 @@ src/controller/signals.c:
 #  File has been updated.
 #  Successfully updated.
 
-# Not a target:
-src/builtins/export_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/builtins/export_utils.o: src/builtins/export_utils.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/builtins/export_utils'
+#  Last modified 2024-11-30 10:18:04.767670358
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
+
+src/expansion/gets.o: src/expansion/gets.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/expansion/gets'
+#  Last modified 2024-11-30 10:18:04.971674999
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 92):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Not a target:
-src/expansion/gets.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/redirects/utills.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-30 05:13:59.004323163
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/builtins/export.c:
+#  Implicit rule search has been done.
+#  Last modified 2024-11-27 03:48:13.560163541
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 src/controller/read_line.c:
@@ -563,19 +815,19 @@ src/controller/read_line.c:
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=41/1024=4%, Rehash=0, Collisions=0/98=0%
+# Load=68/1024=7%, Rehash=0, Collisions=6/204=3%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 68 / storage = 1132 B / avg = 16 B
-# current buf: size = 8162 B / used = 1132 B / count = 68 / avg = 16 B
+# strcache buffers: 1 (0) / strings = 169 / storage = 2843 B / avg = 16 B
+# current buf: size = 8162 B / used = 2843 B / count = 169 / avg = 16 B
 
-# strcache performance: lookups = 89 / hit rate = 23%
+# strcache performance: lookups = 230 / hit rate = 26%
 # hash-table stats:
-# Load=68/8192=1%, Rehash=0, Collisions=0/89=0%
-# Finished Make data base on Sat Nov 30 08:36:03 2024
+# Load=169/8192=2%, Rehash=0, Collisions=0/230=0%
+# Finished Make data base on Sat Nov 30 10:19:36 2024
 
  
