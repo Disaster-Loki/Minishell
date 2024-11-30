@@ -49,3 +49,24 @@ char	**ft_strjoin_alt(char **spl, char *s)
 	}
 	return (spl);
 }
+
+int	ft_alter_strchr(t_shell *sh, char *str, char c)
+{
+	int	i;
+	int	end;
+	int	start;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == c)
+			return (1);
+		if (str[i] == '\'' || str[i] == '\"')
+		{
+			start = i;
+			find_quotes(sh, str, &start, &end);
+			i = end;
+		}
+	}
+	return (0);
+}

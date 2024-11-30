@@ -79,14 +79,14 @@ void	cmd_export2(t_shell *sh)
 		else if (check_envi(sh->env, sh->mat[i]))
 		{
 			if (check_var(sh->mat[i]))
-				ch_value(sh->env, delete_quote(sh, sh->mat[i]));
+				ch_value(sh->env, sh->mat[i]);
 			else
 				ch_value(sh->env, sh->mat[i]);
 		}
 		else
 		{
 			if (check_var(sh->mat[i]))
-				add_var1(sh, delete_quote(sh, sh->mat[i]));
+				add_var1(sh, sh->mat[i]);
 			else
 				add_var1(sh, sh->mat[i]);
 		}

@@ -56,8 +56,31 @@ int	check_syntax_error(t_shell *sh)
 	return (0);
 }
 
+int	valid_quotes(t_shell *sh, char *str)
+{
+	int	i;
+	int	end;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '\'' || str[i] == '\"')
+		{
+			if(!find_quotes(sh, str, &i, &end))
+				return (0);
+			i = end;
+		}
+	}
+	return (1);
+}
+
 int	validate_input(t_shell *sh)
 {
+	if (!valid_quotes(sh, sh->input))
+	{
+		sh->status = 2;
+		return (-1);
+	}
 	sh->status = check_syntax_error(sh);
 	if (sh->status == 258)
 		sh->status = 1;

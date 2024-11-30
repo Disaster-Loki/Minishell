@@ -54,28 +54,3 @@ int	valid_env_name(char *str)
 	}
 	return (1);
 }
-
-char	*delete_quote(t_shell *sh, char *str)
-{
-	int		i;
-	int		j;
-	int		ch;
-
-	sh->quotes = malloc(sizeof(char) * (ft_strlen(str) + 2));
-	if (!sh->quotes)
-		return (0);
-	i = -1;
-	j = 0;
-	while (str[++i])
-	{
-		if (str[i] == '"' || str[i] == '\'')
-			ch = str[i];
-		if (str[i] != ch)
-		{
-			sh->quotes[j] = str[i];
-			j++;
-		}
-	}
-	sh->quotes[j] = '\0';
-	return (sh->quotes);
-}

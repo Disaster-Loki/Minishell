@@ -24,13 +24,13 @@ void	check_command(t_shell *sh)
 {
 	if (sh->mat[0])
 	{
-		if (has_redir(sh->mat, sh->n_rdir) && sh->redirect == 0)
+		/*if (has_redir(sh->mat, sh->n_rdir) && sh->redirect == 0)
 			operators(sh);
 		else if (!ft_strcmp(sh->mat[0], "export") && !sh->mat[1])
 			cmd_export(sh->env);
 		else if (!ft_strcmp(sh->mat[0], "export") && sh->mat[1])
-			cmd_export2(sh);
-		else if (!ft_strcmp(sh->mat[0], "unset"))
+			cmd_export2(sh);*/
+		if (!ft_strcmp(sh->mat[0], "unset"))
 			cmd_unset(sh, sh->mat);
 		else if (!ft_strcmp(sh->mat[0], "echo"))
 			cmd_echo(sh);
@@ -50,10 +50,10 @@ void	check_command(t_shell *sh)
 int	read_line(t_shell *sh)
 {
 	sh->redirect = 0;
-	if (validate_input(sh))
+	if (validate_input(sh) || validate_input(sh) == -1)
 		return (-1);
 	get_path(sh);
-	if (pipetting(sh))
+	if (ft_alter_strchr(sh, sh->input, '|') && pipetting(sh))
 		return (0);
 	if (alter_redirects(sh) == -1)
 		return (-1);
