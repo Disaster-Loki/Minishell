@@ -30,6 +30,7 @@ S_FILES		= ./src/controller/main.c     			\
 			  ./src/builtins/echo.c   				\
 			  ./src/controller/read_line.c  		\
 			  ./src/processing/tokenize.c   		\
+			  ./src/processing/invalid_rdir.c   	\
 			  ./src/processing/utils.c   			\
 			  ./src/processing/redir.c   			\
 			  ./src/processing/r_utils.c   			\

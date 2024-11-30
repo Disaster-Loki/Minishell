@@ -12,14 +12,14 @@
 
 #include "../../inc/minishell.h"
 
-int	has_redir(char **mt)
+int	has_redir(char **mt, int *n_rdir)
 {
 	int	i;
 
 	i = -1;
 	while (mt[++i])
 	{
-		if ((!ft_strncmp(mt[i], ">", 1) && ft_strlen(mt[i]) == 1) || (!ft_strncmp(mt[i], ">>", 2) && ft_strlen(mt[i]) == 2))
+		if (((!ft_strncmp(mt[i], ">", 1) && ft_strlen(mt[i]) == 1) || (!ft_strncmp(mt[i], ">>", 2) && ft_strlen(mt[i]) == 2)) && n_rdir[i] != 5)
 			return (1);
 	}
 	return (0);

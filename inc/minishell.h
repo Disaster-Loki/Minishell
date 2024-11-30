@@ -95,9 +95,10 @@ typedef struct s_shell
 	int		redirect;
 	char	**temp_env;
 	char	**env_free;
-	char	**temp_unset;
 	char	*free_quote;
 	char	***free_env;
+	int		n_rdir[1000];
+	char	**temp_unset;
 }	t_shell;
 
 // Builtins
@@ -121,6 +122,8 @@ int		states_cmd(t_shell *sh, int i, int j);
 char	*not_found(t_shell *sh, char *name, int *i, int j);
 
 // Tokenize
+int		is_valid_redirect(t_args *args, t_tokens *tok, char *rdir);
+void	not_redirect(t_shell *sh, t_args *args, t_tokens *tok);
 char	*ft_strcpy(char *dest, const char *src);
 int		is_quotes(char c);
 int		is_redirection_operator(char c);
@@ -184,7 +187,7 @@ void	free_array_mat(char ***array);
 void    operators(t_shell *sh);
 void	filter_tokens(char **mat);
 void	free_args(t_shell *sh);
-int		has_redir(char **mt);
+int		has_redir(char **mt, int *n_rdir);
 
 // right_utills.c
 void	get_file(t_shell *sh);

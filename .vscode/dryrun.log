@@ -1,10 +1,9 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/optimus-prime/Documents/Minishell'
 cc -g -Wall -Wextra -Werror   -c -o src/controller/main.o src/controller/main.c
 cc -g -Wall -Wextra -Werror   -c -o src/builtins/cd.o src/builtins/cd.c
 cc -g -Wall -Wextra -Werror   -c -o src/controller/signals.o src/controller/signals.c
 cc -g -Wall -Wextra -Werror   -c -o src/builtins/echo.o src/builtins/echo.c
- 
 cc -g -Wall -Wextra -Werror   -c -o src/controller/read_line.o src/controller/read_line.c
 cc -g -Wall -Wextra -Werror   -c -o src/processing/tokenize.o src/processing/tokenize.c
 cc -g -Wall -Wextra -Werror   -c -o src/processing/utils.o src/processing/utils.c
@@ -39,7 +38,6 @@ cc -Wall -Wextra -Werror   -c -o string/ft_strlen.o string/ft_strlen.c
 cc -Wall -Wextra -Werror   -c -o memory/ft_memset.o memory/ft_memset.c
 cc -Wall -Wextra -Werror   -c -o rest/ft_bzero.o rest/ft_bzero.c
 cc -Wall -Wextra -Werror   -c -o memory/ft_memcpy.o memory/ft_memcpy.c
- 
 cc -Wall -Wextra -Werror   -c -o memory/ft_memmove.o memory/ft_memmove.c
 cc -Wall -Wextra -Werror   -c -o string/ft_strlcpy.o string/ft_strlcpy.c
 cc -Wall -Wextra -Werror   -c -o string/ft_strlcat.o string/ft_strlcat.c
