@@ -5,7 +5,6 @@ cc -g -Wall -Wextra -Werror -c src/controller/signals.c -o src/controller/signal
 cc -g -Wall -Wextra -Werror -c src/controller/read_line.c -o src/controller/read_line.o
 cc -g -Wall -Wextra -Werror -c src/controller/exec_cmd.c -o src/controller/exec_cmd.o
 cc -g -Wall -Wextra -Werror -c src/controller/exec_utils.c -o src/controller/exec_utils.o
- 
 cc -g -Wall -Wextra -Werror -c src/controller/valid_input.c -o src/controller/valid_input.o
 cc -g -Wall -Wextra -Werror -c src/controller/frees.c -o src/controller/frees.o
 cc -g -Wall -Wextra -Werror -c src/controller/utils.c -o src/controller/utils.o
@@ -18,20 +17,17 @@ cc -g -Wall -Wextra -Werror -c src/builtins/unset.c -o src/builtins/unset.o
 cc -g -Wall -Wextra -Werror -c src/builtins/export.c -o src/builtins/export.o
 cc -g -Wall -Wextra -Werror -c src/builtins/export_add.c -o src/builtins/export_add.o
 cc -g -Wall -Wextra -Werror -c src/builtins/export_utils.c -o src/builtins/export_utils.o
- 
 cc -g -Wall -Wextra -Werror -c src/processing/tokenize.c -o src/processing/tokenize.o
 cc -g -Wall -Wextra -Werror -c src/processing/utils.c -o src/processing/utils.o
 cc -g -Wall -Wextra -Werror -c src/processing/redir.c -o src/processing/redir.o
 cc -g -Wall -Wextra -Werror -c src/processing/r_utils.c -o src/processing/r_utils.o
 cc -g -Wall -Wextra -Werror -c src/processing/invalid_rdir.c -o src/processing/invalid_rdir.o
- 
 cc -g -Wall -Wextra -Werror -c src/expansion/expansion.c -o src/expansion/expansion.o
 cc -g -Wall -Wextra -Werror -c src/expansion/gets.c -o src/expansion/gets.o
 cc -g -Wall -Wextra -Werror -c src/expansion/utils.c -o src/expansion/utils.o
 cc -g -Wall -Wextra -Werror -c src/pipeline/Init_vars.c -o src/pipeline/Init_vars.o
 cc -g -Wall -Wextra -Werror -c src/pipeline/full_split.c -o src/pipeline/full_split.o
 cc -g -Wall -Wextra -Werror -c src/pipeline/pipetting.c -o src/pipeline/pipetting.o
- 
 cc -g -Wall -Wextra -Werror -c src/redirects/redirects.c -o src/redirects/redirects.o
 cc -g -Wall -Wextra -Werror -c src/redirects/utills.c -o src/redirects/utills.o
 cc -g -Wall -Wextra -Werror -c src/redirects/right_utils.c -o src/redirects/right_utils.o
@@ -45,7 +41,6 @@ cc -Wall -Wextra -Werror   -c -o is/ft_isascii.o is/ft_isascii.c
 cc -Wall -Wextra -Werror   -c -o is/ft_isprint.o is/ft_isprint.c
 cc -Wall -Wextra -Werror   -c -o string/ft_strlen.o string/ft_strlen.c
 cc -Wall -Wextra -Werror   -c -o memory/ft_memset.o memory/ft_memset.c
- 
 cc -Wall -Wextra -Werror   -c -o rest/ft_bzero.o rest/ft_bzero.c
 cc -Wall -Wextra -Werror   -c -o memory/ft_memcpy.o memory/ft_memcpy.c
 cc -Wall -Wextra -Werror   -c -o memory/ft_memmove.o memory/ft_memmove.c
@@ -60,7 +55,6 @@ cc -Wall -Wextra -Werror   -c -o memory/ft_memchr.o memory/ft_memchr.c
 cc -Wall -Wextra -Werror   -c -o memory/ft_memcmp.o memory/ft_memcmp.c
 cc -Wall -Wextra -Werror   -c -o string/ft_strnstr.o string/ft_strnstr.c
 cc -Wall -Wextra -Werror   -c -o rest/ft_atoi.o rest/ft_atoi.c
- 
 cc -Wall -Wextra -Werror   -c -o rest/ft_calloc.o rest/ft_calloc.c
 cc -Wall -Wextra -Werror   -c -o string/ft_strdup.o string/ft_strdup.c
 cc -Wall -Wextra -Werror   -c -o string/ft_substr.o string/ft_substr.c
@@ -68,13 +62,11 @@ cc -Wall -Wextra -Werror   -c -o string/ft_strjoin.o string/ft_strjoin.c
 cc -Wall -Wextra -Werror   -c -o string/ft_strtrim.o string/ft_strtrim.c
 cc -Wall -Wextra -Werror   -c -o rest/ft_split.o rest/ft_split.c
 cc -Wall -Wextra -Werror   -c -o rest/ft_itoa.o rest/ft_itoa.c
- 
 cc -Wall -Wextra -Werror   -c -o string/ft_strmapi.o string/ft_strmapi.c
 cc -Wall -Wextra -Werror   -c -o string/ft_striteri.o string/ft_striteri.c
 cc -Wall -Wextra -Werror   -c -o put/ft_putchar_fd.o put/ft_putchar_fd.c
 cc -Wall -Wextra -Werror   -c -o put/ft_putstr_fd.o put/ft_putstr_fd.c
 cc -Wall -Wextra -Werror   -c -o put/ft_putendl_fd.o put/ft_putendl_fd.c
- 
 cc -Wall -Wextra -Werror   -c -o put/ft_putnbr_fd.o put/ft_putnbr_fd.c
 ar rc libft.a is/ft_isalpha.o is/ft_isdigit.o is/ft_isalnum.o is/ft_isascii.o is/ft_isprint.o string/ft_strlen.o memory/ft_memset.o rest/ft_bzero.o memory/ft_memcpy.o memory/ft_memmove.o string/ft_strlcpy.o string/ft_strlcat.o rest/ft_toupper.o rest/ft_tolower.o string/ft_strchr.o string/ft_strrchr.o string/ft_strncmp.o memory/ft_memchr.o memory/ft_memcmp.o string/ft_strnstr.o rest/ft_atoi.o rest/ft_calloc.o string/ft_strdup.o string/ft_substr.o string/ft_strjoin.o string/ft_strtrim.o rest/ft_split.o rest/ft_itoa.o string/ft_strmapi.o string/ft_striteri.o put/ft_putchar_fd.o put/ft_putstr_fd.o put/ft_putendl_fd.o put/ft_putnbr_fd.o
 ranlib libft.a

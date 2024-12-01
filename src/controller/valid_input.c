@@ -19,12 +19,12 @@ int	is_special_char(char c)
 
 int	handle_syntax_error(char *token)
 {
-	ft_putstr_fd("bash: syntax error near unexpected token `", STDERR_FILENO);
+	ft_putstr_fd("bash: syntax error near unexpected token `", 1);
 	if (!token || token[0] == '\0')
-		ft_putstr_fd("newline", STDERR_FILENO);
+		ft_putstr_fd("newline", 1);
 	else
-		ft_putstr_fd(token, STDERR_FILENO);
-	ft_putstr_fd("'\n", STDERR_FILENO);
+		ft_putstr_fd(token, 1);
+	ft_putstr_fd("'\n", 1);
 	return (258);
 }
 
@@ -76,13 +76,15 @@ int	valid_quotes(t_shell *sh, char *str)
 
 int	validate_input(t_shell *sh)
 {
+	int	status;
+
 	if (!valid_quotes(sh, sh->input))
 	{
 		sh->status = 2;
 		return (-1);
 	}
-	sh->status = check_syntax_error(sh);
-	if (sh->status == 258)
+	status = check_syntax_error(sh);
+	if (status == 258)
 		sh->status = 1;
-	return (sh->status == 1);
+	return (status == 258);
 }
