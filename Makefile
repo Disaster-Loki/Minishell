@@ -41,6 +41,7 @@ CONTROLLER_FILES = $(CONTROLLER)/main.c 			\
                    $(CONTROLLER)/exec_cmd.c 		\
                    $(CONTROLLER)/exec_utils.c 		\
                    $(CONTROLLER)/valid_input.c 		\
+                   $(CONTROLLER)/v_utils.c 			\
 				   $(CONTROLLER)/frees.c 			\
 				   $(CONTROLLER)/utils.c
 

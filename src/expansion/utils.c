@@ -56,12 +56,15 @@ char	*not_found(t_args *args, char *name, int *i, int j)
 	char	*rest;
 
 	len = ft_strlen(args[j].str);
+	if ((int)(ft_strlen(name) + 1) == len)
+	{
+		free(name);
+		free(args[j].temp);
+		return (ft_strdup(" "));
+	}
 	sub = ft_substr(args[j].str, 0, *i);
 	rest = ft_substr(args[j].str, *i + ft_strlen(name) + 1, len);
-	if (sub[0] == '\0' && rest[0] == '\0')
-		exp = ft_strdup("");
-	else
-		exp = ft_strjoin(sub, rest);
+	exp = ft_strjoin(sub, rest);
 	*i = 0;
 	free(sub);
 	free(name);

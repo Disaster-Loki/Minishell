@@ -12,11 +12,6 @@
 
 #include "../../inc/minishell.h"
 
-int	is_special_char(char c)
-{
-	return (c == '<' || c == '>' || c == '|');
-}
-
 int	handle_syntax_error(char *token)
 {
 	ft_putstr_fd("bash: syntax error near unexpected token `", 1);
@@ -32,26 +27,23 @@ int	check_syntax_error(t_shell *sh)
 {
 	int		i;
 	char	*input;
+	int		status;
 
 	i = 0;
+	status = 0;
 	input = sh->input;
+	if (input[i] == '|')
+		return (handle_syntax_error("|"));
 	while (input[i])
 	{
 		if (input[i] == '|')
-		{
-			if (i == 0 || is_special_char(input[i + 1]))
-				return (handle_syntax_error("|"));
-		}
-		if (input[i] == '<' || input[i] == '>')
-		{
-			if (input[i + 1] == '<' || input[i + 1] == '>')
-				i++;
-			if (input[i + 1] == '\0')
-				return (handle_syntax_error("newline"));
-			if (is_special_char(input[i + 1]))
-				return (handle_syntax_error(input + i + 1));
-		}
-		i++;
+			status = check_pipe_syntax(input, &i);
+		else if (input[i] == '<' || input[i] == '>')
+			status = check_redirect_syntax(input, &i);
+		else
+			i++;
+		if (status == 258)
+			return (status);
 	}
 	return (0);
 }
@@ -66,7 +58,7 @@ int	valid_quotes(t_shell *sh, char *str)
 	{
 		if (str[i] == '\'' || str[i] == '\"')
 		{
-			if(!find_quotes(sh, str, &i, &end))
+			if (!find_quotes(sh, str, &i, &end))
 				return (0);
 			i = end;
 		}
