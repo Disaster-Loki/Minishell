@@ -53,6 +53,7 @@ int	process_no_quotes(t_shell *sh, char *str, t_args *args, t_tokens *tok)
 	while (args[tok->j].str[++tok->k])
 		process_quotes(sh, args, tok);
 	not_redirect(sh, args, tok);
+	//tok->i = skip_spaces(str, tok->i);
 	(tok->j)++;
 	return (1);
 }
@@ -70,7 +71,8 @@ t_args	*tokenize(t_shell *sh, char *str)
 	while (str[tok.i])
 	{
 		tok.i = skip_spaces(str, tok.i);
-		process_no_quotes(sh, str, args, &tok);
+		if (str[tok.i])
+			process_no_quotes(sh, str, args, &tok);
 	}
 	args[tok.j].str = NULL;
 	return (args);

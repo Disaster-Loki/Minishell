@@ -40,8 +40,6 @@ CONTROLLER_FILES = $(CONTROLLER)/main.c 			\
 				   $(CONTROLLER)/read_line.c 		\
                    $(CONTROLLER)/exec_cmd.c 		\
                    $(CONTROLLER)/exec_utils.c 		\
-                   $(CONTROLLER)/valid_input.c 		\
-                   $(CONTROLLER)/v_utils.c 			\
 				   $(CONTROLLER)/frees.c 			\
 				   $(CONTROLLER)/utils.c
 
@@ -59,6 +57,8 @@ PROCESSING_FILES = $(PROCESSING)/tokenize.c 		\
 				   $(PROCESSING)/utils.c 			\
                    $(PROCESSING)/redir.c 			\
 				   $(PROCESSING)/r_utils.c 			\
+				   $(PROCESSING)/valid_input.c 		\
+                   $(PROCESSING)/v_utils.c 			\
 				   $(PROCESSING)/invalid_rdir.c
 
 EXPANSION_FILES  = $(EXPANSION)/expansion.c 		\

@@ -60,7 +60,7 @@ char	*not_found(t_args *args, char *name, int *i, int j)
 	{
 		free(name);
 		free(args[j].temp);
-		return (ft_strdup(" "));
+		return (ft_strdup(""));
 	}
 	sub = ft_substr(args[j].str, 0, *i);
 	rest = ft_substr(args[j].str, *i + ft_strlen(name) + 1, len);
