@@ -70,6 +70,8 @@ int	exec_cmd(t_shell *sh)
 		printf("%s: No such file or directory", sh->mat[0]);
 		return (-1);
 	}
+	if (!ft_strcmp(sh->mat[0], ""))
+		return (0);
 	sh->split = ft_split(sh->path, ':');
 	if (!sh->split)
 		return (0);

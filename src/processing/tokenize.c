@@ -16,6 +16,8 @@ int	process_quotes(t_shell *sh, t_args *args, t_tokens *tok)
 {
 	char	*str;
 
+	if (!ft_strchr(sh->input, '\'') && !ft_strchr(sh->input, '\"'))
+		return (0);
 	tok->st = tok->k;
 	str = args[tok->j].str;
 	while (str[tok->st] && str[tok->st] != '\'' && str[tok->st] != '\"')

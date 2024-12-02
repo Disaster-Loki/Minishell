@@ -59,7 +59,7 @@ char	*not_found(t_args *args, char *name, int *i, int j)
 	sub = ft_substr(args[j].str, 0, *i);
 	rest = ft_substr(args[j].str, *i + ft_strlen(name) + 1, len);
 	if (sub[0] == '\0' && rest[0] == '\0')
-		exp = "";
+		exp = ft_strdup("");
 	else
 		exp = ft_strjoin(sub, rest);
 	*i = 0;
