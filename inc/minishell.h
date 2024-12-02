@@ -121,7 +121,6 @@ void	signals(void);
 void	signal_handler(int sig);
 void	signal_handler2(int sig);
 
-
 // Builtins
 void	cmd_cd(t_shell *sh);
 void	cmd_pwd(t_shell *sh);

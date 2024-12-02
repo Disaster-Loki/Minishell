@@ -42,7 +42,7 @@ char	**full_split(t_shell *sh, char *str, char c)
 	t_split	spt;
 
 	if (initialize_split(&spt, str))
-		return (free(spt.res),NULL);
+		return (free(spt.res), NULL);
 	while (spt.str[spt.i])
 	{
 		if (process_segment(sh, &spt, c))

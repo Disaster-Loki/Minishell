@@ -53,7 +53,6 @@ int	process_no_quotes(t_shell *sh, char *str, t_args *args, t_tokens *tok)
 	while (args[tok->j].str[++tok->k])
 		process_quotes(sh, args, tok);
 	not_redirect(sh, args, tok);
-	//tok->i = skip_spaces(str, tok->i);
 	(tok->j)++;
 	return (1);
 }
