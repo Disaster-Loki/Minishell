@@ -17,7 +17,7 @@ void	free_args(t_shell *sh)
 	int	i;
 
 	i = 0;
-	while (sh->args[i].str)
+	while (sh->args[i].str && sh->args[i].str[0] != '\0')
 		free(sh->args[i++].str);
 	free(sh->args);
 	free_mat(sh->mat);
