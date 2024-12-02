@@ -32,6 +32,7 @@ cc -g -Wall -Wextra -Werror -c src/redirects/redirects.c -o src/redirects/redire
 cc -g -Wall -Wextra -Werror -c src/redirects/utills.c -o src/redirects/utills.o
 cc -g -Wall -Wextra -Werror -c src/redirects/right_utils.c -o src/redirects/right_utils.o
 make -C ./libft
+ 
 make[1]: Entering directory '/home/optimus-prime/Documents/Minishell/libft'
 cc -Wall -Wextra -Werror   -c -o is/ft_isalpha.o is/ft_isalpha.c
 cc -Wall -Wextra -Werror   -c -o is/ft_isdigit.o is/ft_isdigit.c

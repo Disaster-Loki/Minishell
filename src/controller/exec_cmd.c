@@ -65,6 +65,11 @@ int	exec_cmd(t_shell *sh)
 {
 	pid_t	pid;
 
+	if (sh->path == NULL)
+	{
+		printf("%s: No such file or directory", sh->mat[0]);
+		return (-1);
+	}
 	sh->split = ft_split(sh->path, ':');
 	if (!sh->split)
 		return (0);
