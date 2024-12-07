@@ -37,14 +37,31 @@ int	ft_get_base(const char **str, int base)
 	return (base);
 }
 
-long long	ft_strtoll(const char *str, char **endptr, int base)
+long long	ft_strtoll_parse(const char **str, int *sign, int base)
 {
-	int			sign;
 	int			digit;
 	long long	result;
 
-	sign = 1;
 	result = 0;
+	while (**str)
+	{
+		digit = ft_get_digit(**str);
+		if (digit < 0 || digit >= base)
+			break;
+		if (result > (LLONG_MAX - digit) / base)
+			return (ft_handle_overflow(*sign));
+		result = result * base + digit;
+		(*str)++;
+	}
+	return (result);
+}
+
+long long	ft_strtoll(const char *str, char **endptr, int base)
+{
+	int			sign;
+	long long	result;
+
+	sign = 1;
 	while (ft_isspace(*str))
 		str++;
 	if (*str == '-' || *str == '+')
@@ -54,16 +71,7 @@ long long	ft_strtoll(const char *str, char **endptr, int base)
 		str++;
 	}
 	base = ft_get_base(&str, base);
-	while (*str)
-	{
-		digit = ft_get_digit(*str);
-		if (digit < 0 || digit >= base)
-			break;
-		if (result > (LLONG_MAX - digit) / base)
-			return (ft_handle_overflow(sign));
-		result = result * base + digit;
-		str++;
-	}
+	result = ft_strtoll_parse(&str, &sign, base);
 	if (endptr != NULL)
 		*endptr = (char *)str;
 	return (result * sign);
