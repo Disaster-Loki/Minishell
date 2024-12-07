@@ -40,8 +40,10 @@ CONTROLLER_FILES = $(CONTROLLER)/main.c 			\
 				   $(CONTROLLER)/read_line.c 		\
                    $(CONTROLLER)/exec_cmd.c 		\
                    $(CONTROLLER)/exec_utils.c 		\
+				   $(CONTROLLER)/ft_strtoll.c 		\
 				   $(CONTROLLER)/frees.c 			\
-				   $(CONTROLLER)/utils.c
+				   $(CONTROLLER)/utils.c 			\
+				   $(CONTROLLER)/utils2.c
 
 BUILTINS_FILES   = $(BUILTINS)/cd.c 				\
 				   $(BUILTINS)/env.c 				\

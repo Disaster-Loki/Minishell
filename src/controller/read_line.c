@@ -20,6 +20,12 @@ int	get_path(t_shell *sh)
 	return (1);
 }
 
+void	ft_xprint(char *str, char *str2, int fd)
+{
+	ft_putstr_fd(str, fd);
+	ft_putstr_fd(str2, fd);
+}
+
 void	check_command(t_shell *sh)
 {
 	if (sh->mat[0])
@@ -43,7 +49,7 @@ void	check_command(t_shell *sh)
 		else if (!ft_strcmp(sh->mat[0], "exit"))
 			cmd_exit(sh);
 		else if (!exec_cmd(sh))
-			printf("%s: command not found\n", sh->mat[0]);
+			ft_xprint(sh->mat[0], ": command not found\n", 2);
 	}
 }
 

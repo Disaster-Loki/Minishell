@@ -103,13 +103,16 @@ typedef struct s_shell
 	char	**temp_unset;
 }	t_shell;
 
-int		is_special_char(char c);
-int		validate_input(t_shell *sh);
-int		check_syntax_error(t_shell *sh);
-int		handle_syntax_error(char *token);
-int		check_pipe_syntax(char *input, int *i);
-int		check_redirect_syntax(char *input, int *i);
-int		ft_alter_strchr(t_shell *sh, char *str, char c);
+int 		ft_isspace(char c);
+int			ft_get_digit(char c);
+int			is_special_char(char c);
+int			validate_input(t_shell *sh);
+int			check_syntax_error(t_shell *sh);
+int			handle_syntax_error(char *token);
+int			check_pipe_syntax(char *input, int *i);
+int			check_redirect_syntax(char *input, int *i);
+int			ft_alter_strchr(t_shell *sh, char *str, char c);
+long long	ft_strtoll(const char *str, char **endptr, int base);
 
 // right_utills.c
 void	get_dir(t_shell *sh);
