@@ -20,7 +20,8 @@ void	free_args(t_shell *sh)
 	while (sh->args[i].str)
 		free(sh->args[i++].str);
 	free(sh->args);
-	free_mat(sh->mat);
+	if (sh->mat)
+		free_mat(sh->mat);
 }
 
 void	free_mat(char **mt)

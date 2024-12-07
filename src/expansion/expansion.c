@@ -35,7 +35,6 @@ char	*expand_var(t_shell *sh, t_args *args, int *i, int j)
 	free(rest);
 	free(name);
 	free(sh->tmp);
-	free(args[j].temp);
 	return (exp);
 }
 
@@ -53,6 +52,7 @@ void	handle_expansion(t_shell *sh, t_args *args, t_tokens *tok, int *i)
 			|| args[tok->j].str[*i + 1] == '\0')
 			return ;
 		args[tok->j].str = expand_var(sh, args, i, tok->j);
+		free(args[tok->j].temp);
 	}
 }
 

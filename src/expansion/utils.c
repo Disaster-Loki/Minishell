@@ -57,11 +57,7 @@ char	*not_found(t_args *args, char *name, int *i, int j)
 
 	len = ft_strlen(args[j].str);
 	if ((int)(ft_strlen(name) + 1) == len)
-	{
-		free(name);
-		free(args[j].temp);
-		return (ft_strdup(""));
-	}
+		return (free(name), ft_strdup(""));
 	sub = ft_substr(args[j].str, 0, *i);
 	rest = ft_substr(args[j].str, *i + ft_strlen(name) + 1, len);
 	exp = ft_strjoin(sub, rest);
@@ -69,6 +65,5 @@ char	*not_found(t_args *args, char *name, int *i, int j)
 	free(sub);
 	free(name);
 	free(rest);
-	free(args[j].temp);
 	return (exp);
 }
