@@ -30,13 +30,13 @@ void	check_command(t_shell *sh)
 {
 	if (sh->mat[0])
 	{
-		/*if (has_redir(sh->mat, sh->n_rdir) && sh->redirect == 0)
+		if (has_redir(sh->mat) && sh->redirect == 0)
 			operators(sh);
 		else if (!ft_strcmp(sh->mat[0], "export") && !sh->mat[1])
 			cmd_export(sh->env);
 		else if (!ft_strcmp(sh->mat[0], "export") && sh->mat[1])
-			cmd_export2(sh);*/
-		if (!ft_strcmp(sh->mat[0], "unset"))
+			cmd_export2(sh);
+		else if (!ft_strcmp(sh->mat[0], "unset"))
 			cmd_unset(sh, sh->mat);
 		else if (!ft_strcmp(sh->mat[0], "echo"))
 			cmd_echo(sh);

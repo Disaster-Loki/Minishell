@@ -73,7 +73,12 @@ PIPELINE_FILES   = $(PIPELINE)/Init_vars.c 			\
 
 REDIRECTS_FILES  = $(REDIRECTS)/redirects.c 		\
 				   $(REDIRECTS)/utills.c 			\
-				   $(REDIRECTS)/right_utils.c
+				   $(REDIRECTS)/right_utills.c			\
+				   $(REDIRECTS)/double_left.c			\
+				   $(REDIRECTS)/double_left_utills.c		\
+				   $(REDIRECTS)/left_utills.c			\
+				   $(REDIRECTS)/left_redir.c			\
+				   $(REDIRECTS)/right_redir.c			\
 
 SRC_FILES = $(CONTROLLER_FILES) 					\
 			$(BUILTINS_FILES) 						\

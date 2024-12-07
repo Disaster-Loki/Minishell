@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/29 12:57:33 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/07 21:51:18 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,15 @@ typedef struct s_file
 	int		flag;
 	char	**arg2;
 	int		control;
+	int		left_fd;
 	char	*arg[1024];
 	char	*file[1024];
 	char	*redir[1024];
+	char	**left_file2;
+	char	*left_file[1024];
+	char	*left_double_file[1024];
+	char	**left_double_file2;
+	char	**matrix;
 }	t_file;
 
 typedef struct s_tokens
@@ -152,11 +158,9 @@ char		*ft_strndup(const char *s, size_t n);
 int			ft_strcmp(const char *s1, const char *s2);
 
 // Unset
-void		operators(t_shell *sh);
 void		free_args(t_shell *sh);
 void		filter_tokens(char **mat);
 void		free_array_mat(char ***array);
-int			has_redir(char **mt, int *n_rdir);
 void		cmd_unset(t_shell *sh, char **to_remove);
 
 // Exec_cmd
@@ -175,6 +179,26 @@ char		*get_env(t_shell *sh, char *str);
 int			states_cmd(t_shell *sh, t_args *args, int i, int j);
 char		*not_found(t_args *args, char *name, int *i, int j);
 void		expansion(t_shell *sh, t_args *args, t_tokens *tok);
+
+// Redirects
+void		get_dir(t_shell *sh);
+void		get_arg(t_shell *sh);
+void		get_file(t_shell *sh);
+void		left_oper(t_shell *sh);
+void		exec_left(t_shell *sh);
+void		help_file(t_shell *sh);
+void		operators(t_shell *sh);
+void		right_oper(t_shell *sh);
+void		exec_right(t_shell *sh);
+void		double_left(t_shell *sh);
+void		help_get_arg(t_shell *sh);
+void		get_left_file(t_shell *sh);
+void		get_double_file(t_shell *sh);
+void		help_double_left(t_shell *sh);
+void		help_right(t_shell *sh, int *fd);
+int			find_type(t_shell *sh);
+int			has_redir(char **mt);
+int			type_of_redir(char **mt);
 
 // Pipeline
 int			pipetting(t_shell *sh);
