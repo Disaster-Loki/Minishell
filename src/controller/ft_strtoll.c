@@ -47,7 +47,7 @@ long long	ft_strtoll_parse(const char **str, int *sign, int base)
 	{
 		digit = ft_get_digit(**str);
 		if (digit < 0 || digit >= base)
-			break;
+			break ;
 		if (result > (LLONG_MAX - digit) / base)
 			return (ft_handle_overflow(*sign));
 		result = result * base + digit;

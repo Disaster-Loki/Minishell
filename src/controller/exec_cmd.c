@@ -67,7 +67,7 @@ int	exec_cmd(t_shell *sh)
 
 	if (sh->path == NULL)
 	{
-		printf("%s: No such file or directory", sh->mat[0]);
+		printf("%s: No such file or directory\n", sh->mat[0]);
 		return (-1);
 	}
 	if (!ft_strcmp(sh->mat[0], ""))
