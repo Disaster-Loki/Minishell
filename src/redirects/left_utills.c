@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:35:55 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/07 21:29:59 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/09 08:59:00 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	get_left_file(t_shell *sh)
 	sh->manager.left_file2 = malloc(sizeof(char *) * 3);
 	if (!sh->manager.left_file2)
 		return ;
-	sh->manager.left_file2[0] = sh->manager.left_file[0];
-	sh->manager.left_file2[1] = sh->manager.left_file[i - 1];
+	sh->manager.left_file2[0] = ft_strdup(sh->manager.left_file[0]);
+	sh->manager.left_file2[1] = ft_strdup(sh->manager.left_file[i - 1]);
 	sh->manager.left_file2[2] = NULL;
 	sh->mat = sh->manager.left_file2;
 }

@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 21:47:15 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/07 21:47:36 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/09 08:05:56 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,11 @@ void	right_oper(t_shell *sh)
 void	exec_right(t_shell *sh)
 {
 	sh->manager.control = 1;
+	allocater(sh);
 	get_dir(sh);
 	get_file(sh);
 	get_arg(sh);
 	right_oper(sh);
+	free_mat(sh->manager.file);
+	free_mat(sh->manager.redir);
 }

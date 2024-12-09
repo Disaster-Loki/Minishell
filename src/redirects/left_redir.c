@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:35:49 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/07 21:42:43 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/09 09:08:56 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,18 @@ void	left_oper(t_shell *sh)
 
 void	exec_left(t_shell *sh)
 {
+	char	**temp_mat;
+
 	sh->manager.control = 1;
 	if (find_type(sh) == 1)
 		double_left(sh);
 	else
 	{
+		temp_mat = sh->mat;
 		get_left_file(sh);
 		if (!find_file(sh))
 			return ;
 		left_oper(sh);
+		free_mat(temp_mat);
 	}
 }

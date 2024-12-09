@@ -6,11 +6,34 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:43:17 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/29 13:45:14 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/09 09:10:36 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+void	allocater(t_shell *sh)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (sh->mat[++i])
+	{
+		if ((!ft_strncmp(sh->mat[i], ">>", 2)
+				&& ft_strlen(sh->mat[i]) == 2)
+			|| (!ft_strncmp(sh->mat[i], ">", 1)
+				&& ft_strlen(sh->mat[i]) == 1))
+			j++;
+	}
+	sh->manager.file = malloc(sizeof(char *) * (j + 1));
+	if (!sh->manager.file)
+		return ;
+	sh->manager.redir = malloc(sizeof(char *) * (j + 1));
+	if (!sh->manager.redir)
+		return ;
+}
 
 void	get_file(t_shell *sh)
 {

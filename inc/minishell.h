@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/07 21:51:18 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/09 08:22:12 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ typedef struct s_file
 	int		control;
 	int		left_fd;
 	char	*arg[1024];
-	char	*file[1024];
-	char	*redir[1024];
+	char	**file;
+	char	**redir;
 	char	**left_file2;
 	char	*left_file[1024];
 	char	*left_double_file[1024];
@@ -85,6 +85,7 @@ typedef struct s_tokens
 
 typedef struct s_shell
 {
+	int		flag;
 	int		i;
 	int		in_q;
 	char	*tmp;
@@ -184,6 +185,7 @@ void		expansion(t_shell *sh, t_args *args, t_tokens *tok);
 void		get_dir(t_shell *sh);
 void		get_arg(t_shell *sh);
 void		get_file(t_shell *sh);
+void		allocater(t_shell *sh);
 void		left_oper(t_shell *sh);
 void		exec_left(t_shell *sh);
 void		help_file(t_shell *sh);

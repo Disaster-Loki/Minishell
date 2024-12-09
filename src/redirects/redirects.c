@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:43:17 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/07 21:44:10 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/09 08:23:24 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	type_of_redir(char **mt)
 
 void	operators(t_shell *sh)
 {
+	sh->flag = 1;
 	if (type_of_redir(sh->mat))
 		exec_left(sh);
 	else
