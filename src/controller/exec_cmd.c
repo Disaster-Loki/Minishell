@@ -12,6 +12,27 @@
 
 #include "../../inc/minishell.h"
 
+void	child_abs(t_shell *sh)
+{
+	pid_t	pid;
+	char	*str;
+	char	**arg;
+
+	arg = sh->mat;
+	str = ft_substr(arg[0], 0, ft_strlen("/bin/"));
+	pid = fork();
+	if (pid == 0)
+	{
+		if (!ft_strcmp(str, "/bin/"))
+		{
+			if (execve(sh->args[0].str, arg, sh->env) == -1)
+				handle_exec_error(sh->args[0].str, arg, sh);
+			exit(127);
+		}
+	}
+	return ;
+}
+
 void	child_process(t_shell *sh)
 {
 	int		i;
@@ -66,6 +87,7 @@ int	exec_cmd(t_shell *sh)
 {
 	pid_t	pid;
 
+	//child_abs(sh);
 	if (sh->path == NULL)
 	{
 		xprint(sh->mat[0], ": No such file or directory\n", 2);
