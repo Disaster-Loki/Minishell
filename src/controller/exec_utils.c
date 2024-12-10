@@ -12,14 +12,6 @@
 
 #include "../../inc/minishell.h"
 
-void	signal_handler2(int sig)
-{
-	if (sig == SIGQUIT)
-		printf("Quit\n");
-	if (sig == SIGINT)
-		printf("\n");
-}
-
 char	**ft_args(t_args *args)
 {
 	int		i;
