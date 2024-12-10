@@ -30,7 +30,6 @@ void	child_abs(t_shell *sh)
 			exit(127);
 		}
 	}
-	return ;
 }
 
 void	child_process(t_shell *sh)
