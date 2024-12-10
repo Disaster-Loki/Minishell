@@ -43,6 +43,7 @@ void	child_process(t_shell *sh)
 int	handle_child_process(t_shell *sh, pid_t pid)
 {
 	signal(SIGINT, signal_handler2);
+	signal(SIGQUIT, signal_handler2);
 	waitpid(pid, &sh->status, 0);
 	if (WIFSIGNALED(sh->status))
 	{
@@ -67,7 +68,12 @@ int	exec_cmd(t_shell *sh)
 
 	if (sh->path == NULL)
 	{
-		printf("%s: No such file or directory\n", sh->mat[0]);
+		xprint(sh->mat[0], ": No such file or directory\n", 2);
+		return (-1);
+	}
+	if (!ft_strcmp(sh->mat[0], "bash") && sh->mat[1])
+	{
+		xprint(sh->mat[1], ": No such file or directory\n", 2);
 		return (-1);
 	}
 	if (!ft_strcmp(sh->mat[0], ""))

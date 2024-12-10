@@ -12,15 +12,15 @@
 
 #include "../../inc/minishell.h"
 
-int	get_path(t_shell *sh)
+/*int	get_path(t_shell *sh)
 {
 	sh->path = get_env(sh, "PATH");
 	if (sh->path == NULL)
 		return (0);
 	return (1);
-}
+}*/
 
-void	ft_xprint(char *str, char *str2, int fd)
+void	xprint(char *str, char *str2, int fd)
 {
 	ft_putstr_fd(str, fd);
 	ft_putstr_fd(str2, fd);
@@ -49,16 +49,16 @@ void	check_command(t_shell *sh)
 		else if (!ft_strcmp(sh->mat[0], "exit"))
 			cmd_exit(sh);
 		else if (!exec_cmd(sh))
-			ft_xprint(sh->mat[0], ": command not found\n", 2);
+			xprint(sh->mat[0], ": command not found\n", 2);
 	}
 }
 
 int	read_line(t_shell *sh)
 {
 	sh->redirect = 0;
-	if (validate_input(sh) || validate_input(sh) == -1)
+	sh->path = get_env(sh, "PATH");
+	if (validate_input(sh) || validate_input(sh) <= -1)
 		return (-1);
-	get_path(sh);
 	if (ft_alter_strchr(sh, sh->input, '|') && pipetting(sh))
 		return (0);
 	if (alter_redirects(sh) == -1)

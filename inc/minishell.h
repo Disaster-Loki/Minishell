@@ -117,6 +117,7 @@ int			validate_input(t_shell *sh);
 int			check_syntax_error(t_shell *sh);
 int			handle_syntax_error(char *token);
 int			check_pipe_syntax(char *input, int *i);
+void		xprint(char *str, char *str2, int fd);
 int			check_redirect_syntax(char *input, int *i);
 int			ft_alter_strchr(t_shell *sh, char *str, char c);
 long long	ft_strtoll(const char *str, char **endptr, int base);

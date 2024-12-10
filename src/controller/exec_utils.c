@@ -14,8 +14,10 @@
 
 void	signal_handler2(int sig)
 {
-	(void)sig;
-	printf("\n");
+	if (sig == SIGINT)
+		printf("\n");
+	if (sig == SIGQUIT)
+		printf("Quit\n");
 }
 
 char	**ft_args(t_args *args)

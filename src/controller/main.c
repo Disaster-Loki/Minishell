@@ -35,12 +35,13 @@ int	main(int av, char **args, char **env)
 
 	(void)av;
 	(void)args;
+	shell.i = 0;
+	shell.status = 0;
+	shell.path = NULL;
+	shell.flag_env = 0;
 	shell.temp_env = NULL;
 	shell.env = ft_env(env);
-	shell.status = 0;
 	shell.free_env = malloc(sizeof(char **) * 1024);
-	shell.i = 0;
-	shell.flag_env = 0;
 	while (1)
 	{
 		signals();
