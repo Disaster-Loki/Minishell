@@ -20,7 +20,7 @@ void	child_process(t_shell *sh)
 
 	i = -1;
 	arg = sh->mat;
-	if (sh->args[0].str[0] == '.' && sh->args[0].str[1] == '/')
+	if (arg[0][0] == '.' && arg[0][1] == '/')
 	{
 		if (execve(sh->args[0].str, arg, sh->env) == -1)
 			handle_exec_error(sh->args[0].str, arg, sh);
