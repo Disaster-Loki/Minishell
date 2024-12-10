@@ -5,7 +5,6 @@ cc -g -Wall -Wextra -Werror -c src/controller/signals.c -o src/controller/signal
 cc -g -Wall -Wextra -Werror -c src/controller/read_line.c -o src/controller/read_line.o
 cc -g -Wall -Wextra -Werror -c src/controller/exec_cmd.c -o src/controller/exec_cmd.o
 cc -g -Wall -Wextra -Werror -c src/controller/exec_utils.c -o src/controller/exec_utils.o
- 
 cc -g -Wall -Wextra -Werror -c src/controller/ft_strtoll.c -o src/controller/ft_strtoll.o
 cc -g -Wall -Wextra -Werror -c src/controller/frees.c -o src/controller/frees.o
 cc -g -Wall -Wextra -Werror -c src/controller/utils.c -o src/controller/utils.o
@@ -22,7 +21,6 @@ cc -g -Wall -Wextra -Werror -c src/builtins/export_utils.c -o src/builtins/expor
 cc -g -Wall -Wextra -Werror -c src/processing/tokenize.c -o src/processing/tokenize.o
 cc -g -Wall -Wextra -Werror -c src/processing/utils.c -o src/processing/utils.o
 cc -g -Wall -Wextra -Werror -c src/processing/redir.c -o src/processing/redir.o
- 
 cc -g -Wall -Wextra -Werror -c src/processing/r_utils.c -o src/processing/r_utils.o
 cc -g -Wall -Wextra -Werror -c src/processing/valid_input.c -o src/processing/valid_input.o
 cc -g -Wall -Wextra -Werror -c src/processing/v_utils.c -o src/processing/v_utils.o
@@ -41,9 +39,7 @@ cc -g -Wall -Wextra -Werror -c src/redirects/double_left_utills.c -o src/redirec
 cc -g -Wall -Wextra -Werror -c src/redirects/left_utills.c -o src/redirects/left_utills.o
 cc -g -Wall -Wextra -Werror -c src/redirects/left_redir.c -o src/redirects/left_redir.o
 cc -g -Wall -Wextra -Werror -c src/redirects/right_redir.c -o src/redirects/right_redir.o
- 
 make -C ./libft
- 
 make[1]: Entering directory '/home/eges-code/Documents/Minishell/libft'
 cc -Wall -Wextra -Werror   -c -o is/ft_isalpha.o is/ft_isalpha.c
 cc -Wall -Wextra -Werror   -c -o is/ft_isdigit.o is/ft_isdigit.c
@@ -59,7 +55,6 @@ cc -Wall -Wextra -Werror   -c -o string/ft_strlcpy.o string/ft_strlcpy.c
 cc -Wall -Wextra -Werror   -c -o string/ft_strlcat.o string/ft_strlcat.c
 cc -Wall -Wextra -Werror   -c -o rest/ft_toupper.o rest/ft_toupper.c
 cc -Wall -Wextra -Werror   -c -o rest/ft_tolower.o rest/ft_tolower.c
- 
 cc -Wall -Wextra -Werror   -c -o string/ft_strchr.o string/ft_strchr.c
 cc -Wall -Wextra -Werror   -c -o string/ft_strrchr.o string/ft_strrchr.c
 cc -Wall -Wextra -Werror   -c -o string/ft_strncmp.o string/ft_strncmp.c
@@ -75,7 +70,6 @@ cc -Wall -Wextra -Werror   -c -o string/ft_strtrim.o string/ft_strtrim.c
 cc -Wall -Wextra -Werror   -c -o rest/ft_split.o rest/ft_split.c
 cc -Wall -Wextra -Werror   -c -o rest/ft_itoa.o rest/ft_itoa.c
 cc -Wall -Wextra -Werror   -c -o string/ft_strmapi.o string/ft_strmapi.c
- 
 cc -Wall -Wextra -Werror   -c -o string/ft_striteri.o string/ft_striteri.c
 cc -Wall -Wextra -Werror   -c -o put/ft_putchar_fd.o put/ft_putchar_fd.c
 cc -Wall -Wextra -Werror   -c -o put/ft_putstr_fd.o put/ft_putstr_fd.c

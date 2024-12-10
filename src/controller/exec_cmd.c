@@ -38,6 +38,8 @@ void	child_process(t_shell *sh)
 	char	*tmp;
 	char	**arg;
 
+	signal(SIGQUIT, SIG_DFL);
+
 	i = -1;
 	arg = sh->mat;
 	if (arg[0][0] == '.' && arg[0][1] == '/')
@@ -65,10 +67,15 @@ int	handle_child_process(t_shell *sh, pid_t pid)
 	signal(SIGINT, signal_handler2);
 	signal(SIGQUIT, signal_handler2);
 	waitpid(pid, &sh->status, 0);
+
 	if (WIFSIGNALED(sh->status))
 	{
 		if (WTERMSIG(sh->status) == SIGINT)
 			sh->status = 130;
+		else if (WTERMSIG(sh->status) == SIGQUIT)
+		{
+			sh->status = 131;
+		}
 		else
 			sh->status = 128 + WTERMSIG(sh->status);
 	}
@@ -86,7 +93,6 @@ int	exec_cmd(t_shell *sh)
 {
 	pid_t	pid;
 
-	//child_abs(sh);
 	if (sh->path == NULL)
 	{
 		xprint(sh->mat[0], ": No such file or directory\n", 2);

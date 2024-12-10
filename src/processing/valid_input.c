@@ -66,10 +66,29 @@ int	valid_quotes(t_shell *sh, char *str)
 	return (1);
 }
 
+int	is_empty_input(const char *input)
+{
+	int	i;
+
+	i = 0;
+	while (input[i])
+	{
+		if (input[i] != ' ' && input[i] != '\t')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	validate_input(t_shell *sh)
 {
 	int	status;
 
+	if (!is_empty_input(sh->input))
+	{
+		sh->status = 0;
+		return (-1);
+	}
 	if (!valid_quotes(sh, sh->input))
 	{
 		sh->status = 2;
