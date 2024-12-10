@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:43:17 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/09 09:10:36 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:30:25 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	allocater(t_shell *sh)
 
 	i = 0;
 	j = 0;
+
+	if ((!ft_strncmp(sh->mat[i], ">", 1) && ft_strlen(sh->mat[i]) == 1) || (!ft_strncmp(sh->mat[i], ">>", 2) && ft_strlen(sh->mat[i]) == 2))
+		i = -1;
 	while (sh->mat[++i])
 	{
 		if ((!ft_strncmp(sh->mat[i], ">>", 2)
@@ -42,13 +45,28 @@ void	get_file(t_shell *sh)
 
 	i = 0;
 	j = 0;
-	while (sh->mat[++i])
+	if ((!ft_strncmp(sh->mat[i], ">", 1) && ft_strlen(sh->mat[i]) == 1) || (!ft_strncmp(sh->mat[i], ">>", 2) && ft_strlen(sh->mat[i]) == 2))
 	{
-		if ((!ft_strncmp(sh->mat[i], ">", 1)
-				&& ft_strlen(sh->mat[i]) == 1)
-			|| (!ft_strncmp(sh->mat[i], ">>", 2)
-				&& ft_strlen(sh->mat[i]) == 2))
-			sh->manager.file[j++] = ft_strdup(sh->mat[i + 1]);
+		while (sh->mat[i])
+		{
+			if ((!ft_strncmp(sh->mat[i], ">", 1)
+					&& ft_strlen(sh->mat[i]) == 1)
+				|| (!ft_strncmp(sh->mat[i], ">>", 2)
+					&& ft_strlen(sh->mat[i]) == 2))
+				sh->manager.file[j++] = ft_strdup(sh->mat[i + 1]);
+			i++;
+		}
+	}
+	else
+	{
+		while (sh->mat[++i])
+		{
+			if ((!ft_strncmp(sh->mat[i], ">", 1)
+					&& ft_strlen(sh->mat[i]) == 1)
+				|| (!ft_strncmp(sh->mat[i], ">>", 2)
+					&& ft_strlen(sh->mat[i]) == 2))
+				sh->manager.file[j++] = ft_strdup(sh->mat[i + 1]);
+		}
 	}
 	sh->manager.file[j] = NULL;
 }
@@ -60,13 +78,28 @@ void	get_dir(t_shell *sh)
 
 	i = 0;
 	j = 0;
-	while (sh->mat[++i])
+	if ((!ft_strncmp(sh->mat[i], ">", 1) && ft_strlen(sh->mat[i]) == 1) || (!ft_strncmp(sh->mat[i], ">>", 2) && ft_strlen(sh->mat[i]) == 2))
 	{
-		if ((!ft_strncmp(sh->mat[i], ">", 1)
-				&& ft_strlen(sh->mat[i]) == 1)
-			|| (!ft_strncmp(sh->mat[i], ">>", 2)
-				&& ft_strlen(sh->mat[i]) == 2))
-			sh->manager.redir[j++] = ft_strdup(sh->mat[i]);
+		while (sh->mat[i])
+		{
+			if ((!ft_strncmp(sh->mat[i], ">", 1)
+					&& ft_strlen(sh->mat[i]) == 1)
+				|| (!ft_strncmp(sh->mat[i], ">>", 2)
+					&& ft_strlen(sh->mat[i]) == 2))
+				sh->manager.redir[j++] = ft_strdup(sh->mat[i]);
+			i++;
+		}
+	}
+	else
+	{
+		while (sh->mat[++i])
+		{
+			if ((!ft_strncmp(sh->mat[i], ">", 1)
+					&& ft_strlen(sh->mat[i]) == 1)
+				|| (!ft_strncmp(sh->mat[i], ">>", 2)
+					&& ft_strlen(sh->mat[i]) == 2))
+				sh->manager.redir[j++] = ft_strdup(sh->mat[i]);
+		}
 	}
 	sh->manager.redir[j] = NULL;
 }
@@ -85,7 +118,8 @@ void	help_get_arg(t_shell *sh)
 			|| (!ft_strncmp(sh->mat[i], ">>", 2)
 				&& ft_strlen(sh->mat[i]) == 2))
 		{
-			i += 2;
+			if (sh->mat[i + 1] != NULL)
+				i += 2;
 		}
 		else
 		{
