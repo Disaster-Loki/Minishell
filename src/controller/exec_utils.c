@@ -17,7 +17,12 @@ void	signal_handler2(int sig)
 	if (sig == SIGINT)
 		printf("\n");
 	if (sig == SIGQUIT)
+	{
 		printf("Quit\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }
 
 char	**ft_args(t_args *args)
