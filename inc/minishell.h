@@ -26,11 +26,6 @@
 # include <readline/readline.h>
 # include "../libft/inc/libft.h"
 
-# define RESET "\033[0m"
-# define GREEN "\033[0;32m"
-# define BOLD_GREEN "\033[1;32m"
-# define COOL_EMOJI "😎"
-
 typedef struct s_redir
 {
 	int		i;
@@ -59,16 +54,16 @@ typedef struct s_file
 	int		fd;
 	int		flag;
 	char	**arg2;
+	char	**file;
 	int		control;
 	int		left_fd;
-	char	*arg[1024];
-	char	**file;
 	char	**redir;
+	char	**matrix;
+	char	*arg[1024];
 	char	**left_file2;
 	char	*left_file[1024];
 	char	*left_double_file[1024];
 	char	**left_double_file2;
-	char	**matrix;
 }	t_file;
 
 typedef struct s_tokens
@@ -85,8 +80,8 @@ typedef struct s_tokens
 
 typedef struct s_shell
 {
-	int		flag;
 	int		i;
+	int		flag;
 	int		in_q;
 	char	*tmp;
 	int		rdir;
