@@ -91,6 +91,7 @@ int	validate_input(t_shell *sh)
 	}
 	if (!valid_quotes(sh, sh->input))
 	{
+		xprint("bash: ", "has quotes\n", 2);
 		sh->status = 2;
 		return (-1);
 	}

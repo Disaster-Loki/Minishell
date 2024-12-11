@@ -15,7 +15,7 @@
 void	signal_handler2(int sig)
 {
 	if (sig == SIGQUIT)
-		printf("Quit\n");
+		printf("Quit (core dumped)\n");
 	if (sig == SIGINT)
 		printf("\n");
 }
