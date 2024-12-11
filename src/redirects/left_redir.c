@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:35:49 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/09 09:08:56 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/11 19:14:52 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,15 @@ int	find_file(t_shell *sh)
 	int	fd;
 
 	i = 0;
-	while (sh->mat[++i])
+	while (sh->manager.first_left_file[i])
 	{
-		fd = open(sh->manager.left_file[i], O_RDONLY);
+		fd = open(sh->manager.first_left_file[i], O_RDONLY);
 		if (fd < 0)
 		{
-			printf("bash: %s: No such file for directory\n", sh->mat[i]);
+			printf("bash: %s: No such file for directory\n", sh->manager.first_left_file[i]);
 			return (0);
 		}
+		i++;
 	}
 	return (1);
 }
@@ -46,8 +47,6 @@ int	find_file(t_shell *sh)
 void	left_oper(t_shell *sh)
 {
 	int	pid;
-	int	fd;
-
 	pid = fork();
 	if (pid < 0)
 	{
@@ -56,13 +55,8 @@ void	left_oper(t_shell *sh)
 	}
 	if (pid == 0)
 	{
-		if (!find_file(sh))
-			return ;
-		fd = open(sh->mat[1], O_RDONLY);
-		dup2(fd, STDIN_FILENO);
-		sh->redirect = 1;
 		check_command(sh);
-		close(fd);
+		sh->redirect = 1;
 		exit(0);
 	}
 	else
@@ -79,9 +73,13 @@ void	exec_left(t_shell *sh)
 	else
 	{
 		temp_mat = sh->mat;
-		get_left_file(sh);
+		firsts_left_file(sh);
 		if (!find_file(sh))
 			return ;
+		if (verify_status(sh))
+			get_left_file2(sh);
+		else
+		 	get_left_file1(sh);
 		left_oper(sh);
 		free_mat(temp_mat);
 	}

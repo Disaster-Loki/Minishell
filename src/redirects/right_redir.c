@@ -6,13 +6,13 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 21:47:15 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/10 14:55:34 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:02:30 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	help_right(t_shell *sh, int *fd)
+int	help_right(t_shell *sh, int *fd)
 {
 	int	i;
 
@@ -31,6 +31,14 @@ void	help_right(t_shell *sh, int *fd)
 			close(*fd);
 		i++;
 	}
+	if (*fd < 0)
+	{
+		xprint("bash: ", sh->manager.file[i - 1], 2);
+		xprint(": ", "", 2);
+		perror("");
+		return (0);
+	}
+	return (1);
 }
 
 void	right_oper(t_shell *sh)
@@ -46,12 +54,8 @@ void	right_oper(t_shell *sh)
 	}
 	if (pid == 0)
 	{
-		help_right(sh, &fd);
-		if (fd < 0)
-		{
-			perror("open");
+		if (!help_right(sh, &fd))
 			return ;
-		}
 		dup2(fd, STDOUT_FILENO);
 		sh->redirect = 1;
 		check_command(sh);

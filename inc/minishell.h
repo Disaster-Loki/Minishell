@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/10 14:56:05 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:32:31 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ typedef struct s_file
 	char	**matrix;
 	char	*arg[1024];
 	char	**left_file2;
-	char	*left_file[1024];
+	char	**left_file;
 	char	*left_double_file[1024];
 	char	**left_double_file2;
+	char	**first_left_file;
+	char	**mat2;
 }	t_file;
 
 typedef struct s_tokens
@@ -190,13 +192,17 @@ void		right_oper(t_shell *sh);
 void		exec_right(t_shell *sh);
 void		double_left(t_shell *sh);
 void		help_get_arg(t_shell *sh);
-void		get_left_file(t_shell *sh);
+void		get_left_file1(t_shell *sh);
+void		get_left_file2(t_shell *sh);
 void		get_double_file(t_shell *sh);
 void		help_double_left(t_shell *sh);
-void		help_right(t_shell *sh, int *fd);
+int		help_right(t_shell *sh, int *fd);
+void	firsts_left_file(t_shell *sh);
 int			find_type(t_shell *sh);
 int			has_redir(char **mt);
+void	change_mat(t_shell *sh, int i);
 int			type_of_redir(char **mt);
+int	verify_status(t_shell *sh);
 
 // Pipeline
 int			pipetting(t_shell *sh);

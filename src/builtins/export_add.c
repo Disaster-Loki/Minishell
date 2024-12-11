@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/09 08:24:23 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:08:26 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ch_value(char **env, char *str)
 	}
 }
 
-void	add_var1(t_shell *sh, char *str)
+void	add_var(t_shell *sh, char *str)
 {
 	int		i;
 	int		len;
@@ -86,9 +86,9 @@ void	cmd_export2(t_shell *sh)
 		else
 		{
 			if (check_var(sh->mat[i]))
-				add_var1(sh, sh->mat[i]);
+				add_var(sh, sh->mat[i]);
 			else
-				add_var1(sh, sh->mat[i]);
+				add_var(sh, sh->mat[i]);
 		}
 		i++;
 	}
