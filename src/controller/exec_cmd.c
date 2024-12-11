@@ -12,24 +12,15 @@
 
 #include "../../inc/minishell.h"
 
-void	child_abs(t_shell *sh)
+void	child_abs(t_shell *sh, char *str)
 {
-	pid_t	pid;
-	char	*str;
 	char	**arg;
 
 	arg = sh->mat;
-	str = ft_substr(arg[0], 0, ft_strlen("/bin/"));
-	pid = fork();
-	if (pid == 0)
-	{
-		if (!ft_strcmp(str, "/bin/"))
-		{
-			if (execve(sh->args[0].str, arg, sh->env) == -1)
-				handle_exec_error(sh->args[0].str, arg, sh);
-			exit(127);
-		}
-	}
+	free(str);
+	if (execve(sh->args[0].str, arg, sh->env) == -1)
+		handle_exec_error(sh->args[0].str, arg, sh);
+	exit(127);
 }
 
 void	child_process(t_shell *sh)
@@ -67,7 +58,6 @@ int	handle_child_process(t_shell *sh, pid_t pid)
 	signal(SIGINT, signal_handler2);
 	signal(SIGQUIT, signal_handler2);
 	waitpid(pid, &sh->status, 0);
-
 	if (WIFSIGNALED(sh->status))
 	{
 		if (WTERMSIG(sh->status) == SIGINT)
@@ -81,7 +71,8 @@ int	handle_child_process(t_shell *sh, pid_t pid)
 	}
 	else
 		sh->status = WEXITSTATUS(sh->status);
-	free_mat(sh->split);
+	if (sh->split)
+		free_mat(sh->split);
 	if (sh->status == 130 || sh->status == 126)
 		return (-1);
 	else if (sh->status == 127)
@@ -92,7 +83,17 @@ int	handle_child_process(t_shell *sh, pid_t pid)
 int	exec_cmd(t_shell *sh)
 {
 	pid_t	pid;
+	char	*str;
 
+	str = ft_substr(sh->mat[0], 0, ft_strlen("/bin/"));
+	if (!ft_strcmp(str, "/bin/"))
+	{
+		pid = fork();
+		if (pid == 0)
+			child_abs(sh, str);
+		return (handle_child_process(sh, pid));
+	}
+	free(str);
 	if (sh->path == NULL)
 	{
 		xprint(sh->mat[0], ": No such file or directory\n", 2);

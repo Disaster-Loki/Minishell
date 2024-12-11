@@ -39,6 +39,7 @@ int	main(int av, char **args, char **env)
 	shell.status = 0;
 	shell.path = NULL;
 	shell.flag_env = 0;
+	shell.split = NULL;
 	shell.temp_env = NULL;
 	shell.env = ft_env(env);
 	shell.free_env = malloc(sizeof(char **) * 1024);
