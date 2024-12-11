@@ -93,29 +93,21 @@ int	file_dt_error(t_shell *sh)
 	return (1);
 }
 
-int	child_abs(t_shell *sh)
+int	exec_cmd(t_shell *sh)
 {
 	pid_t	pid;
 	char	*str;
-
+	
 	str = ft_substr(sh->mat[0], 0, ft_strlen("/bin/"));
 	if (!ft_strcmp(str, "/bin/"))
 	{
 		pid = fork();
 		if (pid == 0)
 			exec_abs(sh, str);
+		free(str);
 		return (handle_child_process(sh, pid));
 	}
 	free(str);
-	return (10);
-}
-
-int	exec_cmd(t_shell *sh)
-{
-	pid_t	pid;
-	
-	if (child_abs(sh) <= 1)
-		return (1);
 	if (file_dt_error(sh) == -1)
 		return (-1);
 	if (!ft_strcmp(sh->mat[0], ""))
