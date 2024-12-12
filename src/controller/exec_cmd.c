@@ -12,13 +12,11 @@
 
 #include "../../inc/minishell.h"
 
-void	exec_abs(t_shell *sh, char *str)
+void	exec_abs(t_shell *sh)
 {
 	char	**arg;
 
 	arg = sh->mat;
-	if (str != NULL)
-		free(str);
 	if (execve(sh->args[0].str, arg, sh->env) == -1)
 		handle_exec_error(sh->args[0].str, arg, sh);
 	exit(127);
@@ -35,7 +33,7 @@ void	child_process(t_shell *sh)
 	arg = sh->mat;
 	sh->split = ft_split(sh->path, ':');
 	if (arg[0][0] == '.' && arg[0][1] == '/')
-		exec_abs(sh, NULL);
+		exec_abs(sh);
 	sh->split = ft_strjoin_alt(sh->split, "/");
 	while (sh->split[++i])
 	{
@@ -108,7 +106,8 @@ int	exec_cmd(t_shell *sh)
 	{
 		pid = fork();
 		if (pid == 0)
-			exec_abs(sh, str);
+			exec_abs(sh);
+		free(str);
 		return (handle_child_process(sh, pid));
 	}
 	free(str);
