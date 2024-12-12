@@ -107,18 +107,6 @@ typedef struct s_shell
 	char	**temp_unset;
 }	t_shell;
 
-int			ft_isspace(char c);
-int			ft_get_digit(char c);
-int			is_special_char(char c);
-int			validate_input(t_shell *sh);
-int			check_syntax_error(t_shell *sh);
-int			handle_syntax_error(char *token);
-int			check_pipe_syntax(char *input, int *i);
-void		xprint(char *str, char *str2, int fd);
-int			check_redirect_syntax(char *input, int *i);
-int			ft_alter_strchr(t_shell *sh, char *str, char c);
-long long	ft_strtoll(const char *str, char **endptr, int base);
-
 // right_utills.c
 void		get_dir(t_shell *sh);
 void		get_arg(t_shell *sh);
@@ -170,6 +158,22 @@ void		child_process(t_shell *sh);
 char		**ft_strjoin_alt(char **spl, char *s);
 int			handle_child_process(t_shell *sh, pid_t pid);
 void		handle_exec_error(char *tmp, char **arg, t_shell *sh);
+
+// Others
+int			ft_isspace(char c);
+int			ft_get_digit(char c);
+int			ft_status(int status);
+void		exec_abs(t_shell *sh);
+int			is_special_char(char c);
+int			file_dt_error(t_shell *sh);
+int			validate_input(t_shell *sh);
+int			check_syntax_error(t_shell *sh);
+int			handle_syntax_error(char *token);
+int			check_pipe_syntax(char *input, int *i);
+void		xprint(char *str, char *str2, int fd);
+int			check_redirect_syntax(char *input, int *i);
+int			ft_alter_strchr(t_shell *sh, char *str, char c);
+long long	ft_strtoll(const char *str, char **endptr, int base);
 
 // Expansions
 char		*get_name(char *str, int j);

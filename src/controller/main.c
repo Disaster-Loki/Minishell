@@ -29,20 +29,25 @@ char	**ft_env(char **env)
 	return (res);
 }
 
+void	ft_init_vars(t_shell *sh, char **env)
+{
+	sh->i = 0;
+	sh->status = 0;
+	sh->path = NULL;
+	sh->flag_env = 0;
+	sh->split = NULL;
+	sh->temp_env = NULL;
+	sh->env = ft_env(env);
+	sh->free_env = malloc(sizeof(char **) * 1024);
+}
+
 int	main(int av, char **args, char **env)
 {
 	t_shell	shell;
 
 	(void)av;
 	(void)args;
-	shell.i = 0;
-	shell.status = 0;
-	shell.path = NULL;
-	shell.flag_env = 0;
-	shell.split = NULL;
-	shell.temp_env = NULL;
-	shell.env = ft_env(env);
-	shell.free_env = malloc(sizeof(char **) * 1024);
+	ft_init_vars(&shell, env);
 	while (1)
 	{
 		signals();
