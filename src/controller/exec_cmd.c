@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:37:09 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/12 13:29:01 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/12 18:10:11 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	child_process(t_shell *sh)
 	while (sh->split[++i])
 	{
 		tmp = sh->split[i];
-		sh->split[i] = ft_strjoin(sh->split[i], sh->args[0].str);
+		sh->split[i] = ft_strjoin(sh->split[i], sh->mat[0]);
 		if (execve(sh->split[i], arg, sh->env) == -1)
 			handle_exec_error(tmp, arg, sh);
 		free(tmp);
