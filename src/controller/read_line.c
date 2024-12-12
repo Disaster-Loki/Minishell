@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:24:19 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/11 10:52:59 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:28:43 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ void	check_command(t_shell *sh)
 		else if (!ft_strcmp(sh->mat[0], "exit"))
 			cmd_exit(sh);
 		else if (!exec_cmd(sh))
+		{
 			xprint(sh->mat[0], ": command not found\n", 2);
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:43:17 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/12 08:44:47 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:53:24 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	help_get_arg(t_shell *sh)
 		}
 		else
 		{
-			sh->manager.arg[j++] = sh->mat[i];
+			sh->manager.arg[j++] = ft_strdup(sh->mat[i]);
 			i++;
 		}
 	}
