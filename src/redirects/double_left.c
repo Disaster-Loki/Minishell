@@ -6,23 +6,39 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:35:43 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/07 21:41:38 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:36:23 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	exec_exit(t_shell *sh, int *fd)
+void	help_exec_exit2(t_shell *sh, int *fd)
 {
-	char	*temp;
+	char	**temp_mat;
 
+	temp_mat = malloc(sizeof(char *) * 3);
+	if (!temp_mat)
+		return ;
+	temp_mat[0] = ft_strdup(sh->mat[0]);
+	temp_mat[1] = ft_strdup("tmp");
+	temp_mat[2] = NULL;
+	free_mat(sh->mat);
+	sh->mat = temp_mat;
+	check_command(sh);
+	close(*fd);
+	unlink("tmp");
+	exit(0);
+}
+
+void	exec_exit2(t_shell *sh, char *temp, int *i, int *fd)
+{
 	while (1)
 	{
 		temp = readline("> ");
 		if (!temp)
 			break ;
-		if (!ft_strncmp(sh->mat[1], temp, ft_strlen(sh->mat[1]))
-			&& temp[ft_strlen(sh->mat[1])] == '\0')
+		if (!ft_strncmp(sh->mat[*i], temp, ft_strlen(sh->mat[*i]))
+			&& temp[ft_strlen(sh->mat[*i])] == '\0')
 		{
 			free(temp);
 			break ;
@@ -31,12 +47,33 @@ void	exec_exit(t_shell *sh, int *fd)
 		write(*fd, "\n", 1);
 		free(temp);
 	}
-	free(sh->mat[1]);
-	sh->mat[1] = ft_strdup("tmp");
-	check_command(sh);
-	close(*fd);
-	unlink("tmp");
-	exit(0);
+	help_exec_exit2(sh, fd);
+}
+
+void	exec_exit(t_shell *sh, int *fd)
+{
+	int		i;
+	char	*temp;
+
+	i = 1;
+	(void)fd;
+	while (sh->mat[i + 1])
+	{
+		while (1)
+		{
+			temp = readline("> ");
+			if (!temp)
+				break ;
+			if (!ft_strncmp(sh->mat[i], temp, ft_strlen(sh->mat[i]))
+				&& temp[ft_strlen(sh->mat[i])] == '\0')
+			{
+				free(temp);
+				break ;
+			}
+		}
+		i++;
+	}
+	exec_exit2(sh, temp, &i, fd);
 }
 
 void	double_left(t_shell *sh)

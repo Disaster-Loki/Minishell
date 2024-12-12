@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:35:49 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/11 19:14:52 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/12 08:01:36 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,21 @@ int	find_file(t_shell *sh)
 		fd = open(sh->manager.first_left_file[i], O_RDONLY);
 		if (fd < 0)
 		{
-			printf("bash: %s: No such file for directory\n", sh->manager.first_left_file[i]);
+			printf("bash: %s: No such file for directory\n",
+				sh->manager.first_left_file[i]);
+			free_mat(sh->manager.first_left_file);
 			return (0);
 		}
 		i++;
 	}
+	free_mat(sh->manager.first_left_file);
 	return (1);
 }
 
 void	left_oper(t_shell *sh)
 {
 	int	pid;
+
 	pid = fork();
 	if (pid < 0)
 	{
@@ -79,7 +83,7 @@ void	exec_left(t_shell *sh)
 		if (verify_status(sh))
 			get_left_file2(sh);
 		else
-		 	get_left_file1(sh);
+			get_left_file1(sh);
 		left_oper(sh);
 		free_mat(temp_mat);
 	}

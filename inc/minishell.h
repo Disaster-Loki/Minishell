@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/11 16:32:31 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/12 09:01:53 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,6 @@ void		get_file(t_shell *sh);
 void		allocater(t_shell *sh);
 void		left_oper(t_shell *sh);
 void		exec_left(t_shell *sh);
-void		help_file(t_shell *sh);
 void		operators(t_shell *sh);
 void		right_oper(t_shell *sh);
 void		exec_right(t_shell *sh);
@@ -196,13 +195,18 @@ void		get_left_file1(t_shell *sh);
 void		get_left_file2(t_shell *sh);
 void		get_double_file(t_shell *sh);
 void		help_double_left(t_shell *sh);
-int		help_right(t_shell *sh, int *fd);
-void	firsts_left_file(t_shell *sh);
-int			find_type(t_shell *sh);
+void		firsts_left_file(t_shell *sh);
+void		exec_exit(t_shell *sh, int *fd);
+int			is_word(char *str);
+int			is_redir(char *str);
 int			has_redir(char **mt);
-void	change_mat(t_shell *sh, int i);
+int			find_type(t_shell *sh);
+int			find_file(t_shell *sh);
 int			type_of_redir(char **mt);
-int	verify_status(t_shell *sh);
+int			help_get_dir(t_shell *sh);
+int			help_get_file(t_shell *sh);
+int			verify_status(t_shell *sh);
+int			help_right(t_shell *sh, int *fd);
 
 // Pipeline
 int			pipetting(t_shell *sh);
