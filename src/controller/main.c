@@ -12,18 +12,15 @@
 
 #include "../../inc/minishell.h"
 
-char	**ft_env(char **env)
+char	**dup_env(char **env)
 {
 	int		i;
-	int		rows;
 	char	**res;
 
+	i = matrix_line(env);
+	res = (char **)malloc(sizeof(char *) * (i + 1));
 	i = -1;
-	rows = matrix_line(env);
-	res = malloc(sizeof(char *) * (rows + 1));
-	if (!res)
-		return (NULL);
-	while (++i < rows)
+	while (env[++i])
 		res[i] = ft_strdup(env[i]);
 	res[i] = NULL;
 	return (res);
@@ -37,7 +34,7 @@ void	ft_init_vars(t_shell *sh, char **env)
 	sh->flag_env = 0;
 	sh->split = NULL;
 	sh->temp_env = NULL;
-	sh->env = ft_env(env);
+	sh->env = dup_env(env);
 	sh->free_env = malloc(sizeof(char **) * 1024);
 }
 

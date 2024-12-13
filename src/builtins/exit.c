@@ -58,9 +58,9 @@ void	logout(t_shell *sh, int status)
 	free(sh->input);
 	if (sh->flag_env == 1)
 		free_array_mat(sh->free_env);
-	if (!sh->env)
+	if (sh->env)
 		free_mat(sh->env);
-	if (!sh->mat)
+	if (sh->mat)
 		free_mat(sh->mat);
 	exit(status);
 }

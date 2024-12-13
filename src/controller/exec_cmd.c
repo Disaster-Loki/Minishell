@@ -34,6 +34,7 @@ void	child_process(t_shell *sh)
 		free(tmp);
 		free(sh->split[i]);
 	}
+	free_args(sh);
 	free(sh->split);
 	exit(127);
 }
