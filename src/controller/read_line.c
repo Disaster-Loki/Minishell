@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:24:19 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/12 13:28:43 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:33:42 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ int	read_line(t_shell *sh)
 	sh->mat = ft_args(sh->args);
 	check_command(sh);
 	free_args(sh);
+	// if (sh->free_env)
+	// 	free_array_mat(sh->free_env);
 	return (0);
 }

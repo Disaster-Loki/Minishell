@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/13 14:08:08 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:37:48 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ int			ft_strcmp(const char *s1, const char *s2);
 // Unset
 void		free_args(t_shell *sh);
 void		filter_tokens(char **mat);
-void		free_array_mat(char ***array);
+void		free_array_mat(char ****array);
 void		cmd_unset(t_shell *sh, char **to_remove);
 
 // Exec_cmd

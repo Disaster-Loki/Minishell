@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 12:48:53 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/11/20 15:48:36 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/13 16:41:48 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,29 @@ void	free_mat(char **mt)
 	}
 }
 
-void	free_array_mat(char ***array)
+void	free_array_mat(char ****array)
 {
 	int	i;
+	int	j;
 
 	if (!array || !*array)
 		return ;
 	i = 0;
 	while ((*array)[i])
 	{
+		j = 0;
+		while ((*array)[i][j])
+		{
+			free((*array)[i][j]);
+			j++;
+		}
 		free((*array)[i]);
 		i++;
 	}
 	free(*array);
 	*array = NULL;
 }
+
 
 void	handle_exec_error(char *tmp, char **arg, t_shell *sh)
 {
