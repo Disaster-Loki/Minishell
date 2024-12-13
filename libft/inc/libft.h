@@ -50,6 +50,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
 // Additional functions
 char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);
+size_t	ft_toklen(const char *s, char c);
 char	**ft_split(const char *s, char c);
 char	*ft_strjoin(const char *s1, char const *s2);
 char	*ft_strtrim(const char*s1, char const *set);

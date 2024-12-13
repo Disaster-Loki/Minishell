@@ -64,7 +64,7 @@ t_args	*tokenize(t_shell *sh, char *str)
 
 	tok.i = 0;
 	tok.j = 0;
-	args = malloc(sizeof(t_args) * 7000);
+	args = malloc(sizeof(t_args) * 1000);
 	if (!args)
 		return (NULL);
 	while (str[tok.i])
