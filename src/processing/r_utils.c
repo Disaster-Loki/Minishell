@@ -53,9 +53,9 @@ char	*strjoin_and_free(char *s1, char *s2, char *s3)
 	size_t	len3;
 	char	*result;
 
-	len1 = strlen(s1);
-	len2 = strlen(s2);
-	len3 = strlen(s3);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	len3 = ft_strlen(s3);
 	result = malloc(len1 + len2 + len3 + 4);
 	if (!result)
 		return (NULL);

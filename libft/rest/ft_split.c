@@ -12,7 +12,7 @@
 
 #include "../inc/libft.h"
 
-static size_t	ft_toklen(const char *s, char c)
+size_t	ft_toklen(const char *s, char c)
 {
 	size_t	ret;
 

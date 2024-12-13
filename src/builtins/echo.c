@@ -14,20 +14,23 @@
 
 int	is_n_option(char **mat, int *i)
 {
-	int	k;
+	int	j;
+	int	found;
 
-	k = 0;
-	if (mat[*i][0] == '-')
+	found = 0;
+	while (mat[*i] && mat[*i][0] == '-')
 	{
-		while (mat[*i][++k])
+		j = 1;
+		while (mat[*i][j])
 		{
-			if (mat[*i][k] != 'n')
+			if (mat[*i][j] != 'n')
 				return (0);
+			j++;
 		}
+		found = 1;
 		(*i)++;
-		return (1);
 	}
-	return (0);
+	return (found);
 }
 
 void	cmd_echo(t_shell *sh)
