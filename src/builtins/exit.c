@@ -56,20 +56,16 @@ void	logout(t_shell *sh, int status)
 		free(sh->args[i].str);
 	free(sh->args);
 	free(sh->input);
-<<<<<<< HEAD
-	if (sh->flag_env == 1)
-		free_array_mat(sh->free_env);
-=======
+	//if (sh->flag_env == 1)
+	//	free_array_mat(sh->free_env);
 	// if (sh->flag_env == 1)
 	// 	free_array_mat(&(sh->free_env));
 	// if (sh->flag_env == 0)
 	// 	free_array_mat(&(sh->free_env));
->>>>>>> 4de14c19e4157ed729d0db8f5079f27e7e320975
 	if (sh->env)
 		free_mat(sh->env);
 	if (sh->mat)
 		free_mat(sh->mat);
-	clear_history();
 	exit(status);
 }
 

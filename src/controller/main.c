@@ -35,13 +35,8 @@ void	ft_init_vars(t_shell *sh, char **env)
 	sh->flag_env = 0;
 	sh->split = NULL;
 	sh->temp_env = NULL;
-<<<<<<< HEAD
 	sh->env = dup_env(env);
 	sh->free_env = malloc(sizeof(char **) * 1024);
-=======
-	sh->env = ft_env(env);
-	//sh->free_env = malloc(sizeof(char **) * 1024);
->>>>>>> 4de14c19e4157ed729d0db8f5079f27e7e320975
 }
 
 int	main(int av, char **args, char **env)
