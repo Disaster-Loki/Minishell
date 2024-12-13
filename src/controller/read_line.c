@@ -12,14 +12,6 @@
 
 #include "../../inc/minishell.h"
 
-/*int	get_path(t_shell *sh)
-{
-	sh->path = get_env(sh, "PATH");
-	if (sh->path == NULL)
-		return (0);
-	return (1);
-}*/
-
 void	xprint(char *str, char *str2, int fd)
 {
 	ft_putstr_fd(str, fd);

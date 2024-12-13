@@ -63,22 +63,27 @@ int	change_old(t_shell *sh, char *key)
 void	cmd_cd(t_shell *sh)
 {
 	if (!sh->mat[1])
-		return (printf("cd: lack of arguments\n"), sh->status = 1, (void)0);
+	{
+		xprint("cd: lack of arguments\n", NULL, 2);
+		return (sh->status = 1, (void)0);
+	}
 	if (sh->mat[2])
 	{
-		printf("bash: cd: too many arguments\n");
+		xprint("bash: cd: too many arguments\n", NULL, 2);
 		return (sh->status = 1, (void)0);
 	}
 	if (!chdir(sh->mat[1]))
 	{
 		change_old(sh, "OLDPWD");
 		if (!change_env(sh, "PWD"))
-			printf("bash: cd: failed to update PWD\n");
+			xprint("bash: cd: failed to update PWD\n", NULL, 2);
 		sh->status = 0;
 	}
 	else
 	{
-		printf("bash: cd: %s: No such file or directory\n", sh->mat[1]);
+		xprint("bash: cd: ", sh->mat[1], 2);
+		xprint(": ", strerror(errno), 2);
+		xprint("\n", NULL, 2);
 		sh->status = 1;
 	}
 }

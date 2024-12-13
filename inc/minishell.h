@@ -148,7 +148,7 @@ char		*ft_strndup(const char *s, size_t n);
 int			ft_strcmp(const char *s1, const char *s2);
 
 // Unset
-void 		free_args(t_shell *sh);
+void		free_args(t_shell *sh);
 void		filter_tokens(char **mat);
 void		free_array_mat(char ***array);
 void		cmd_unset(t_shell *sh, char **to_remove);
