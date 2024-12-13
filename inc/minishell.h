@@ -169,6 +169,7 @@ int			file_dt_error(t_shell *sh);
 int			validate_input(t_shell *sh);
 int			check_syntax_error(t_shell *sh);
 int			handle_syntax_error(char *token);
+int			is_empty_input(const char *input);
 int			check_pipe_syntax(char *input, int *i);
 void		xprint(char *str, char *str2, int fd);
 int			check_redirect_syntax(char *input, int *i);

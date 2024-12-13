@@ -58,7 +58,8 @@ int	main(int av, char **args, char **env)
 			free_mat(shell.env);
 			break ;
 		}
-		add_history(shell.input);
+		if (is_empty_input(shell.input))
+			add_history(shell.input);
 		read_line(&shell);
 		free(shell.input);
 	}
