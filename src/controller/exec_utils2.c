@@ -38,40 +38,27 @@ int	ft_status(int status)
 	return (status);
 }
 
-int	file_aux(t_shell *sh)
+int	print_error(t_shell *sh, char *message, int status)
 {
-	if (sh->path == NULL)
-	{
-		xprint("bash", ": ", 2);
-		xprint(sh->mat[0], ": No such file or directory\n", 2);
-		return (-1);
-	}
-	if (!ft_strcmp(sh->mat[0], "bash") && sh->mat[1])
-	{
-		xprint("bash", ": ", 2);
-		xprint(sh->mat[1], ": No such file or directory\n", 2);
-		return (-1);
-	}
-	return (1);
+	xprint("bash: ", NULL, 2);
+	xprint(sh->mat[0], NULL, 2);
+	xprint(": ", message, 2);
+	if (errno)
+		xprint(strerror(errno), NULL, 2);
+	xprint("\n", NULL, 2);
+	sh->status = status;
+	return (-1);
 }
 
 int	file_dt_error(t_shell *sh)
 {
-	if (file_aux(sh) == -1)
-		return (-1);
+	if (!sh->path)
+		return (print_error(sh, "No such file or directory", 127));
+	if (!ft_strcmp(sh->mat[0], "bash") && sh->mat[1])
+		return (print_error(sh, "No such file or directory", 127));
 	if (sh->mat[0][0] == '/' && sh->mat[0][ft_strlen(sh->mat[0]) - 1] == '/')
-	{
-		xprint("bash", ": ", 2);
-		xprint(sh->mat[0], ": Is a directory\n", 2);
-		sh->status = 127;
-		return (-1);
-	}
+		return (print_error(sh, "Is a directory", 127));
 	if (sh->mat[0][0] == '/')
-	{
-		xprint("bash", ": ", 2);
-		xprint(sh->mat[0], ": No such file or directory\n", 2);
-		sh->status = 127;
-		return (-1);
-	}
+		return (print_error(sh, "No such file or directory", 127));
 	return (1);
 }
