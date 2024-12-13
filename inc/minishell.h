@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/12 09:01:53 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/13 14:08:08 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ typedef struct s_file
 	char	**left_double_file2;
 	char	**first_left_file;
 	char	**mat2;
+	char	**arg_left;
+	char	**dell_double;
+	char	**dell_double2;
 }	t_file;
 
 typedef struct s_tokens
@@ -196,6 +199,11 @@ void		exec_right(t_shell *sh);
 void		double_left(t_shell *sh);
 void		help_get_arg(t_shell *sh);
 void		get_left_file1(t_shell *sh);
+void		redir_first(t_shell *sh);
+void		with_file(t_shell *sh);
+void		first_double_left(t_shell *sh);
+void		put_in_delldoble(t_shell *sh);
+void		help_with_file(t_shell *sh);
 void		get_left_file2(t_shell *sh);
 void		get_double_file(t_shell *sh);
 void		help_double_left(t_shell *sh);
@@ -206,6 +214,9 @@ int			is_redir(char *str);
 int			has_redir(char **mt);
 int			find_type(t_shell *sh);
 int			find_file(t_shell *sh);
+int			help_redir_first(t_shell *sh);
+int			verify_status2(t_shell *sh);
+int			flag_to_status2(t_shell *sh);
 int			type_of_redir(char **mt);
 int			help_get_dir(t_shell *sh);
 int			help_get_file(t_shell *sh);

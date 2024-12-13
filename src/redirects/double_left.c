@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:35:43 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/12 11:36:23 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/13 13:20:37 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,26 @@ void	double_left(t_shell *sh)
 	int	pid;
 	int	fd;
 
-	get_double_file(sh);
-	pid = fork();
-	if (pid == 0)
-	{	
-		fd = open("tmp", O_CREAT | O_APPEND | O_WRONLY | O_RDONLY, 0777);
-		if (fd == -1)
-		{
-			perror("Error opening file");
-			exit(1);
-		}
-		exec_exit(sh, &fd);
-	}
+	if (!verify_status2(sh) && !flag_to_status2(sh))
+		with_file(sh);
 	else
-		waitpid(pid, &sh->status, 0);
+	{
+		if (!ft_strncmp(sh->mat[0], "<<", 2) && ft_strlen(sh->mat[0]) == 2)
+			first_double_left(sh);
+		else
+			get_double_file(sh);
+		pid = fork();
+		if (pid == 0)
+		{	
+			fd = open("tmp", O_CREAT | O_APPEND | O_WRONLY | O_RDONLY, 0777);
+			if (fd == -1)
+			{
+				perror("Error opening file");
+				exit(1);
+			}
+			exec_exit(sh, &fd);
+		}
+		else
+			waitpid(pid, &sh->status, 0);
+	}
 }
