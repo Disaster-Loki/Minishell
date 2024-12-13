@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 12:16:40 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/09 08:36:55 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:25:10 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,15 @@ void	logout(t_shell *sh, int status)
 		free(sh->args[i].str);
 	free(sh->args);
 	free(sh->input);
-	if (sh->flag_env == 1)
-		free_array_mat(sh->free_env);
-	if (!sh->env)
+	// if (sh->flag_env == 1)
+	// 	free_array_mat(&(sh->free_env));
+	// if (sh->flag_env == 0)
+	// 	free_array_mat(&(sh->free_env));
+	if (sh->env)
 		free_mat(sh->env);
-	if (!sh->mat)
+	if (sh->mat)
 		free_mat(sh->mat);
+	clear_history();
 	exit(status);
 }
 

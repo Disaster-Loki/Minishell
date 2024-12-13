@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/11 11:08:26 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:15:04 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	add_var(t_shell *sh, char *str)
 {
 	int		i;
 	int		len;
+	char	**free_temp;
 
 	i = 0;
 	len = matrix_line(sh->env);
@@ -62,9 +63,11 @@ void	add_var(t_shell *sh, char *str)
 		sh->temp_env[i] = ft_strdup(sh->env[i]);
 	sh->temp_env[i++] = ft_strdup(str);
 	sh->temp_env[i] = NULL;
-	sh->free_env[sh->i++] = sh->env;
+	free_temp = sh->env;
+	//sh->free_env[sh->i++] = sh->env;
 	sh->env = sh->temp_env;
-	sh->flag_env = 1;
+	free_mat(free_temp);
+	//sh->flag_env = 1;
 }
 
 void	cmd_export2(t_shell *sh)

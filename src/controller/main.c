@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:46:33 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/09 09:06:31 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:24:59 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	**ft_env(char **env)
 
 void	ft_init_vars(t_shell *sh, char **env)
 {
+	(void)env;
 	sh->i = 0;
 	sh->status = 0;
 	sh->path = NULL;
@@ -38,7 +39,7 @@ void	ft_init_vars(t_shell *sh, char **env)
 	sh->split = NULL;
 	sh->temp_env = NULL;
 	sh->env = ft_env(env);
-	sh->free_env = malloc(sizeof(char **) * 1024);
+	//sh->free_env = malloc(sizeof(char **) * 1024);
 }
 
 int	main(int av, char **args, char **env)
@@ -63,5 +64,6 @@ int	main(int av, char **args, char **env)
 		read_line(&shell);
 		free(shell.input);
 	}
+	clear_history();
 	return (0);
 }

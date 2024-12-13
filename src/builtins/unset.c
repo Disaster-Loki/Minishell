@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_unset.c                                        :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:56:48 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/11/21 17:54:11 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/13 17:13:35 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	put_in_temp(t_shell *sh, char *to_remove)
 {
 	int		i;
 	int		j;
+	char		**free_temp;
 
 	i = 0;
 	while (sh->env[i])
@@ -66,10 +67,12 @@ void	put_in_temp(t_shell *sh, char *to_remove)
 			sh->temp_unset[++j] = sh->env[i];
 		}
 	}
-	sh->free_env[sh->i++] = sh->env;
+	//sh->free_env[sh->i++] = sh->env;
+	free_temp = sh->env;
 	sh->temp_unset[j] = NULL;
 	sh->env = sh->temp_unset;
-	sh->flag_env = 1;
+	free_mat(free_temp);
+	//sh->flag_env = 1;
 }
 
 void	rm_var(t_shell *sh, char *to_remove)
