@@ -42,7 +42,6 @@ void	child_process(t_shell *sh)
 int	handle_child_process(t_shell *sh, pid_t pid)
 {
 	signal(SIGINT, signal_handler2);
-	signal(SIGQUIT, signal_handler2);
 	waitpid(pid, &sh->status, 0);
 	sh->status = ft_status(sh->status);
 	if (sh->status == 127)

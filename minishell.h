@@ -110,6 +110,10 @@ typedef struct s_shell
 	char	**temp_unset2;
 }	t_shell;
 
+int			s_quotes(int c);
+int			get_var(int value);
+int			valid_quotes(t_shell *sh, char *str);
+
 // right_utills.c
 void		get_dir(t_shell *sh);
 void		get_arg(t_shell *sh);

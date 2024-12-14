@@ -17,7 +17,8 @@ char	*get_name(char *str, int j)
 	int		len;
 
 	len = j;
-	while (str[len] && (ft_isalnum(str[len]) || str[len] == '_'))
+	while (str[len] && !s_quotes(str[len])
+		&& (ft_isalnum(str[len]) || str[len] == '_'))
 		len++;
 	return (ft_substr(str, j, len - j));
 }

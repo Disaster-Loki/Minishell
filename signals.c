@@ -14,8 +14,6 @@
 
 void	signal_handler2(int sig)
 {
-	if (sig == SIGQUIT)
-		printf("Quit (core dumped)\n");
 	if (sig == SIGINT)
 		printf("\n");
 }
@@ -28,6 +26,7 @@ void	signal_handler(int sig)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
+		get_var(130);
 	}
 	if (sig == SIGQUIT)
 		rl_redisplay();

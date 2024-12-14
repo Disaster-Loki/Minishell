@@ -12,22 +12,31 @@
 
 #include "minishell.h"
 
-int	handle_syntax_error(char *token)
+int	syntax_characters(t_shell *sh, char *input, int *i, int *status)
 {
-	ft_putstr_fd("bash: syntax error near unexpected token `", 1);
-	if (!token || token[0] == '\0')
-		ft_putstr_fd("newline", 1);
+	int	end;
+
+	end = 0;
+	if (input[*i] == '\'' || input[*i] == '\"')
+	{
+		if (!find_quotes(sh, input, i, &end))
+			return (0);
+		*i = end;
+	}
+	if (input[*i] == '|')
+		*status = check_pipe_syntax(input, i);
+	else if (input[*i] == '<' || input[*i] == '>')
+		*status = check_redirect_syntax(input, i);
 	else
-		ft_putstr_fd(token, 1);
-	ft_putstr_fd("'\n", 1);
-	return (258);
+		(*i)++;
+	return (*status);
 }
 
 int	check_syntax_error(t_shell *sh)
 {
 	int		i;
-	char	*input;
 	int		status;
+	char	*input;
 
 	i = 0;
 	status = 0;
@@ -36,46 +45,9 @@ int	check_syntax_error(t_shell *sh)
 		return (handle_syntax_error("|"));
 	while (input[i])
 	{
-		if (input[i] == '|')
-			status = check_pipe_syntax(input, &i);
-		else if (input[i] == '<' || input[i] == '>')
-			status = check_redirect_syntax(input, &i);
-		else
-			i++;
+		status = syntax_characters(sh, input, &i, &status);
 		if (status == 258)
 			return (status);
-	}
-	return (0);
-}
-
-int	valid_quotes(t_shell *sh, char *str)
-{
-	int	i;
-	int	end;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == '\'' || str[i] == '\"')
-		{
-			if (!find_quotes(sh, str, &i, &end))
-				return (0);
-			i = end;
-		}
-	}
-	return (1);
-}
-
-int	is_empty_input(const char *input)
-{
-	int	i;
-
-	i = 0;
-	while (input[i])
-	{
-		if (input[i] != ' ' && input[i] != '\t')
-			return (1);
-		i++;
 	}
 	return (0);
 }
