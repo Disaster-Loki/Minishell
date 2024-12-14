@@ -6,7 +6,7 @@
 #    By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 11:52:18 by sde-carv          #+#    #+#              #
-#    Updated: 2024/12/13 14:02:26 by ptchipoc         ###   ########.fr        #
+#    Updated: 2024/12/14 11:02:21 by ptchipoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,64 +25,54 @@ YELLOW      = \033[33m
 ORANGE      = \033[38;5;208m
 GREEN       = \033[32m
 
-# Diretórios
-SRC_DIR     = ./src
-CONTROLLER  = $(SRC_DIR)/controller
-BUILTINS    = $(SRC_DIR)/builtins
-PROCESSING  = $(SRC_DIR)/processing
-EXPANSION   = $(SRC_DIR)/expansion
-PIPELINE    = $(SRC_DIR)/pipeline
-REDIRECTS   = $(SRC_DIR)/redirects
+CONTROLLER_FILES = main.c 			\
+				   signals.c 			\
+				   read_line.c 		\
+                   exec_cmd.c 		\
+                   exec_utils.c 		\
+                   exec_utils2.c 		\
+				   ft_strtoll.c 		\
+				   frees.c 			\
+				   utils.c 			\
+				   utils2.c
 
-# Arquivos por pasta
-CONTROLLER_FILES = $(CONTROLLER)/main.c 			\
-				   $(CONTROLLER)/signals.c 			\
-				   $(CONTROLLER)/read_line.c 		\
-                   $(CONTROLLER)/exec_cmd.c 		\
-                   $(CONTROLLER)/exec_utils.c 		\
-                   $(CONTROLLER)/exec_utils2.c 		\
-				   $(CONTROLLER)/ft_strtoll.c 		\
-				   $(CONTROLLER)/frees.c 			\
-				   $(CONTROLLER)/utils.c 			\
-				   $(CONTROLLER)/utils2.c
+BUILTINS_FILES   = cd.c 				\
+				   env.c 				\
+				   pwd.c 				\
+				   echo.c 				\
+				   exit.c 				\
+                   unset.c 				\
+                   export.c 			\
+				   export_add.c 		\
+				   export_utils.c
 
-BUILTINS_FILES   = $(BUILTINS)/cd.c 				\
-				   $(BUILTINS)/env.c 				\
-				   $(BUILTINS)/pwd.c 				\
-				   $(BUILTINS)/echo.c 				\
-				   $(BUILTINS)/exit.c 				\
-                   $(BUILTINS)/unset.c 				\
-                   $(BUILTINS)/export.c 			\
-				   $(BUILTINS)/export_add.c 		\
-				   $(BUILTINS)/export_utils.c
+PROCESSING_FILES = tokenize.c 		\
+				   p_utils.c 			\
+                   redir.c 			\
+				   r_utils.c 			\
+				   valid_input.c 		\
+                   v_utils.c 			\
+				   invalid_rdir.c
 
-PROCESSING_FILES = $(PROCESSING)/tokenize.c 		\
-				   $(PROCESSING)/utils.c 			\
-                   $(PROCESSING)/redir.c 			\
-				   $(PROCESSING)/r_utils.c 			\
-				   $(PROCESSING)/valid_input.c 		\
-                   $(PROCESSING)/v_utils.c 			\
-				   $(PROCESSING)/invalid_rdir.c
+EXPANSION_FILES  = expansion.c 		\
+				   gets.c 				\
+				   e_utils.c
 
-EXPANSION_FILES  = $(EXPANSION)/expansion.c 		\
-				   $(EXPANSION)/gets.c 				\
-				   $(EXPANSION)/utils.c
+PIPELINE_FILES   = Init_vars.c 			\
+				   full_split.c 		\
+				   pipetting.c
 
-PIPELINE_FILES   = $(PIPELINE)/Init_vars.c 			\
-				   $(PIPELINE)/full_split.c 		\
-				   $(PIPELINE)/pipetting.c
-
-REDIRECTS_FILES  = $(REDIRECTS)/redirects.c 		\
-				   $(REDIRECTS)/utills.c 			\
-				   $(REDIRECTS)/right_utills.c			\
-				   $(REDIRECTS)/right_utills2.c			\
-				   $(REDIRECTS)/double_left.c			\
-				   $(REDIRECTS)/double_left_utills.c		\
-				   $(REDIRECTS)/left_utills.c			\
-				   $(REDIRECTS)/left_redir.c			\
-				   $(REDIRECTS)/right_redir.c			\
-				   $(REDIRECTS)/left_utills2.c			\
-				   $(REDIRECTS)/double_left_utills2.c		\
+REDIRECTS_FILES  = redirects.c 		\
+				   utills.c 			\
+				   right_utills.c			\
+				   right_utills2.c			\
+				   double_left.c			\
+				   double_left_utills.c		\
+				   left_utills.c			\
+				   left_redir.c			\
+				   right_redir.c			\
+				   left_utills2.c			\
+				   double_left_utills2.c		\
 
 SRC_FILES = $(CONTROLLER_FILES) 					\
 			$(BUILTINS_FILES) 						\
