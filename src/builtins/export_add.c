@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/13 17:15:04 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/14 10:40:11 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,15 @@ void	add_var(t_shell *sh, char *str)
 	sh->temp_env[i++] = ft_strdup(str);
 	sh->temp_env[i] = NULL;
 	free_temp = sh->env;
-	//sh->free_env[sh->i++] = sh->env;
 	sh->env = sh->temp_env;
 	free_mat(free_temp);
-	//sh->flag_env = 1;
+	sh->flag_env = 1;
+}
+
+void	export_error(t_shell *sh, int i)
+{
+	xprint("bash: export: `", sh->mat[i], 2);
+	xprint("': not a valid identifier\n", "", 2);
 }
 
 void	cmd_export2(t_shell *sh)
@@ -78,7 +83,7 @@ void	cmd_export2(t_shell *sh)
 	while (sh->mat[i])
 	{
 		if (!valid_env_name(sh->mat[i]))
-			printf("bash: export: `%s': not a valid identifier\n", sh->mat[i]);
+			export_error(sh, i);
 		else if (check_envi(sh->env, sh->mat[i]))
 		{
 			if (check_var(sh->mat[i]))

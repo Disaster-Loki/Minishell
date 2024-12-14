@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/13 16:37:48 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/14 10:32:32 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ typedef struct s_shell
 	char	**temp_env;
 	char	**env_free;
 	char	*free_quote;
-	char	***free_env;
 	int		n_rdir[1000];
-	char	**temp_unset;
+	char	*temp_unset[1024];
+	char	**temp_unset2;
 }	t_shell;
 
 // right_utills.c

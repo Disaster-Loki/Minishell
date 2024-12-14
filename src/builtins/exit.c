@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 12:16:40 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/13 17:25:10 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/14 10:07:29 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,15 @@ void	logout(t_shell *sh, int status)
 		free(sh->args[i].str);
 	free(sh->args);
 	free(sh->input);
+<<<<<<< HEAD
 	//if (sh->flag_env == 1)
 	//	free_array_mat(sh->free_env);
 	// if (sh->flag_env == 1)
 	// 	free_array_mat(&(sh->free_env));
 	// if (sh->flag_env == 0)
 	// 	free_array_mat(&(sh->free_env));
+=======
+>>>>>>> 1bf80b7 (Version 12.5)
 	if (sh->env)
 		free_mat(sh->env);
 	if (sh->mat)

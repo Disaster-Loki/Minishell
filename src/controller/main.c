@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:46:33 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/13 17:24:59 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/14 10:32:17 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ void	ft_init_vars(t_shell *sh, char **env)
 	sh->flag_env = 0;
 	sh->split = NULL;
 	sh->temp_env = NULL;
+<<<<<<< HEAD
 	sh->env = dup_env(env);
 	sh->free_env = malloc(sizeof(char **) * 1024);
+=======
+	sh->env = ft_env(env);
+>>>>>>> 1bf80b7 (Version 12.5)
 }
 
 int	main(int av, char **args, char **env)
@@ -61,6 +65,5 @@ int	main(int av, char **args, char **env)
 		read_line(&shell);
 		free(shell.input);
 	}
-	clear_history();
 	return (0);
 }
