@@ -55,7 +55,8 @@ int	exec_cmd(t_shell *sh)
 	char	*str;
 
 	str = ft_substr(sh->mat[0], 0, ft_strlen("/bin/"));
-	if (!ft_strcmp(str, "/bin/"))
+	if (!ft_strcmp(str, "/bin/")
+		&& sh->mat[0][ft_strlen("/bin/")] != '\0')
 	{
 		pid = fork();
 		if (pid == 0)
