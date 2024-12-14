@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 16:35:43 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/14 11:03:13 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/14 12:20:29 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	help_exec_exit2(t_shell *sh, int *fd)
 	if (!temp_mat)
 		return ;
 	temp_mat[0] = ft_strdup(sh->mat[0]);
-	temp_mat[1] = ft_strdup("tmp");
+	temp_mat[1] = ft_strdup(".#@!tmp!@#");
 	temp_mat[2] = NULL;
 	free_mat(sh->mat);
 	sh->mat = temp_mat;
 	check_command(sh);
 	close(*fd);
-	unlink("tmp");
+	unlink(".#@!tmp!@#");
 	exit(0);
 }
 
@@ -92,7 +92,7 @@ void	double_left(t_shell *sh)
 		pid = fork();
 		if (pid == 0)
 		{	
-			fd = open("tmp", O_CREAT | O_APPEND | O_WRONLY | O_RDONLY, 0777);
+			fd = open(".#@!tmp!@#", O_CREAT | O_APPEND | O_WRONLY | O_RDONLY, 0777);
 			if (fd == -1)
 			{
 				perror("Error opening file");
@@ -101,6 +101,9 @@ void	double_left(t_shell *sh)
 			exec_exit(sh, &fd);
 		}
 		else
+		{
 			waitpid(pid, &sh->status, 0);
+			sh->status = ft_status(sh->status);
+		}
 	}
 }
