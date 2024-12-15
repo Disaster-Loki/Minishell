@@ -26,16 +26,28 @@ char	**dup_env(char **env)
 	return (res);
 }
 
+int	get_var(int value)
+{
+	static int	val;
+
+	if (value == -1)
+		return (val);
+	else
+		val = value;
+	return (value);
+}
+
 void	ft_init_vars(t_shell *sh, char **env)
 {
 	(void)env;
 	sh->i = 0;
-	sh->status = 0;
+	sh->pip = 0;
 	sh->path = NULL;
 	sh->flag_env = 0;
 	sh->split = NULL;
 	sh->temp_env = NULL;
 	sh->env = dup_env(env);
+	sh->status = get_var(-1);
 }
 
 int	main(int av, char **args, char **env)
@@ -48,7 +60,9 @@ int	main(int av, char **args, char **env)
 	while (1)
 	{
 		signals();
+		get_var2(1);
 		shell.input = readline("MiniShell-> ");
+		shell.status = get_var(-1);
 		if (shell.input == NULL)
 		{
 			ft_putstr_fd("exit\n", 1);

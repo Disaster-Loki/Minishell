@@ -41,8 +41,7 @@ void	child_process(t_shell *sh)
 
 int	handle_child_process(t_shell *sh, pid_t pid)
 {
-	signal(SIGINT, signal_handler2);
-	signal(SIGQUIT, signal_handler2);
+	signal(SIGINT, signal_handler);
 	waitpid(pid, &sh->status, 0);
 	sh->status = ft_status(sh->status);
 	if (sh->status == 127)
@@ -56,7 +55,8 @@ int	exec_cmd(t_shell *sh)
 	char	*str;
 
 	str = ft_substr(sh->mat[0], 0, ft_strlen("/bin/"));
-	if (!ft_strcmp(str, "/bin/"))
+	if (!ft_strcmp(str, "/bin/")
+		&& sh->mat[0][ft_strlen("/bin/")] != '\0')
 	{
 		pid = fork();
 		if (pid == 0)
@@ -69,6 +69,7 @@ int	exec_cmd(t_shell *sh)
 		return (-1);
 	if (!ft_strcmp(sh->mat[0], ""))
 		return (0);
+	get_var2(0);
 	pid = fork();
 	if (pid == 0)
 		child_process(sh);

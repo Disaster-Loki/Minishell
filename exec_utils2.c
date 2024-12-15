@@ -29,7 +29,10 @@ int	ft_status(int status)
 		if (WTERMSIG(status) == SIGINT)
 			status = 130;
 		else if (WTERMSIG(status) == SIGQUIT)
+		{
+			printf("Quit (core dumped)\n");
 			status = 131;
+		}
 		else
 			status = 128 + WTERMSIG(status);
 	}

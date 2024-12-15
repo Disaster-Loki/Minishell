@@ -12,6 +12,11 @@
 
 #include "minishell.h"
 
+int	s_quotes(int c)
+{
+	return (c == '\'' || c == '\"');
+}
+
 int	is_special_char(char c)
 {
 	return (c == '<' || c == '>' || c == '|');

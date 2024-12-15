@@ -30,7 +30,7 @@ char	*expand_var(t_shell *sh, t_args *args, int *i, int j)
 	exp = ft_strjoin(sub, var);
 	sh->tmp = exp;
 	exp = ft_strjoin(sh->tmp, rest);
-	*i = 0;
+	*i = -1;
 	free(sub);
 	free(rest);
 	free(name);
@@ -43,6 +43,11 @@ void	handle_expansion(t_shell *sh, t_args *args, t_tokens *tok, int *i)
 	if (args[tok->j].str[*i] == '$')
 	{
 		args[tok->j].temp = args[tok->j].str;
+		if (s_quotes(args[tok->j].str[*i + 1]))
+		{
+			*i += 1;
+			return ;
+		}
 		if (args[tok->j].str[*i + 1] == '?')
 		{
 			states_cmd(sh, args, *i, tok->j);
@@ -67,6 +72,8 @@ void	expansion(t_shell *sh, t_args *args, t_tokens *tok)
 	end = 0;
 	start = 0;
 	state = 0;
+	if (ft_strchr(args[tok->j].str, '$') == NULL)
+		return ;
 	while (args[tok->j].str[++i])
 	{
 		is_in_quotes(&state, args[tok->j].str[i]);

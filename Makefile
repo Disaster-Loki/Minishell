@@ -51,6 +51,7 @@ PROCESSING_FILES = tokenize.c 		\
                    redir.c 			\
 				   r_utils.c 			\
 				   valid_input.c 		\
+				   valid_error.c 		\
                    v_utils.c 			\
 				   invalid_rdir.c
 

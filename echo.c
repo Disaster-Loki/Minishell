@@ -27,6 +27,8 @@ int	is_n_option(char **mat, int *i)
 				return (0);
 			j++;
 		}
+		if (!ft_strcmp(mat[*i], "-"))
+			return (0);
 		found = 1;
 		(*i)++;
 	}

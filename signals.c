@@ -12,12 +12,25 @@
 
 #include "minishell.h"
 
+int	get_var2(int value)
+{
+	static int	val;
+
+	if (value == -1)
+		return (val);
+	else
+		val = value;
+	return (value);
+}
+
 void	signal_handler2(int sig)
 {
-	if (sig == SIGQUIT)
-		printf("Quit (core dumped)\n");
 	if (sig == SIGINT)
-		printf("\n");
+	{
+		if (get_var2(-1) == 0)
+			printf("\n");
+		get_var(130);
+	}
 }
 
 void	signal_handler(int sig)
@@ -27,7 +40,9 @@ void	signal_handler(int sig)
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
-		rl_redisplay();
+		if (get_var2(-1) == 1)
+			rl_redisplay();
+		get_var(130);
 	}
 	if (sig == SIGQUIT)
 		rl_redisplay();

@@ -90,6 +90,7 @@ typedef struct s_tokens
 typedef struct s_shell
 {
 	int		i;
+	int		pip;
 	int		flag;
 	int		in_q;
 	char	*tmp;
@@ -113,6 +114,11 @@ typedef struct s_shell
 	char	*temp_unset[1024];
 	char	**temp_unset2;
 }	t_shell;
+
+int			get_var2(int value);
+int			s_quotes(int c);
+int			get_var(int value);
+int			valid_quotes(t_shell *sh, char *str);
 
 // right_utills.c
 void		get_dir(t_shell *sh);
