@@ -51,15 +51,16 @@ int	read_line(t_shell *sh)
 {
 	sh->redirect = 0;
 	sh->path = get_env(sh, "PATH");
-	if (validate_input(sh) || validate_input(sh) <= -1)
+	if (validate_input(sh))
 		return (-1);
-	if (ft_alter_strchr(sh, sh->input, '|') && pipetting(sh))
+	if (sh->pip  && pipetting(sh))
 		return (0);
 	if (alter_redirects(sh) == -1)
 		return (-1);
 	sh->args = tokenize(sh, sh->input);
 	sh->mat = ft_args(sh->args);
 	check_command(sh);
-	free_args(sh);
+	if (sh->args[0].str)
+		free_args(sh);
 	return (0);
 }

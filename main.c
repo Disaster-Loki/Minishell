@@ -41,6 +41,7 @@ void	ft_init_vars(t_shell *sh, char **env)
 {
 	(void)env;
 	sh->i = 0;
+	sh->pip = 0;
 	sh->path = NULL;
 	sh->flag_env = 0;
 	sh->split = NULL;

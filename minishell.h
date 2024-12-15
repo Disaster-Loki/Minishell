@@ -86,6 +86,7 @@ typedef struct s_tokens
 typedef struct s_shell
 {
 	int		i;
+	int		pip;
 	int		flag;
 	int		in_q;
 	char	*tmp;

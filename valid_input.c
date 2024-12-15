@@ -32,6 +32,56 @@ int	syntax_characters(t_shell *sh, char *input, int *i, int *status)
 	return (*status);
 }
 
+int	herepipe(t_shell *sh)
+{
+	char	*line;
+	char	*new_input;
+
+	line = readline(">");
+	if (!line)
+		return (0);
+	new_input = strjoin(sh->input, line);
+	free(sh->input);
+	sh->input = new_input;
+	free(line);
+	return (1);
+}
+
+int	jump_string(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+	if (str[i] == '|')
+		return (i);
+	return (i);
+}
+
+int	ft_error_pipe(t_shell *sh, char *str)
+{
+	int	i;
+	int	len;
+
+	if (!ft_alter_strchr(sh, input, '|'))
+	{
+		sh->pip = 1;
+		return (0);
+	}
+	i = -1;
+	len = (int)ft_strlen(str) - 1;
+	while (str[++i])
+	{
+		if (!ft_isspace(str[i]) && str[len] != '|')
+			return (1);
+		if (!ft_isspace(str[i]) && str[len] == '|')
+		{
+			
+		}
+	}
+}
+
 int	check_syntax_error(t_shell *sh)
 {
 	int		i;
