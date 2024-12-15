@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/15 17:40:26 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:38:13 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,9 @@ void		check_command(t_shell *sh);
 // Export
 int			check_var(char *str);
 int			find_size(char *vari);
+int			end_with_equals(char *str);
 void		cmd_export(char **env);
+void		print_equals_end(char *str);
 int			found_equals(char *str);
 void		cmd_export2(t_shell *sh);
 int			valid_env_name(char *str);

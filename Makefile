@@ -6,7 +6,7 @@
 #    By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 11:52:18 by sde-carv          #+#    #+#              #
-#    Updated: 2024/12/15 16:58:24 by ptchipoc         ###   ########.fr        #
+#    Updated: 2024/12/15 20:40:02 by ptchipoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ BUILTINS_FILES   = cd.c 				\
                    unset.c 				\
                    export.c 			\
 				   export_add.c 		\
-				   export_utils.c
+				   export_utils.c		\
+				   export_utills2.c		\
 
 PROCESSING_FILES = tokenize.c 		\
 				   p_utils.c 			\
