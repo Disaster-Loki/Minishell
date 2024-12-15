@@ -6,7 +6,7 @@
 #    By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 11:52:18 by sde-carv          #+#    #+#              #
-#    Updated: 2024/12/14 11:02:21 by ptchipoc         ###   ########.fr        #
+#    Updated: 2024/12/15 16:58:24 by ptchipoc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,10 @@ REDIRECTS_FILES  = redirects.c 		\
 				   right_redir.c			\
 				   left_utills2.c			\
 				   double_left_utills2.c		\
+				   doc_utill1.c				\
+				   doc_first_position.c			\
+				   doc_utill2.c				\
+				   doc_other_position.c			\
 
 SRC_FILES = $(CONTROLLER_FILES) 					\
 			$(BUILTINS_FILES) 						\

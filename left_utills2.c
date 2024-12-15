@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 08:03:45 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/14 11:04:46 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/15 16:08:39 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	verify_status2(t_shell *sh)
 	int	i;
 	int	flag;
 
-	i = -1;
+	i = 2;
 	flag = 0;
-	while (sh->mat[++i])
+	while (sh->mat[i])
 	{
 		if (is_word(sh->mat[i]))
 		{
@@ -78,6 +78,7 @@ int	verify_status2(t_shell *sh)
 				return (0);
 			flag = 2;
 		}
+		i++;
 	}
 	return (1);
 }

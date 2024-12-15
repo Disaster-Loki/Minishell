@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/14 11:37:21 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:01:39 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@ typedef struct s_file
 	char	**arg_left;
 	char	**dell_double;
 	char	**dell_double2;
+	char	**heredoc_arg;
+	char	**heredoc_delimiter;
+	char	**heredoc_delimiter2;
+	char	**doc_tree_position;
 }	t_file;
 
 typedef struct s_tokens
@@ -209,9 +213,28 @@ void		help_with_file(t_shell *sh);
 void		get_left_file2(t_shell *sh);
 void		get_double_file(t_shell *sh);
 void		help_double_left(t_shell *sh);
+void		two_positions(t_shell *sh);
+void		tree_positions(t_shell *sh);
+void		only_delimiter(t_shell *sh);
+void		when_unordered(t_shell *sh);
+void		when_ordered(t_shell *sh);
+void		fill_heredoc_delimiter(t_shell *sh);
+void		fill_heredoc_arg(t_shell *sh);
+void		more_than_tree_positions(t_shell *sh);
+void		in_first_position(t_shell *sh);
+void		fill_heredoc_delimiter2(t_shell *sh);
+void		tree_positions2(t_shell *sh);
+void		fill_heredoc_tree_position(t_shell *sh);
 void		firsts_left_file(t_shell *sh);
-void		exec_exit(t_shell *sh, int *fd);
+void		exec_exit(t_shell *sh);
+void		exec_exit2(t_shell *sh, int *i);
+void		help_help_when_ordered1(t_shell *sh);
+void		help_help_when_ordered(t_shell *sh);
+void		help_when_unordered(t_shell *sh);
+void		other_position(t_shell *sh);
+void		more_than_tree_positions2(t_shell *sh);
 int			is_word(char *str);
+int			is_command(const char *cmd);
 int			is_redir(char *str);
 int			find_type(t_shell *sh);
 int			find_file(t_shell *sh);

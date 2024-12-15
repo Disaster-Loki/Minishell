@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 13:43:43 by ptchipoc          #+#    #+#             */
-/*   Updated: 2024/12/14 11:03:09 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/14 17:50:22 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void	with_file(t_shell *sh)
 	}
 	if (pid == 0)
 	{
+		printf("P\n");
 		check_command(sh);
 		sh->redirect = 1;
 		exit(0);
