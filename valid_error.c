@@ -3,24 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   valid_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-carv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 15:28:36 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/14 15:28:41 by sde-carv         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:34:48 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	handle_syntax_error(char *token)
+int handle_syntax_error(char *token)
 {
-	ft_putstr_fd("bash: syntax error near unexpected token `", 1);
-	if (!token || token[0] == '\0')
-		ft_putstr_fd("newline", 1);
-	else
-		ft_putstr_fd(token, 1);
-	ft_putstr_fd("'\n", 1);
-	return (258);
+    ft_putstr_fd("bash: syntax error near unexpected token `", 2);
+    if (!token || token[0] == '\0')
+        ft_putstr_fd("newline", 2);
+    else if (token[0] == '|' || token[0] == '<' || token[0] == '>')
+    {
+        if (token[1] && token[0] == token[1])
+            ft_putchar_fd(token[0], 2);
+        ft_putchar_fd(token[0], 2);
+    }
+    else
+        ft_putstr_fd(token, 2);
+    ft_putstr_fd("'\n", 2);
+    return 258;
 }
 
 int	is_empty_input(const char *input)

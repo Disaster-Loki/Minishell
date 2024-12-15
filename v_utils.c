@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:37:09 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/14 11:06:02 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:40:10 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,49 @@ int	is_special_char(char c)
 	return (c == '<' || c == '>' || c == '|');
 }
 
-int	check_pipe_syntax(char *input, int *i)
+int check_pipe_syntax(t_shell *sh, char *input, int *i)
 {
-	if (*i == 0 || is_special_char(input[*i + 1]))
-		return (handle_syntax_error("|"));
-	(*i)++;
-	while (input[*i] == ' ')
-		(*i)++;
-	if (input[*i] == '\0' || is_special_char(input[*i]))
-		return (handle_syntax_error("|"));
-	return (0);
+    int pipe_count = 1;
+
+    (*i)++;
+    while (input[*i] == '|')
+    {
+        pipe_count++;
+        (*i)++;
+    }
+    while (input[*i] == ' ')
+        (*i)++;
+
+    if (pipe_count > 1 || input[*i] == '|')
+        return handle_syntax_error("|");
+    if (input[*i] == '\0')
+    {
+        if (herepipe(sh))
+            return 0;
+        return 258;
+    }
+
+    return 0;
 }
 
-int	check_redirect_syntax(char *input, int *i)
+int check_redirect_syntax(t_shell *sh, char *input, int *i)
 {
-	char	current;
+    char redirect = input[*i];
+    int count = 1;
 
-	current = input[*i];
-	(*i)++;
-	if (input[*i] == current)
-		(*i)++;
-	while (input[*i] == ' ')
-		(*i)++;
-	if (input[*i] == '\0' || is_special_char(input[*i]))
-		return (handle_syntax_error(input + *i));
-	return (0);
+    (*i)++;
+    while (input[*i] == redirect)
+    {
+        count++;
+        (*i)++;
+    }
+    if (count > 2 || (input[*i] == '<' || input[*i] == '>'))
+        return handle_syntax_error(input + (*i) - count);
+    while (input[*i] == ' ')
+        (*i)++;
+
+    if (input[*i] == '\0' || input[*i] == '|' || input[*i] == '<' || input[*i] == '>')
+        return handle_syntax_error(input + *i);
+
+    return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 10:45:16 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/15 17:01:39 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:40:26 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,9 +184,9 @@ int			validate_input(t_shell *sh);
 int			check_syntax_error(t_shell *sh);
 int			handle_syntax_error(char *token);
 int			is_empty_input(const char *input);
-int			check_pipe_syntax(char *input, int *i);
+int             check_pipe_syntax(t_shell *sh, char *input, int *i)
 void		xprint(char *str, char *str2, int fd);
-int			check_redirect_syntax(char *input, int *i);
+int check_redirect_syntax(t_shell *sh, char *input, int *i);
 int			ft_alter_strchr(t_shell *sh, char *str, char c);
 long long	ft_strtoll(const char *str, char **endptr, int base);
 

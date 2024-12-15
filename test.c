@@ -52,22 +52,6 @@ int is_empty_input(const char *input)
     return 1;
 }
 
-int ft_alter_strchr(const char *str, char c)
-{
-    int i = 0;
-    int in_quotes = 0;
-
-    while (str[i])
-    {
-        if (str[i] == '\'' || str[i] == '\"')
-            in_quotes = !in_quotes;
-        if (!in_quotes && str[i] == c)
-            return i;
-        i++;
-    }
-    return -1;
-}
-
 int handle_syntax_error(char *token)
 {
     ft_putstr_fd("bash: syntax error near unexpected token `", 2);
@@ -111,25 +95,34 @@ int check_pipe_syntax(t_shell *sh, char *input, int *i)
     }
     while (input[*i] == ' ')
         (*i)++;
-    
+
     if (pipe_count > 1 || input[*i] == '|')
         return handle_syntax_error("|");
     if (input[*i] == '\0')
         return herepipe(sh) ? 0 : 258;
-    
+
     return 0;
 }
 
 int check_redirect_syntax(t_shell *sh, char *input, int *i)
 {
-    if (input[*i] == '>' || input[*i] == '<')
+    char redirect = input[*i];
+    int count = 1;
+
+    (*i)++;
+    while (input[*i] == redirect)
     {
-        if (input[*i + 1] == '|') // Detectando redirecionamento inválido como '> |' ou '< |'
-            return handle_syntax_error("|");
-        if (input[*i + 1] == '\0') // Se terminar com '>' ou '<'
-            return handle_syntax_error(input + *i);
+        count++;
         (*i)++;
     }
+    if (count > 2 || (input[*i] == '<' || input[*i] == '>'))
+        return handle_syntax_error(input + (*i) - count);
+    while (input[*i] == ' ')
+        (*i)++;
+
+    if (input[*i] == '\0' || input[*i] == '|' || input[*i] == '<' || input[*i] == '>')
+        return handle_syntax_error(input + *i);
+
     return 0;
 }
 
@@ -193,7 +186,7 @@ int main(int argc, char **argv, char **envp)
         }
         if (!is_empty_input(shell.input))
             add_history(shell.input);
-        
+
         validate_input(&shell);
 
         if (shell.status == 258)
@@ -205,4 +198,3 @@ int main(int argc, char **argv, char **envp)
     }
     return 0;
 }
-
