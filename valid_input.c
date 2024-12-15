@@ -12,46 +12,51 @@
 
 #include "minishell.h"
 
-int herepipe(t_shell *sh)
+int	herepipe(t_shell *sh)
 {
-    char *line;
+	char	*line;
+	int		status;
+	char	*new_input;
 
-    line = readline("> ");
-    if (!line)
-        return 0;
-    char *new_input = strjoin(sh->input, line);
-    free(sh->input);
-    sh->input = new_input;
-    free(line);
-    return 1;
-}
-int syntax_characters(t_shell *sh, char *input, int *i)
-{
-    if (input[*i] == '|')
-        return check_pipe_syntax(sh, input, i);
-    if (input[*i] == '>' || input[*i] == '<')
-        return check_redirect_syntax(sh, input, i);
-    return 0;
+	(void)status;
+	line = readline("> ");
+	if (!line)
+		return (0);
+	new_input = ft_strjoin(sh->input, line);
+	free(sh->input);
+	sh->input = new_input;
+	free(line);
+	return (1);
 }
 
-int check_syntax_error(t_shell *sh)
+int	syntax_characters(t_shell *sh, char *input, int *i)
 {
-    int i = 0;
-    int status = 0;
+	if (input[*i] == '|')
+		return (check_pipe_syntax(sh, input, i));
+	if (input[*i] == '>' || input[*i] == '<')
+		return (check_redirect_syntax(input, i));
+	return (0);
+}
 
-    while (sh->input[i] == ' ')
-        i++;
-    if (sh->input[i] == '|')
-        return handle_syntax_error("|");
+int	check_syntax_error(t_shell *sh)
+{
+	int	i;
+	int	status;
 
-    while (sh->input[i]) 
-    {
-        status = syntax_characters(sh, sh->input, &i);
-        if (status == 258)
-            return 258;
-        i++;
-    }
-    return 0;
+	i = 0;
+	status = 0;
+	while (sh->input[i] == ' ')
+		i++;
+	if (sh->input[i] == '|')
+		return (handle_syntax_error("|"));
+	while (sh->input[i])
+	{
+		status = syntax_characters(sh, sh->input, &i);
+		if (status == 258)
+			return (258);
+		i++;
+	}
+	return (0);
 }
 
 int	validate_input(t_shell *sh)

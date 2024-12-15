@@ -53,7 +53,7 @@ int	read_line(t_shell *sh)
 	sh->path = get_env(sh, "PATH");
 	if (validate_input(sh))
 		return (-1);
-	if (sh->pip  && pipetting(sh))
+	if (ft_alter_strchr(sh, sh->input, '|') && pipetting(sh))
 		return (0);
 	if (alter_redirects(sh) == -1)
 		return (-1);

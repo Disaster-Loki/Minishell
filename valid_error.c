@@ -12,21 +12,21 @@
 
 #include "minishell.h"
 
-int handle_syntax_error(char *token)
+int	handle_syntax_error(char *token)
 {
-    ft_putstr_fd("bash: syntax error near unexpected token `", 2);
-    if (!token || token[0] == '\0')
-        ft_putstr_fd("newline", 2);
-    else if (token[0] == '|' || token[0] == '<' || token[0] == '>')
-    {
-        if (token[1] && token[0] == token[1])
-            ft_putchar_fd(token[0], 2);
-        ft_putchar_fd(token[0], 2);
-    }
-    else
-        ft_putstr_fd(token, 2);
-    ft_putstr_fd("'\n", 2);
-    return 258;
+	ft_putstr_fd("bash: syntax error near unexpected token `", 2);
+	if (!token || token[0] == '\0')
+		ft_putstr_fd("newline", 2);
+	else if (token[0] == '|' || token[0] == '<' || token[0] == '>')
+	{
+		if (token[1] && token[0] == token[1])
+			ft_putchar_fd(token[0], 2);
+		ft_putchar_fd(token[0], 2);
+	}
+	else
+		ft_putstr_fd(token, 2);
+	ft_putstr_fd("'\n", 2);
+	return (258);
 }
 
 int	is_empty_input(const char *input)

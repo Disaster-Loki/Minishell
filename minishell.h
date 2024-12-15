@@ -115,9 +115,10 @@ typedef struct s_shell
 	char	**temp_unset2;
 }	t_shell;
 
-int			get_var2(int value);
 int			s_quotes(int c);
 int			get_var(int value);
+int			get_var2(int value);
+int			herepipe(t_shell *sh);
 int			valid_quotes(t_shell *sh, char *str);
 
 // right_utills.c
@@ -184,9 +185,9 @@ int			validate_input(t_shell *sh);
 int			check_syntax_error(t_shell *sh);
 int			handle_syntax_error(char *token);
 int			is_empty_input(const char *input);
-int             check_pipe_syntax(t_shell *sh, char *input, int *i)
+int			check_pipe_syntax(t_shell *sh, char *input, int *i);
 void		xprint(char *str, char *str2, int fd);
-int check_redirect_syntax(t_shell *sh, char *input, int *i);
+int			check_redirect_syntax(char *input, int *i);
 int			ft_alter_strchr(t_shell *sh, char *str, char c);
 long long	ft_strtoll(const char *str, char **endptr, int base);
 

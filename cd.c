@@ -74,7 +74,7 @@ void	cmd_cd(t_shell *sh)
 	}
 	if (!chdir(sh->mat[1]))
 	{
-		change_old(sh, "OLDPWD");
+		//change_old(sh, "OLDPWD");
 		if (!change_env(sh, "PWD"))
 			xprint("bash: cd: failed to update PWD\n", NULL, 2);
 		sh->status = 0;

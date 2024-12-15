@@ -69,7 +69,7 @@ int	main(int av, char **args, char **env)
 			free_mat(shell.env);
 			break ;
 		}
-		if (is_empty_input(shell.input))
+		if (shell.input[0] != '\0')
 			add_history(shell.input);
 		read_line(&shell);
 		free(shell.input);
