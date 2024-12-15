@@ -6,7 +6,7 @@
 /*   By: ptchipoc <ptchipoc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:53:05 by sde-carv          #+#    #+#             */
-/*   Updated: 2024/12/14 11:04:10 by ptchipoc         ###   ########.fr       */
+/*   Updated: 2024/12/15 20:34:52 by ptchipoc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,6 @@ int	compare(char *s1, char *s2)
 	return (1);
 }
 
-int	found_equals(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-	{
-		if (str[i] == '=')
-			return (1);
-	}
-	return (0);
-}
-
 void	help_write(char **print, int *i, int *j, int *flag)
 {
 	while (print[++(*i)])
@@ -44,20 +31,25 @@ void	help_write(char **print, int *i, int *j, int *flag)
 		printf("declare -x ");
 		*j = -1;
 		*flag = 0;
-		while (print[*i][++(*j)])
+		if (end_with_equals(print[*i]))
+			print_equals_end(print[*i]);
+		else
 		{
-			if ((print[*i][*j] == '=' || print[*i][*j + 1] == '\0')
-				&& found_equals(print[*i]))
+			while (print[*i][++(*j)])
 			{
-				printf("%c", print[*i][*j]);
-				if (*flag == 0 || print[*i][*j + 1] == '\0')
-					printf("\"");
-				*flag = 1;
-				if (print[*i][*j] == '=' && print[*i][*j + 1] == '\0')
-					printf("\"");
+				if ((print[*i][*j] == '=' || print[*i][*j + 1] == '\0')
+					&& found_equals(print[*i]))
+				{
+					printf("%c", print[*i][*j]);
+					if (*flag == 0 || print[*i][*j + 1] == '\0')
+						printf("\"");
+					*flag = 1;
+					if (print[*i][*j] == '=' && print[*i][*j + 1] == '\0')
+						printf("\"");
+				}
+				else
+					printf("%c", print[*i][*j]);
 			}
-			else
-				printf("%c", print[*i][*j]);
 		}
 		printf("\n");
 	}
