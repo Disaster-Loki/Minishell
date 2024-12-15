@@ -35,7 +35,6 @@ int	get_var(int value)
 	else
 		val = value;
 	return (value);
-
 }
 
 void	ft_init_vars(t_shell *sh, char **env)
@@ -60,6 +59,7 @@ int	main(int av, char **args, char **env)
 	while (1)
 	{
 		signals();
+		get_var2(1);
 		shell.input = readline("MiniShell-> ");
 		shell.status = get_var(-1);
 		if (shell.input == NULL)
