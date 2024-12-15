@@ -93,7 +93,7 @@ void	help_with_file(t_shell *sh)
 		{
 			temp = readline("> ");
 			if (!temp)
-				break ;
+				return ;
 			if (!ft_strncmp(sh->manager.dell_double[i],
 					temp, ft_strlen(sh->manager.dell_double[i]))
 				&& temp[ft_strlen(sh->manager.dell_double[i])] == '\0')
@@ -121,7 +121,6 @@ void	with_file(t_shell *sh)
 	}
 	if (pid == 0)
 	{
-		printf("P\n");
 		check_command(sh);
 		sh->redirect = 1;
 		exit(0);

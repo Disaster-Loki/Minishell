@@ -118,6 +118,7 @@ typedef struct s_shell
 int			s_quotes(int c);
 int			get_var(int value);
 int			get_var2(int value);
+void		signal_handler3(int sig);
 int			herepipe(t_shell *sh, int *i);
 int			valid_quotes(t_shell *sh, char *str);
 

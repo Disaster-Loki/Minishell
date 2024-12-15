@@ -24,6 +24,25 @@ int	compare(char *s1, char *s2)
 	return (1);
 }
 
+void	helo_help_write(char **print, int *i, int *j, int *flag)
+{
+	while (print[*i][++(*j)])
+	{
+		if ((print[*i][*j] == '=' || print[*i][*j + 1] == '\0')
+			&& found_equals(print[*i]))
+		{
+			printf("%c", print[*i][*j]);
+			if (*flag == 0 || print[*i][*j + 1] == '\0')
+				printf("\"");
+			*flag = 1;
+			if (print[*i][*j] == '=' && print[*i][*j + 1] == '\0')
+				printf("\"");
+		}
+		else
+			printf("%c", print[*i][*j]);
+	}
+}
+
 void	help_write(char **print, int *i, int *j, int *flag)
 {
 	while (print[++(*i)])
@@ -34,23 +53,7 @@ void	help_write(char **print, int *i, int *j, int *flag)
 		if (end_with_equals(print[*i]))
 			print_equals_end(print[*i]);
 		else
-		{
-			while (print[*i][++(*j)])
-			{
-				if ((print[*i][*j] == '=' || print[*i][*j + 1] == '\0')
-					&& found_equals(print[*i]))
-				{
-					printf("%c", print[*i][*j]);
-					if (*flag == 0 || print[*i][*j + 1] == '\0')
-						printf("\"");
-					*flag = 1;
-					if (print[*i][*j] == '=' && print[*i][*j + 1] == '\0')
-						printf("\"");
-				}
-				else
-					printf("%c", print[*i][*j]);
-			}
-		}
+			helo_help_write(print, i, j, flag);
 		printf("\n");
 	}
 }

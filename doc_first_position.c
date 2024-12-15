@@ -25,7 +25,7 @@ void	help_when_unordered(t_shell *sh)
 		{
 			temp = readline("> ");
 			if (!temp)
-				break ;
+				return ;
 			if (!ft_strncmp(sh->manager.heredoc_delimiter[i], temp,
 					ft_strlen(sh->manager.heredoc_delimiter[i]))
 				&& temp[ft_strlen(sh->manager.heredoc_delimiter[i])] == '\0')
@@ -51,7 +51,7 @@ void	help_help_when_ordered(t_shell *sh)
 		{
 			temp = readline("> ");
 			if (!temp)
-				break ;
+				return ;
 			if (!ft_strncmp(sh->manager.heredoc_delimiter[i], temp,
 					ft_strlen(sh->manager.heredoc_delimiter[i]))
 				&& temp[ft_strlen(sh->manager.heredoc_delimiter[i])] == '\0')
@@ -79,7 +79,7 @@ void	only_delimiter(t_shell *sh)
 		{
 			temp = readline("> ");
 			if (!temp)
-				break ;
+				return ;
 			if (!ft_strncmp(sh->manager.heredoc_delimiter[i], temp,
 					ft_strlen(sh->manager.heredoc_delimiter[i]))
 				&& temp[ft_strlen(sh->manager.heredoc_delimiter[i])] == '\0')

@@ -24,7 +24,7 @@ void	help_help_when_ordered1(t_shell *sh)
 		{
 			temp = readline("> ");
 			if (!temp)
-				break ;
+				return ;
 			if (!ft_strncmp(sh->manager.heredoc_delimiter[i], temp,
 					ft_strlen(sh->manager.heredoc_delimiter[i]))
 				&& temp[ft_strlen(sh->manager.heredoc_delimiter[i])] == '\0')

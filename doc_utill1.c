@@ -45,7 +45,7 @@ void	two_positions(t_shell *sh)
 	{
 		temp = readline("> ");
 		if (!temp)
-			break ;
+			return ;
 		if (!ft_strncmp(sh->mat[1], temp, ft_strlen(sh->mat[1]))
 			&& temp[ft_strlen(sh->mat[1])] == '\0')
 		{

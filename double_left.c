@@ -73,7 +73,7 @@ void	exec_exit(t_shell *sh)
 			{
 				temp = readline("> ");
 				if (!temp)
-					break ;
+					return ;
 				if (!ft_strncmp(sh->mat[i], temp, ft_strlen(sh->mat[i]))
 					&& temp[ft_strlen(sh->mat[i])] == '\0')
 				{
