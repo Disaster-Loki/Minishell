@@ -69,9 +69,9 @@ void	add_var(t_shell *sh, char *str)
 	sh->flag_env = 1;
 }
 
-void	export_error(t_shell *sh, int i)
+void	export_error(char *str)
 {
-	xprint("bash: export: `", sh->mat[i], 2);
+	xprint("bash: export: `", str, 2);
 	xprint("': not a valid identifier\n", "", 2);
 }
 
@@ -83,7 +83,7 @@ void	cmd_export2(t_shell *sh)
 	while (sh->mat[i])
 	{
 		if (!valid_env_name(sh->mat[i]))
-			export_error(sh, i);
+			export_error(sh->mat[i]);
 		else if (check_envi(sh->env, sh->mat[i]))
 		{
 			if (check_var(sh->mat[i]))

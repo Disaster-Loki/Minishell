@@ -70,16 +70,16 @@ void	cmd_exit(t_shell *sh)
 
 	num = 0;
 	printf("exit\n");
+	if (sh->mat[1] && !exit_digit(sh->mat[1]))
+	{
+		printf("bash: exit: %s: numeric argument required\n", sh->mat[1]);
+		logout(sh, 255);
+	}
 	if (matrix_line(sh->mat) > 2)
 	{
 		printf("bash: exit: too many arguments\n");
 		sh->status = 1;
 		return ;
-	}
-	if (sh->mat[1] && !exit_digit(sh->mat[1]))
-	{
-		printf("bash: exit: %s: numeric argument required\n", sh->mat[1]);
-		logout(sh, 255);
 	}
 	if (sh->mat[1])
 		num = ft_atoi(sh->mat[1]);

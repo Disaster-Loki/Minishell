@@ -41,23 +41,60 @@ int	update_env_value(char **env, char *key, char *new_value)
 
 int	change_env(t_shell *sh, char *key)
 {
+	char	*str;
 	char	cwd[PATH_MAX];
 	char	*current_dir;
 
+	str = get_env(sh, "PWD");
+	if (!str)
+		return (0);
 	current_dir = getcwd(cwd, sizeof(cwd));
 	if (!current_dir)
 		return (0);
 	return (update_env_value(sh->env, key, current_dir));
 }
 
+int	add_env(t_shell *sh, char *str)
+{
+	if (str)
+	{
+		if (!valid_env_name(str))
+			export_error(str);
+		else if (check_envi(sh->env, str))
+		{
+			if (check_var(str))
+				ch_value(sh->env, str);
+			else
+				ch_value(sh->env, str);
+		}
+		else
+		{
+			if (check_var(str))
+				add_var(sh, str);
+			else
+				add_var(sh, str);
+		}
+		return (1);
+	}
+	return (0);
+}
+
 int	change_old(t_shell *sh, char *key)
 {
 	char	*str;
+	char	*tmp;
+	char	*join;
 
 	str = ft_strdup(get_env(sh, "PWD"));
 	if (!str)
 		return (0);
-	return (update_env_value(sh->env, key, str));
+	tmp = ft_strjoin(key, "=");
+	join = ft_strjoin(tmp, str);
+	add_env(sh, join);
+	free(str);
+	free(tmp);
+	free(join);
+	return (1);
 }
 
 void	cmd_cd(t_shell *sh)
@@ -74,7 +111,7 @@ void	cmd_cd(t_shell *sh)
 	}
 	if (!chdir(sh->mat[1]))
 	{
-		//change_old(sh, "OLDPWD");
+		change_old(sh, "OLDPWD");
 		if (!change_env(sh, "PWD"))
 			xprint("bash: cd: failed to update PWD\n", NULL, 2);
 		sh->status = 0;

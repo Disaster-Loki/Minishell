@@ -62,7 +62,6 @@ int	main(int av, char **args, char **env)
 		signals();
 		get_var2(1);
 		shell.input = readline("MiniShell-> ");
-		shell.status = get_var(-1);
 		if (shell.input == NULL)
 		{
 			ft_putstr_fd("exit\n", 1);

@@ -40,6 +40,8 @@ char	*expand_var(t_shell *sh, t_args *args, int *i, int j)
 
 void	handle_expansion(t_shell *sh, t_args *args, t_tokens *tok, int *i)
 {
+	if (args[tok->j].str[*i] == '\0')
+		return ;
 	if (args[tok->j].str[*i] == '$')
 	{
 		args[tok->j].temp = args[tok->j].str;
@@ -81,7 +83,9 @@ void	expansion(t_shell *sh, t_args *args, t_tokens *tok)
 		{
 			start = i;
 			find_quotes(sh, args[tok->j].str, &start, &end);
-			i = end;
+			if (end + 1 > (int)ft_strlen(args[tok->j].str))
+				return ;
+			i = end + 1;
 		}
 		handle_expansion(sh, args, tok, &i);
 	}

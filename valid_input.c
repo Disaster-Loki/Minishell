@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	herepipe(t_shell *sh)
+int	herepipe(t_shell *sh, int *i)
 {
 	char	*line;
 	int		status;
@@ -21,10 +21,15 @@ int	herepipe(t_shell *sh)
 	(void)status;
 	line = readline("> ");
 	if (!line)
+	{
+		xprint("bash: syntax error: unexpected end of file\n", NULL, 2);
+		xprint("exit\n", NULL, 2);
 		return (0);
+	}
 	new_input = ft_strjoin(sh->input, line);
 	free(sh->input);
 	sh->input = new_input;
+	*i = 0;
 	free(line);
 	return (1);
 }

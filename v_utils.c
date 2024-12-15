@@ -39,7 +39,7 @@ int	check_pipe_syntax(t_shell *sh, char *input, int *i)
 		return (handle_syntax_error("|"));
 	if (input[*i] == '\0')
 	{
-		if (herepipe(sh))
+		if (herepipe(sh, i))
 			return (0);
 		return (258);
 	}

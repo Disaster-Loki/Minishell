@@ -118,7 +118,7 @@ typedef struct s_shell
 int			s_quotes(int c);
 int			get_var(int value);
 int			get_var2(int value);
-int			herepipe(t_shell *sh);
+int			herepipe(t_shell *sh, int *i);
 int			valid_quotes(t_shell *sh, char *str);
 
 // right_utills.c
@@ -150,6 +150,10 @@ void		cmd_export(char **env);
 int			found_equals(char *str);
 void		cmd_export2(t_shell *sh);
 int			valid_env_name(char *str);
+void		ch_value(char **env, char *str);
+void		add_var(t_shell *sh, char *str);
+int			check_envi(char **env, char *str);
+void		export_error(char *str);
 
 // Utils
 void		free_mat(char **mt);
