@@ -83,7 +83,7 @@ void	expansion(t_shell *sh, t_args *args, t_tokens *tok)
 		{
 			start = i;
 			find_quotes(sh, args[tok->j].str, &start, &end);
-			if (end + 1 > (int)ft_strlen(args[tok->j].str))
+			if (end + 1 >= (int)ft_strlen(args[tok->j].str))
 				return ;
 			i = end + 1;
 		}
